@@ -1032,13 +1032,20 @@ function showVunneTilbud(type, navn) {
     if (showGruppeKontorColumns) headerHtml += '<th style="width: 14%;">Gruppe</th><th style="width: 90px;">Kontor</th>';
 
     // Bygg dynamisk row basert på hvilke kolonner som skal vises
+    // Formater verdi - vis desimaler bare når nødvendig
+    const formatVerdi = (v) => {
+        if (v >= 10) return Math.round(v).toString();
+        if (v >= 1) return v.toFixed(1).replace(/\.0$/, '');
+        return v.toFixed(2).replace(/\.?0+$/, '');
+    };
+
     const buildRow = (t) => {
         const statusClass = t.status === 'Vunnet' ? 'status-vunnet' :
                            t.status === 'Tapt' ? 'status-tapt' : 'status-direkte';
         let rowHtml = `<td class="status-cell ${statusClass}">${t.status}</td>`;
         if (showKundeColumn) rowHtml += `<td class="kunde-cell">${t.kunde || ''}</td>`;
         rowHtml += `<td class="emne-cell">${t.emne}</td>`;
-        rowHtml += `<td class="verdi-cell">${t.verdi.toFixed(2)}</td>`;
+        rowHtml += `<td class="verdi-cell">${formatVerdi(t.verdi)}</td>`;
         rowHtml += `<td class="timer-cell">${t.timer}</td>`;
         rowHtml += `<td class="kost-cell">${t.tilbudskostProsent}%</td>`;
         if (showGruppeKontorColumns) {
