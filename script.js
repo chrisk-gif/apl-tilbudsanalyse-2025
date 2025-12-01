@@ -1,12 +1,19 @@
 // Initialize when DOM is loaded
 document.addEventListener('DOMContentLoaded', () => {
-    initNavDots();
-    initScrollProgress();
-    initCounters();
-    initCharts();
-    initScrollAnimations();
-    initPaginatedSections();
-    initRegionTable();
+    console.log('DOMContentLoaded fired');
+    try {
+        initNavDots();
+        initScrollProgress();
+        initCounters();
+        initCharts();
+        initScrollAnimations();
+        initPaginatedSections();
+        console.log('About to call initRegionTable...');
+        initRegionTable();
+        console.log('initRegionTable completed');
+    } catch (e) {
+        console.error('Error during initialization:', e);
+    }
 });
 
 // Navigation dots
@@ -409,56 +416,75 @@ function toggleStatDetails(type) {
 
     const d = DATA.timerDetaljer;
     const t = DATA.tilbud2025;
+    const k = DATA.tilbudskostnad || {};
+    const v = DATA.tilbudsvolum || {};
 
     const details = {
         totalt: {
-            title: 'Fordeling av ' + t.totalt + ' tilbud',
+            title: 'Tilbudsvolum totalt - ' + t.totalt + ' tilbud',
             items: [
-                { label: 'Vunnet', value: t.vunnet.antall, sub: t.vunnet.timer.toLocaleString('nb-NO') + ' timer' },
-                { label: 'Tapt', value: t.tapt.antall, sub: t.tapt.timer.toLocaleString('nb-NO') + ' timer' },
-                { label: 'Direkte anskaffelse', value: t.direkte.antall, sub: t.direkte.timer.toLocaleString('nb-NO') + ' timer' },
-                { label: 'Totale tilbudstimer', value: '-', sub: t.totaleTilbudTimer.toLocaleString('nb-NO') + ' timer' },
-                { label: 'Tilbudskostnad', value: '-', sub: t.tilbudskostMNOK.toFixed(1) + ' MNOK' }
+                { label: 'Estimert kontraktsverdi', value: (v.totalt || 775).toFixed(0) + 'M', sub: 'NOK totalt' },
+                { label: 'Vunnet', value: t.vunnet.antall + ' stk', sub: t.vunnet.timer.toLocaleString('nb-NO') + ' timer' },
+                { label: 'Tapt', value: t.tapt.antall + ' stk', sub: t.tapt.timer.toLocaleString('nb-NO') + ' timer' },
+                { label: 'Direkte anskaffelse', value: t.direkte.antall + ' stk', sub: t.direkte.timer.toLocaleString('nb-NO') + ' timer' },
+                { label: 'Totale tilbudstimer', value: t.totaleTilbudTimer.toLocaleString('nb-NO'), sub: 'timer vunnet/tapt/direkte' },
+                { label: 'Total tilbudskostnad', value: (k.totalt || t.tilbudskostMNOK).toFixed(1) + 'M', sub: 'NOK (' + (k.prosentAvTilbudsverdi || 0.8) + '% av tilbudsverdi)' },
+                { label: '---', value: '', sub: '' },
+                { label: 'Timer registrert, under arbeid, levert', value: (d.timerRegistrertUnderArbeidLevert || 3600).toLocaleString('nb-NO'), sub: 'timer' },
+                { label: 'Timer andre divisjoner', value: (d.timerAndreDivisjoner || 2940).toLocaleString('nb-NO'), sub: 'timer' },
+                { label: 'Timer trukket/forkastet', value: (d.timerTrukketForkastet || 906).toLocaleString('nb-NO'), sub: 'timer' },
+                { label: 'Timer prekvalifisert', value: (d.timerPrekvalifisert || 98).toLocaleString('nb-NO'), sub: 'timer' },
+                { label: 'Timer annet/ikke plassert', value: (d.timerAnnetIkkePlassert || 1034).toLocaleString('nb-NO'), sub: 'timer' },
+                { label: 'SUM alle timer', value: (d.sumAlleTimer || 18953.5).toLocaleString('nb-NO'), sub: 'timer totalt' }
             ]
         },
         vunnet: {
             title: 'Vunnet - ' + t.vunnet.antall + ' tilbud',
             items: [
-                { label: 'Total verdi', value: t.vunnet.verdi + 'M', sub: 'NOK' },
+                { label: 'Estimert kontraktsverdi', value: t.vunnet.verdi.toFixed(0) + 'M', sub: 'NOK' },
                 { label: 'Timer brukt', value: t.vunnet.timer.toLocaleString('nb-NO'), sub: 'timer totalt' },
-                { label: 'Snitt timer', value: DATA.timerPerTilbud.vunnet, sub: 'per tilbud' },
-                { label: 'Tilbudskost', value: t.tilbudskostProsent.toFixed(1) + '%', sub: 'av vunnet verdi' }
+                { label: 'Snitt timer per tilbud', value: DATA.timerPerTilbud.vunnet, sub: 'timer' },
+                { label: 'Tilbudskostnad', value: (k.vunnet || 2.5).toFixed(1) + 'M', sub: 'NOK' },
+                { label: 'Tilbudskost % av verdi', value: (k.prosentVunnet || 0.7) + '%', sub: '' }
             ]
         },
         tapt: {
             title: 'Tapt - ' + t.tapt.antall + ' tilbud',
             items: [
-                { label: 'Tapt verdi', value: t.tapt.verdi + 'M', sub: 'NOK potensial' },
+                { label: 'Tapt kontraktsverdi', value: t.tapt.verdi.toFixed(0) + 'M', sub: 'NOK potensial' },
                 { label: 'Timer brukt', value: t.tapt.timer.toLocaleString('nb-NO'), sub: 'timer totalt' },
-                { label: 'Snitt timer', value: DATA.timerPerTilbud.tapt, sub: 'per tilbud' },
-                { label: 'Tilbudskost', value: ((t.tapt.timer * 4550) / 1e6).toFixed(2) + 'M', sub: 'bortkastet' }
+                { label: 'Snitt timer per tilbud', value: DATA.timerPerTilbud.tapt, sub: 'timer' },
+                { label: 'Tilbudskostnad', value: (k.tapt || 3.3).toFixed(1) + 'M', sub: 'NOK bortkastet' },
+                { label: 'Tilbudskost % av verdi', value: (k.prosentTapt || 0.9) + '%', sub: '' }
             ]
         },
         direkte: {
             title: 'Direkte anskaffelse - ' + t.direkte.antall + ' tilbud',
             items: [
-                { label: 'Total verdi', value: t.direkte.verdi + 'M', sub: 'NOK' },
-                { label: 'Andel av alle', value: ((t.direkte.antall / t.totalt) * 100).toFixed(0) + '%', sub: 'av totalt antall' },
+                { label: 'Kontraktsverdi', value: t.direkte.verdi.toFixed(0) + 'M', sub: 'NOK' },
+                { label: 'Andel av alle tilbud', value: ((t.direkte.antall / t.totalt) * 100).toFixed(0) + '%', sub: 'av totalt antall' },
                 { label: 'Timer brukt', value: t.direkte.timer.toLocaleString('nb-NO'), sub: 'timer totalt' },
-                { label: 'Snitt timer', value: DATA.timerPerTilbud.direkte, sub: 'per tilbud' }
+                { label: 'Snitt timer per tilbud', value: DATA.timerPerTilbud.direkte, sub: 'timer' },
+                { label: 'Tilbudskostnad', value: (k.direkte || 0.4).toFixed(1) + 'M', sub: 'NOK' },
+                { label: 'Tilbudskost % av verdi', value: (k.prosentDirekte || 0.7) + '%', sub: '' }
             ]
         }
     };
 
     const data = details[type];
     title.textContent = data.title;
-    content.innerHTML = data.items.map(item => `
-        <div class="detail-item">
-            <div class="detail-item-label">${item.label}</div>
-            <div class="detail-item-value">${item.value}</div>
-            <div class="detail-item-sub">${item.sub}</div>
-        </div>
-    `).join('');
+    content.innerHTML = data.items.map(item => {
+        if (item.label === '---') {
+            return '<hr style="border-color: rgba(255,255,255,0.1); margin: 10px 0;">';
+        }
+        return `
+            <div class="detail-item">
+                <div class="detail-item-label">${item.label}</div>
+                <div class="detail-item-value">${item.value}</div>
+                <div class="detail-item-sub">${item.sub}</div>
+            </div>
+        `;
+    }).join('');
 
     panel.style.display = 'block';
 }
@@ -475,17 +501,15 @@ function toggleSizeDetails() {
     if (panel.style.display === 'none') {
         body.innerHTML = DATA.storrelser.map(s => {
             const tilslagClass = s.tilslag >= 70 ? 'good' : s.tilslag >= 50 ? 'warning' : 'bad';
-            const kostClass = s.tilbudskostProsent <= 15 ? 'good' : s.tilbudskostProsent <= 30 ? 'warning' : 'bad';
+            const kostClass = s.tilbudskostAvRealisert <= 2 ? 'good' : s.tilbudskostAvRealisert <= 4 ? 'warning' : 'bad';
             return `
                 <tr>
                     <td>${s.label}</td>
                     <td>${s.vunnet + s.tapt + s.direkte}</td>
                     <td class="${tilslagClass}">${s.tilslag}%</td>
-                    <td>${(s.timerVunnet + s.timerTapt).toLocaleString('nb-NO')}</td>
-                    <td>${s.timerVunnet.toLocaleString('nb-NO')}</td>
-                    <td>${s.timerTapt.toLocaleString('nb-NO')}</td>
-                    <td>${s.verdiVunnet}M</td>
-                    <td class="${kostClass}">${s.tilbudskostProsent}%</td>
+                    <td>${s.timer.toLocaleString('nb-NO')}</td>
+                    <td>${s.verdiVunnetDirekte}M</td>
+                    <td class="${kostClass}">${s.tilbudskostAvRealisert}%</td>
                 </tr>
             `;
         }).join('');
@@ -510,7 +534,7 @@ function initPaginatedSections() {
     renderTapPage();
 }
 
-// Forretningsområder paginering
+// Forretningsområder paginering - oppdatert for nye datafelt
 function renderFoPage() {
     const container = document.getElementById('foContent');
     const pageNum = document.getElementById('foPageNum');
@@ -519,7 +543,8 @@ function renderFoPage() {
     const nextBtn = document.getElementById('foNextBtn');
     const dots = document.getElementById('foPageDots');
 
-    const data = DATA.foAlleOmrader;
+    // Bruk forretningsomrader (ny) eller foAlleOmrader (gammel) for bakoverkompatibilitet
+    const data = DATA.forretningsomrader || DATA.foAlleOmrader;
     const pages = Math.ceil(data.length / ITEMS_PER_PAGE);
     totalPages.textContent = pages;
     pageNum.textContent = foCurrentPage + 1;
@@ -529,11 +554,18 @@ function renderFoPage() {
 
     container.innerHTML = `
         <div class="fo-paginated-grid">
-            ${pageData.map(fo => `
-                <div class="fo-detail-card ${fo.tilslag < 50 ? 'weak' : ''}">
+            ${pageData.map(fo => {
+                // Støtt både nye og gamle feltnavn
+                const tilbudskostAvRealisert = fo.tilbudskostAvRealisert !== undefined ? fo.tilbudskostAvRealisert : null;
+                const verdiVunnetDirekte = fo.verdiVunnetDirekte !== undefined ? fo.verdiVunnetDirekte : (fo.verdiVunnet !== undefined ? fo.verdiVunnet : null);
+                // Bruk tilslagVerdi (verdi inkl. direkte) hvis tilgjengelig, ellers tilslag (antall)
+                const tilslagVerdi = fo.tilslagVerdi !== undefined ? fo.tilslagVerdi : fo.tilslag;
+                const foNavn = fo.navn.replace(/'/g, "\\'");
+
+                return `
+                <div class="fo-detail-card ${tilslagVerdi < 50 ? 'weak' : ''} clickable-card" onclick="showVunneTilbud('fo', '${foNavn}')">
                     <div class="fo-detail-header">
                         <div class="fo-detail-name">${fo.navn}</div>
-                        <div class="fo-detail-pct">${fo.tilslag}%</div>
                     </div>
                     <div class="fo-detail-stats">
                         <div class="fo-stat">
@@ -545,16 +577,24 @@ function renderFoPage() {
                             <div class="fo-stat-value">${fo.tapt}</div>
                         </div>
                         <div class="fo-stat">
-                            <div class="fo-stat-label">Timer</div>
+                            <div class="fo-stat-label">Verdi vunnet + direkte</div>
+                            <div class="fo-stat-value">${verdiVunnetDirekte !== null ? verdiVunnetDirekte.toFixed(1) + 'M' : '-'}</div>
+                        </div>
+                        <div class="fo-stat">
+                            <div class="fo-stat-label">Tilbudstimer</div>
                             <div class="fo-stat-value">${fo.timer.toLocaleString('nb-NO')}</div>
                         </div>
                         <div class="fo-stat">
-                            <div class="fo-stat-label">Tilbudskost</div>
-                            <div class="fo-stat-value">${fo.tilbudskost}%</div>
+                            <div class="fo-stat-label">Tilbudskost % av realisert</div>
+                            <div class="fo-stat-value">${tilbudskostAvRealisert !== null ? tilbudskostAvRealisert.toFixed(1) + '%' : '-'}</div>
+                        </div>
+                        <div class="fo-stat fo-tilslag-verdi">
+                            <div class="fo-stat-label">Tilslag (verdi)</div>
+                            <div class="fo-stat-value fo-pct">${tilslagVerdi}%</div>
                         </div>
                     </div>
                 </div>
-            `).join('')}
+            `}).join('')}
         </div>
     `;
 
@@ -569,7 +609,8 @@ function renderFoPage() {
 }
 
 function changeFoPage(delta) {
-    const pages = Math.ceil(DATA.foAlleOmrader.length / ITEMS_PER_PAGE);
+    const data = DATA.forretningsomrader || DATA.foAlleOmrader;
+    const pages = Math.ceil(data.length / ITEMS_PER_PAGE);
     foCurrentPage = Math.max(0, Math.min(pages - 1, foCurrentPage + delta));
     renderFoPage();
 }
@@ -579,7 +620,7 @@ function goToFoPage(page) {
     renderFoPage();
 }
 
-// Kunde paginering - oppdatert for ny struktur
+// Kunde paginering - oppdatert for nye datafelt med tilbudskostMNOK og tilbudskostAvRealisert
 function renderKundePage() {
     const body = document.getElementById('kundeTableBody');
     const pageNum = document.getElementById('kundePageNum');
@@ -588,7 +629,8 @@ function renderKundePage() {
     const nextBtn = document.getElementById('kundeNextBtn');
     const dots = document.getElementById('kundePageDots');
 
-    const data = DATA.topKunder;
+    // Bruk kunder (ny) eller topKunder (gammel) for bakoverkompatibilitet
+    const data = DATA.kunder || DATA.topKunder;
     const perPage = 7;
     const pages = Math.ceil(data.length / perPage);
     totalPages.textContent = pages;
@@ -598,19 +640,27 @@ function renderKundePage() {
     const pageData = data.slice(start, start + perPage);
 
     body.innerHTML = pageData.map(k => {
-        const tilslagClass = k.tilslag >= 70 ? 'best' : k.tilslag < 50 ? 'bad' : '';
-        const kostClass = k.tilbudskost <= 10 ? 'best' : k.tilbudskost > 50 ? 'bad' : '';
-        const rowClass = k.tilslag >= 70 ? 'kunde-best' : k.tilslag < 50 ? 'kunde-bad' : '';
+        // Støtt både nye og gamle feltnavn
+        const tilbudskostAvRealisert = k.tilbudskostAvRealisert !== undefined ? k.tilbudskostAvRealisert : null;
+        const verdiVunnetDirekte = k.verdiVunnetDirekte !== undefined ? k.verdiVunnetDirekte : (k.verdiVunnet !== undefined ? k.verdiVunnet : 0);
+        // Bruk tilslagVerdi (verdi-basert) hvis tilgjengelig, ellers tilslag (antall-basert)
+        const tilslagVerdi = k.tilslagVerdi !== undefined ? k.tilslagVerdi : k.tilslag;
+
+        const tilslagClass = tilslagVerdi >= 70 ? 'best' : tilslagVerdi < 50 ? 'bad' : '';
+        const kostClass = tilbudskostAvRealisert !== null ? (tilbudskostAvRealisert <= 2 ? 'best' : tilbudskostAvRealisert > 10 ? 'bad' : '') : '';
+        const rowClass = tilslagVerdi >= 70 ? 'kunde-best' : tilslagVerdi < 50 ? 'kunde-bad' : '';
+        const kundeNavn = k.navn.replace(/'/g, "\\'");
+
         return `
-            <tr class="${rowClass}">
+            <tr class="${rowClass} clickable-row" onclick="showVunneTilbud('kunde', '${kundeNavn}')">
                 <td>${k.navn}</td>
                 <td>${k.antall}</td>
                 <td>${k.vunnet}</td>
                 <td>${k.direkte}</td>
-                <td class="${tilslagClass}">${k.tilslag}%</td>
-                <td>${k.verdiVunnet}M</td>
-                <td>${k.timer}</td>
-                <td class="${kostClass}">${k.tilbudskost}%</td>
+                <td class="${tilslagClass}">${tilslagVerdi}%</td>
+                <td>${verdiVunnetDirekte}M</td>
+                <td>${k.timer.toLocaleString('nb-NO')}</td>
+                <td class="${kostClass}">${tilbudskostAvRealisert !== null ? tilbudskostAvRealisert.toFixed(1) + '%' : '-'}</td>
             </tr>
         `;
     }).join('');
@@ -624,7 +674,8 @@ function renderKundePage() {
 }
 
 function changeKundePage(delta) {
-    const pages = Math.ceil(DATA.topKunder.length / 7);
+    const data = DATA.kunder || DATA.topKunder;
+    const pages = Math.ceil(data.length / 7);
     kundeCurrentPage = Math.max(0, Math.min(pages - 1, kundeCurrentPage + delta));
     renderKundePage();
 }
@@ -690,24 +741,273 @@ function goToTapPage(page) {
 }
 
 // ============================================
-// REGION TABLE (enklere versjon uten drill-down)
+// REGION TABLE - med drill-down til grupper og kontorer
 // ============================================
 
 function initRegionTable() {
     const body = document.getElementById('regionTableBody');
-    if (!body) return;
+    if (!body) {
+        console.error('regionTableBody not found');
+        return;
+    }
+
+    if (!DATA.regioner || DATA.regioner.length === 0) {
+        console.error('DATA.regioner is empty or undefined:', DATA.regioner);
+        body.innerHTML = '<tr><td colspan="7">Ingen regioner funnet</td></tr>';
+        return;
+    }
+
+    console.log('Rendering', DATA.regioner.length, 'regioner');
 
     body.innerHTML = DATA.regioner.map(r => {
+        const tilbudskostAvRealisert = r.tilbudskostAvRealisert !== undefined ? r.tilbudskostAvRealisert : null;
+        const regionNavn = r.kortNavn || r.navn;
+
         const tilslagClass = r.tilslag >= 68 ? 'best' : r.tilslag < 63 ? 'highlight-cell' : '';
+        const kostClass = tilbudskostAvRealisert !== null ? (tilbudskostAvRealisert <= 1.5 ? 'best' : tilbudskostAvRealisert > 2 ? 'highlight-cell' : '') : '';
+
+        // Bruk ferdigberegnet antall fra data, eller fall tilbake til filtrering basert på fullt navn
+        const grupperCount = r.grupperCount !== undefined ? r.grupperCount : (DATA.grupper ? DATA.grupper.filter(g => g.region === r.navn).length : 0);
+        const kontorerCount = r.kontorerCount !== undefined ? r.kontorerCount : (DATA.kontorer ? DATA.kontorer.filter(k => k.region === r.navn).length : 0);
+
         return `
             <tr>
-                <td style="text-transform: capitalize;">${r.navn}</td>
+                <td style="text-transform: capitalize;">
+                    ${regionNavn}
+                    <div class="region-buttons">
+                        <button class="region-drill-btn" onclick="showRegionGrupper('${r.navn}')" title="Vis grupper">
+                            Grupper (${grupperCount})
+                        </button>
+                        <button class="region-drill-btn" onclick="showRegionKontorer('${r.navn}')" title="Vis kontorer">
+                            Kontorer (${kontorerCount})
+                        </button>
+                    </div>
+                </td>
                 <td>${r.vunnet}</td>
                 <td>${r.tapt}</td>
                 <td>${r.direkte}</td>
                 <td class="${tilslagClass}">${r.tilslag}%</td>
-                <td>${r.tilbudskost}%</td>
+                <td>${r.timer.toLocaleString('nb-NO')}</td>
+                <td class="${kostClass}">${tilbudskostAvRealisert !== null ? tilbudskostAvRealisert.toFixed(1) + '%' : '-'}</td>
             </tr>
         `;
     }).join('');
+}
+
+// Vis grupper for en region
+function showRegionGrupper(regionNavn) {
+    const grupper = DATA.grupper ? DATA.grupper.filter(g => g.region === regionNavn) : [];
+    grupper.sort((a, b) => b.timer - a.timer);
+
+    const modal = document.createElement('div');
+    modal.className = 'region-modal active';
+    modal.innerHTML = `
+        <div class="region-modal-content">
+            <div class="region-modal-header">
+                <h2>Grupper i ${regionNavn} (${grupper.length} grupper)</h2>
+                <button class="region-modal-close" onclick="this.closest('.region-modal').remove()">✕</button>
+            </div>
+            <div class="region-modal-body">
+                <p class="modal-hint">Klikk på en rad for å se topp 5 vunne tilbud</p>
+                <table class="region-detail-table">
+                    <thead>
+                        <tr>
+                            <th>Gruppe</th>
+                            <th>Vunnet</th>
+                            <th>Tapt</th>
+                            <th>Direkte</th>
+                            <th>Antall</th>
+                            <th>Tilslag %</th>
+                            <th>Timer</th>
+                            <th>Verdi V+D</th>
+                            <th>Tilbudskost %</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        ${grupper.map(g => {
+                            const tilslagClass = g.tilslag >= 70 ? 'good' : g.tilslag < 50 ? 'bad' : 'warning';
+                            const kostClass = g.tilbudskostAvRealisert !== null ? (g.tilbudskostAvRealisert <= 2 ? 'good' : g.tilbudskostAvRealisert > 5 ? 'bad' : 'warning') : '';
+                            const gruppeNavn = g.navn.replace(/'/g, "\\'");
+                            return `
+                                <tr class="clickable-row" onclick="showVunneTilbud('gruppe', '${gruppeNavn}')">
+                                    <td>${g.navn}</td>
+                                    <td>${g.vunnet}</td>
+                                    <td>${g.tapt}</td>
+                                    <td>${g.direkte}</td>
+                                    <td>${g.antall}</td>
+                                    <td class="${tilslagClass}">${g.tilslag}%</td>
+                                    <td class="highlight">${g.timer.toLocaleString('nb-NO')}</td>
+                                    <td>${g.verdiVunnetDirekte ? g.verdiVunnetDirekte.toFixed(1) + ' M' : '-'}</td>
+                                    <td class="${kostClass}">${g.tilbudskostAvRealisert !== null ? g.tilbudskostAvRealisert.toFixed(1) + '%' : '-'}</td>
+                                </tr>
+                            `;
+                        }).join('')}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    `;
+    document.body.appendChild(modal);
+    modal.addEventListener('click', (e) => {
+        if (e.target === modal) modal.remove();
+    });
+}
+
+// Vis kontorer for en region
+function showRegionKontorer(regionNavn) {
+    const kontorer = DATA.kontorer ? DATA.kontorer.filter(k => k.region === regionNavn) : [];
+    kontorer.sort((a, b) => b.timer - a.timer);
+
+    const modal = document.createElement('div');
+    modal.className = 'region-modal active';
+    modal.innerHTML = `
+        <div class="region-modal-content">
+            <div class="region-modal-header">
+                <h2>Kontorer i ${regionNavn} (${kontorer.length} kontorer)</h2>
+                <button class="region-modal-close" onclick="this.closest('.region-modal').remove()">✕</button>
+            </div>
+            <div class="region-modal-body">
+                <p class="modal-hint">Klikk på en rad for å se topp 5 vunne tilbud</p>
+                <table class="region-detail-table">
+                    <thead>
+                        <tr>
+                            <th>Kontor</th>
+                            <th>Vunnet</th>
+                            <th>Tapt</th>
+                            <th>Direkte</th>
+                            <th>Antall</th>
+                            <th>Tilslag %</th>
+                            <th>Timer</th>
+                            <th>Verdi V+D</th>
+                            <th>Tilbudskost %</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        ${kontorer.map(k => {
+                            const tilslagClass = k.tilslag >= 70 ? 'good' : k.tilslag < 50 ? 'bad' : 'warning';
+                            const kostClass = k.tilbudskostAvRealisert !== null ? (k.tilbudskostAvRealisert <= 2 ? 'good' : k.tilbudskostAvRealisert > 5 ? 'bad' : 'warning') : '';
+                            const kontorNavn = k.navn.replace(/'/g, "\\'");
+                            return `
+                                <tr class="clickable-row" onclick="showVunneTilbud('kontor', '${kontorNavn}')">
+                                    <td>${k.navn}</td>
+                                    <td>${k.vunnet}</td>
+                                    <td>${k.tapt}</td>
+                                    <td>${k.direkte}</td>
+                                    <td>${k.antall}</td>
+                                    <td class="${tilslagClass}">${k.tilslag}%</td>
+                                    <td class="highlight">${k.timer.toLocaleString('nb-NO')}</td>
+                                    <td>${k.verdiVunnetDirekte ? k.verdiVunnetDirekte.toFixed(1) + ' M' : '-'}</td>
+                                    <td class="${kostClass}">${k.tilbudskostAvRealisert !== null ? k.tilbudskostAvRealisert.toFixed(1) + '%' : '-'}</td>
+                                </tr>
+                            `;
+                        }).join('')}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    `;
+    document.body.appendChild(modal);
+    modal.addEventListener('click', (e) => {
+        if (e.target === modal) modal.remove();
+    });
+}
+
+// Lukk region modal
+function closeRegionModal() {
+    const modal = document.getElementById('regionModal');
+    if (modal) modal.classList.remove('active');
+}
+
+// Vis tilbud for en gruppe, kontor, kunde eller forretningsområde
+function showVunneTilbud(type, navn) {
+    // Hent tilbud fra riktig datakilde
+    let tilbud = [];
+    let tittel = '';
+    let showKundeColumn = true;
+    let showGruppeKontorColumns = false;
+
+    if (type === 'gruppe') {
+        tilbud = DATA.tilbudPerGruppe ? DATA.tilbudPerGruppe[navn] || [] : [];
+        tittel = 'Alle tilbud - ' + navn;
+    } else if (type === 'kontor') {
+        tilbud = DATA.tilbudPerKontor ? DATA.tilbudPerKontor[navn] || [] : [];
+        tittel = 'Alle tilbud - Kontor ' + navn;
+    } else if (type === 'kunde') {
+        tilbud = DATA.tilbudPerKunde ? DATA.tilbudPerKunde[navn] || [] : [];
+        tittel = 'Alle tilbud - ' + navn;
+        showKundeColumn = false;
+        showGruppeKontorColumns = true;
+    } else if (type === 'fo') {
+        tilbud = DATA.tilbudPerFO ? DATA.tilbudPerFO[navn] || [] : [];
+        tittel = 'Alle tilbud - ' + navn;
+        showGruppeKontorColumns = true;
+    }
+
+    // Opprett sub-modal
+    const subModal = document.createElement('div');
+    subModal.className = 'vunne-tilbud-modal active';
+
+    // Bygg dynamisk header basert på hvilke kolonner som skal vises
+    let headerHtml = '<th>Status</th>';
+    if (showKundeColumn) headerHtml += '<th>Kunde</th>';
+    headerHtml += '<th>Emne</th><th>Verdi (MNOK)</th><th>Timer</th><th>Tilbudskost %</th>';
+    if (showGruppeKontorColumns) headerHtml += '<th>Gruppe</th><th>Kontor</th>';
+
+    // Bygg dynamisk row basert på hvilke kolonner som skal vises
+    const buildRow = (t) => {
+        const statusClass = t.status === 'Vunnet' ? 'status-vunnet' :
+                           t.status === 'Tapt' ? 'status-tapt' : 'status-direkte';
+        let rowHtml = `<td class="status-cell ${statusClass}">${t.status}</td>`;
+        if (showKundeColumn) rowHtml += `<td class="kunde-cell">${t.kunde || ''}</td>`;
+        rowHtml += `<td class="emne-cell">${t.emne}</td>`;
+        rowHtml += `<td class="verdi-cell">${t.verdi.toFixed(2)}</td>`;
+        rowHtml += `<td class="timer-cell">${t.timer}</td>`;
+        rowHtml += `<td class="kost-cell">${t.tilbudskostProsent}%</td>`;
+        if (showGruppeKontorColumns) {
+            rowHtml += `<td>${t.gruppe || ''}</td>`;
+            rowHtml += `<td>${t.kontor || ''}</td>`;
+        }
+        return `<tr>${rowHtml}</tr>`;
+    };
+
+    const typeLabel = type === 'gruppe' ? 'gruppen' :
+                      type === 'kontor' ? 'kontoret' :
+                      type === 'kunde' ? 'kunden' : 'forretningsområdet';
+
+    subModal.innerHTML = `
+        <div class="vunne-tilbud-content">
+            <div class="vunne-tilbud-header">
+                <h3>${tittel}</h3>
+                <button class="vunne-tilbud-close" onclick="this.closest('.vunne-tilbud-modal').remove()">✕</button>
+            </div>
+            <div class="vunne-tilbud-body">
+                ${tilbud.length > 0 ? `
+                    <table class="vunne-tilbud-table">
+                        <thead>
+                            <tr>${headerHtml}</tr>
+                        </thead>
+                        <tbody>
+                            ${tilbud.map(t => buildRow(t)).join('')}
+                        </tbody>
+                    </table>
+                ` : `
+                    <div class="ingen-tilbud">
+                        <p>Ingen tilbud registrert for ${typeLabel}.</p>
+                    </div>
+                `}
+            </div>
+        </div>
+    `;
+
+    document.body.appendChild(subModal);
+
+    // Lukk ved klikk utenfor
+    subModal.addEventListener('click', (e) => {
+        if (e.target === subModal) subModal.remove();
+    });
+
+    // Stopp event bubbling for å ikke lukke parent modal
+    subModal.querySelector('.vunne-tilbud-content').addEventListener('click', (e) => {
+        e.stopPropagation();
+    });
 }

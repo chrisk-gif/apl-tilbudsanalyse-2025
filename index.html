@@ -8,7 +8,7 @@
     <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.0.0"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css?v=20251201213000">
 </head>
 <body>
     <!-- Progress bar -->
@@ -41,18 +41,19 @@
     <section class="section" data-section="1">
         <div class="container">
             <h2 class="section-title">Status 2025</h2>
-            <p class="section-subtitle">Tilbudsaktivitet hittil i år (jan-nov)</p>
+            <p class="section-subtitle">Tilbudsaktivitet 01.01 - 30.11.2025</p>
 
             <div class="stats-grid" id="statsGrid">
                 <div class="stat-card clickable" onclick="toggleStatDetails('totalt')">
-                    <div class="stat-number" data-count="699">0</div>
+                    <div class="stat-number" data-count="701">0</div>
                     <div class="stat-label">Tilbud totalt</div>
+                    <div class="stat-sub">775 MNOK</div>
                     <div class="stat-expand">Klikk for detaljer</div>
                 </div>
                 <div class="stat-card accent clickable" onclick="toggleStatDetails('vunnet')">
-                    <div class="stat-number" data-count="311">0</div>
+                    <div class="stat-number" data-count="312">0</div>
                     <div class="stat-label">Vunnet</div>
-                    <div class="stat-sub">287 MNOK</div>
+                    <div class="stat-sub">343 MNOK</div>
                     <div class="stat-expand">Klikk for detaljer</div>
                 </div>
                 <div class="stat-card clickable" onclick="toggleStatDetails('tapt')">
@@ -62,9 +63,9 @@
                     <div class="stat-expand">Klikk for detaljer</div>
                 </div>
                 <div class="stat-card clickable" onclick="toggleStatDetails('direkte')">
-                    <div class="stat-number" data-count="207">0</div>
+                    <div class="stat-number" data-count="208">0</div>
                     <div class="stat-label">Direkte</div>
-                    <div class="stat-sub">52 MNOK (30%)</div>
+                    <div class="stat-sub">52 MNOK</div>
                     <div class="stat-expand">Klikk for detaljer</div>
                 </div>
             </div>
@@ -81,12 +82,12 @@
             <div class="highlight-box">
                 <div class="highlight-row">
                     <div class="highlight-item">
-                        <span class="highlight-value">63%</span>
-                        <span class="highlight-label">Tilslagsprosent (antall)</span>
+                        <span class="highlight-value">74%</span>
+                        <span class="highlight-label">Tilslagsprosent inkl. direkte (antall)</span>
                     </div>
                     <div class="highlight-item">
-                        <span class="highlight-value">47%</span>
-                        <span class="highlight-label">Tilslagsprosent (verdi)</span>
+                        <span class="highlight-value">51%</span>
+                        <span class="highlight-label">Tilslagsprosent inkl. direkte (verdi)</span>
                     </div>
                     <div class="highlight-item">
                         <span class="highlight-value green">1.6%</span>
@@ -179,17 +180,17 @@
 
             <div class="size-insights">
                 <div class="size-insight good">
-                    <span class="size-pct">94%</span>
+                    <span class="size-pct">86%</span>
                     <span class="size-label">Under 100k</span>
                     <span class="size-desc">Vinner nesten alt!</span>
                 </div>
                 <div class="size-insight warning">
-                    <span class="size-pct">45%</span>
-                    <span class="size-label">500k - 1M</span>
+                    <span class="size-pct">49%</span>
+                    <span class="size-label">700k - 1.5M</span>
                     <span class="size-desc">Konkurranseutsatt</span>
                 </div>
                 <div class="size-insight bad">
-                    <span class="size-pct">25%</span>
+                    <span class="size-pct">15%</span>
                     <span class="size-label">Over 10M</span>
                     <span class="size-desc">Bruker mest tid, vinner minst</span>
                 </div>
@@ -203,10 +204,8 @@
                             <th>Størrelse</th>
                             <th>Antall</th>
                             <th>Tilslag</th>
-                            <th>Timer totalt</th>
-                            <th>Timer vunnet</th>
-                            <th>Timer tapt</th>
-                            <th>Verdi vunnet</th>
+                            <th>Sum timer</th>
+                            <th>Verdi vunnet + direkte</th>
                             <th>Tilbudskost %</th>
                         </tr>
                     </thead>
@@ -284,12 +283,15 @@
                             <th>Vunnet</th>
                             <th>Tapt</th>
                             <th>Direkte</th>
-                            <th>Tilslag</th>
-                            <th>Tilbudskost %</th>
+                            <th>Tilslag (verdi)</th>
+                            <th>Verdi vunnet</th>
+                            <th>Timer</th>
+                            <th>% av realisert</th>
                         </tr>
                     </thead>
                     <tbody id="regionTableBody">
-                        <!-- Dynamisk innhold -->
+                        <!-- Fallback - vil bli erstattet av JavaScript -->
+                        <tr><td colspan="8">Laster regioner...</td></tr>
                     </tbody>
                 </table>
             </div>
@@ -303,7 +305,7 @@
     <section class="section dark" data-section="11">
         <div class="container">
             <h2 class="section-title">Våre kunder</h2>
-            <p class="section-subtitle">Side <span id="kundePageNum">1</span> av <span id="kundeTotalPages">4</span> | Sortert etter tilslagsprosent</p>
+            <p class="section-subtitle">Side <span id="kundePageNum">1</span> av <span id="kundeTotalPages">4</span> | Sortert etter tilbudstimer</p>
 
             <div class="kunde-table">
                 <table>
@@ -313,10 +315,10 @@
                             <th>Tilbud</th>
                             <th>Vunnet</th>
                             <th>Direkte</th>
-                            <th>Tilslag</th>
-                            <th>Verdi</th>
+                            <th>Tilslag (verdi)</th>
+                            <th>Verdi vunnet + direkte</th>
                             <th>Timer</th>
-                            <th>Tilbudskost %</th>
+                            <th>% av realisert</th>
                         </tr>
                     </thead>
                     <tbody id="kundeTableBody">
@@ -555,7 +557,68 @@
         </div>
     </section>
 
-    <script src="data.js"></script>
-    <script src="script.js"></script>
+    <!-- Region Drill-down Modal -->
+    <div class="region-modal" id="regionModal">
+        <div class="region-modal-content">
+            <div class="region-modal-header">
+                <h2 id="regionModalTitle">Grupper i Region</h2>
+                <button class="region-modal-close" onclick="closeRegionModal()">✕</button>
+            </div>
+            <div class="region-modal-body" id="regionModalBody">
+                <!-- Dynamisk innhold -->
+            </div>
+        </div>
+    </div>
+
+    <script src="data_updated.js?v=20251201215000"></script>
+    <script>
+        // Fyll region-tabell med Grupper/Kontorer knapper
+        function fillRegionTable() {
+            if (typeof DATA === 'undefined' || !DATA.regioner) return;
+
+            const tbody = document.getElementById('regionTableBody');
+            if (!tbody) return;
+
+            tbody.innerHTML = DATA.regioner.map(r => {
+                const grupperCount = r.grupperCount || 0;
+                const kontorerCount = r.kontorerCount || 0;
+                // Bruk tilslagVerdi (verdi-basert) hvis tilgjengelig
+                const tilslagVerdi = r.tilslagVerdi !== undefined ? r.tilslagVerdi : r.tilslag;
+                const tilslagClass = tilslagVerdi >= 60 ? 'best' : tilslagVerdi < 40 ? 'highlight-cell' : '';
+                const kostClass = r.tilbudskostAvRealisert <= 1.5 ? 'best' : r.tilbudskostAvRealisert > 2 ? 'highlight-cell' : '';
+
+                return `
+                    <tr>
+                        <td>
+                            ${r.navn}
+                            <div class="region-buttons">
+                                <button class="region-drill-btn" onclick="showRegionGrupper('${r.navn}')" title="Vis grupper">
+                                    Grupper (${grupperCount})
+                                </button>
+                                <button class="region-drill-btn" onclick="showRegionKontorer('${r.navn}')" title="Vis kontorer">
+                                    Kontorer (${kontorerCount})
+                                </button>
+                            </div>
+                        </td>
+                        <td>${r.vunnet}</td>
+                        <td>${r.tapt}</td>
+                        <td>${r.direkte}</td>
+                        <td class="${tilslagClass}">${tilslagVerdi}%</td>
+                        <td>${r.verdiVunnetDirekte}M</td>
+                        <td>${r.timer.toLocaleString('nb-NO')}</td>
+                        <td class="${kostClass}">${r.tilbudskostAvRealisert}%</td>
+                    </tr>
+                `;
+            }).join('');
+        }
+
+        // Kjør når DOM er klar
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', fillRegionTable);
+        } else {
+            fillRegionTable();
+        }
+    </script>
+    <script src="script.js?v=20251201214000"></script>
 </body>
 </html>
