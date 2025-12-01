@@ -34,12 +34,23 @@ const DATA = {
         tilbudskostAvRealisert: 2.1
     },
 
-    // Timer-detaljer
+    // Timer-detaljer (vunnet/tapt/direkte)
     timerDetaljer: {
         tilbudVunnet: 4222,
         tilbudTapt: 5525,
         tilbudDirekte: 628.5,
         totalt: 10375.5
+    },
+
+    // Alle timer-kategorier (fra APL Sammendrag)
+    alleTimerKategorier: {
+        vunnetTaptDirekte: 10375.5,
+        registrertUnderArbeidLevert: 3600,
+        andreDivisjoner: 2940,
+        trukketForkastet: 906,
+        prekvalifisert: 98,
+        annetIkkePlassert: 1034,
+        totalSum: 18953.5
     },
 
     // Timer per tilbud (gjennomsnitt)

@@ -468,6 +468,7 @@ function toggleStatDetails(type) {
 
     const d = DATA.timerDetaljer;
     const t = DATA.tilbud2025;
+    const a = DATA.alleTimerKategorier || {};
 
     // Beregn totalt volum (vunnet + tapt + direkte verdi)
     const totalVerdi = t.vunnet.verdi + t.tapt.verdi + t.direkte.verdi;
@@ -481,7 +482,14 @@ function toggleStatDetails(type) {
                 { label: 'Tapt', value: t.tapt.antall + ' stk', sub: t.tapt.verdi.toFixed(1) + 'M - ' + t.tapt.timer.toLocaleString('nb-NO') + ' timer' },
                 { label: 'Direkte anskaffelse', value: t.direkte.antall + ' stk', sub: t.direkte.verdi.toFixed(1) + 'M - ' + t.direkte.timer.toLocaleString('nb-NO') + ' timer' },
                 { label: '---', value: '', sub: '' },
-                { label: 'Totale tilbudstimer', value: t.totaleTilbudTimer.toLocaleString('nb-NO'), sub: 'timer' },
+                { label: 'Timer vunnet/tapt/direkte', value: (a.vunnetTaptDirekte || t.totaleTilbudTimer).toLocaleString('nb-NO'), sub: 'timer' },
+                { label: 'Timer registrert/under arbeid/levert', value: (a.registrertUnderArbeidLevert || 0).toLocaleString('nb-NO'), sub: 'timer' },
+                { label: 'Timer andre divisjoner', value: (a.andreDivisjoner || 0).toLocaleString('nb-NO'), sub: 'timer' },
+                { label: 'Timer trukket/forkastet', value: (a.trukketForkastet || 0).toLocaleString('nb-NO'), sub: 'timer' },
+                { label: 'Timer prekvalifisert', value: (a.prekvalifisert || 0).toLocaleString('nb-NO'), sub: 'timer' },
+                { label: 'Timer annet/ikke plassert', value: (a.annetIkkePlassert || 0).toLocaleString('nb-NO'), sub: 'timer' },
+                { label: 'TOTAL SUM TIMER', value: (a.totalSum || t.totaleTilbudTimer).toLocaleString('nb-NO'), sub: 'timer' },
+                { label: '---', value: '', sub: '' },
                 { label: 'Total tilbudskostnad', value: t.totalTilbudskostnad.toFixed(1) + 'M', sub: 'NOK' },
                 { label: 'Realisert verdi (V+D)', value: t.realisertVerdi.toFixed(1) + 'M', sub: 'NOK' },
                 { label: 'Tilbudskost av realisert', value: t.tilbudskostAvRealisert + '%', sub: '' }
