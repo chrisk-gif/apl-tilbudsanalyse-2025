@@ -11,10 +11,50 @@ document.addEventListener('DOMContentLoaded', () => {
         console.log('About to call initRegionTable...');
         initRegionTable();
         console.log('initRegionTable completed');
+        initMobileClickHandlers();
+        console.log('Mobile click handlers initialized');
     } catch (e) {
         console.error('Error during initialization:', e);
     }
 });
+
+// Initialize mobile-friendly click handlers
+function initMobileClickHandlers() {
+    // Stat cards på side 2
+    const statCards = document.querySelectorAll('.stat-card.clickable');
+    statCards.forEach(card => {
+        const onclickAttr = card.getAttribute('onclick');
+        if (onclickAttr) {
+            // Ekstraher type fra onclick="toggleStatDetails('totalt')"
+            const match = onclickAttr.match(/toggleStatDetails\(['"](\w+)['"]\)/);
+            if (match) {
+                const type = match[1];
+                card.addEventListener('touchend', (e) => {
+                    e.preventDefault();
+                    toggleStatDetails(type);
+                }, { passive: false });
+            }
+        }
+    });
+
+    // Klikk for detaljer (størrelser)
+    const sizeHint = document.querySelector('.clickable-hint[onclick*="toggleSizeDetails"]');
+    if (sizeHint) {
+        sizeHint.addEventListener('touchend', (e) => {
+            e.preventDefault();
+            toggleSizeDetails();
+        }, { passive: false });
+    }
+
+    // Close buttons
+    const closeButtons = document.querySelectorAll('.detail-close, .region-modal-close, .vunne-tilbud-close');
+    closeButtons.forEach(btn => {
+        btn.addEventListener('touchend', (e) => {
+            e.preventDefault();
+            btn.click();
+        }, { passive: false });
+    });
+}
 
 // Navigation dots
 function initNavDots() {
