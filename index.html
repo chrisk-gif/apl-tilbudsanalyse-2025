@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>APL Tilbudsanalyse 2025 - Veien til 7%</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.0.0"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Progress bar -->
+    <div class="progress-container">
+        <div class="progress-bar" id="progressBar"></div>
+    </div>
+
+    <!-- Navigation dots -->
+    <nav class="nav-dots" id="navDots"></nav>
+
+    <!-- Section 1: Hero / Intro -->
+    <section class="section hero" data-section="0">
+        <div class="container">
+            <div class="hero-badge">APL Divisjonen</div>
+            <h1>Tilbudsarbeid 2025</h1>
+            <p class="hero-subtitle">Veien til KPI-målet: <span class="highlight">7%</span></p>
+            <div class="hero-meta">
+                <span>Ledermøte</span>
+                <span class="separator">•</span>
+                <span>Desember 2025</span>
+            </div>
+            <div class="scroll-indicator">
+                <span>Scroll ned</span>
+                <div class="scroll-arrow"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 2: Nøkkeltall 2025 -->
+    <section class="section" data-section="1">
+        <div class="container">
+            <h2 class="section-title">Status 2025</h2>
+            <p class="section-subtitle">Tilbudsaktivitet hittil i år (jan-nov)</p>
+
+            <div class="stats-grid" id="statsGrid">
+                <div class="stat-card clickable" onclick="toggleStatDetails('totalt')">
+                    <div class="stat-number" data-count="699">0</div>
+                    <div class="stat-label">Tilbud totalt</div>
+                    <div class="stat-expand">Klikk for detaljer</div>
+                </div>
+                <div class="stat-card accent clickable" onclick="toggleStatDetails('vunnet')">
+                    <div class="stat-number" data-count="311">0</div>
+                    <div class="stat-label">Vunnet</div>
+                    <div class="stat-sub">287 MNOK</div>
+                    <div class="stat-expand">Klikk for detaljer</div>
+                </div>
+                <div class="stat-card clickable" onclick="toggleStatDetails('tapt')">
+                    <div class="stat-number" data-count="181">0</div>
+                    <div class="stat-label">Tapt</div>
+                    <div class="stat-sub">380 MNOK</div>
+                    <div class="stat-expand">Klikk for detaljer</div>
+                </div>
+                <div class="stat-card clickable" onclick="toggleStatDetails('direkte')">
+                    <div class="stat-number" data-count="207">0</div>
+                    <div class="stat-label">Direkte</div>
+                    <div class="stat-sub">52 MNOK (30%)</div>
+                    <div class="stat-expand">Klikk for detaljer</div>
+                </div>
+            </div>
+
+            <!-- Detalj-panel som vises ved klikk -->
+            <div class="detail-panel" id="detailPanel" style="display: none;">
+                <div class="detail-header">
+                    <h3 id="detailTitle">Timer-detaljer</h3>
+                    <button class="detail-close" onclick="closeDetailPanel()">✕</button>
+                </div>
+                <div class="detail-content" id="detailContent"></div>
+            </div>
+
+            <div class="highlight-box">
+                <div class="highlight-row">
+                    <div class="highlight-item">
+                        <span class="highlight-value">63%</span>
+                        <span class="highlight-label">Tilslagsprosent (antall)</span>
+                    </div>
+                    <div class="highlight-item">
+                        <span class="highlight-value">47%</span>
+                        <span class="highlight-label">Tilslagsprosent (verdi)</span>
+                    </div>
+                    <div class="highlight-item">
+                        <span class="highlight-value green">1.6%</span>
+                        <span class="highlight-label">Tilbudskost av realisert verdi</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 3: KPI Status -->
+    <section class="section dark" data-section="2">
+        <div class="container">
+            <h2 class="section-title">KPI: Tilbud + Markedsføring</h2>
+            <p class="section-subtitle">Andel av totale timer</p>
+
+            <div class="kpi-display">
+                <div class="kpi-current">
+                    <div class="kpi-label">Status 2024</div>
+                    <div class="kpi-value">7.5%</div>
+                </div>
+                <div class="kpi-arrow">→</div>
+                <div class="kpi-current">
+                    <div class="kpi-label">Status 2025*</div>
+                    <div class="kpi-value" style="color: #a8d4b8;">7.3%</div>
+                </div>
+                <div class="kpi-arrow">→</div>
+                <div class="kpi-target">
+                    <div class="kpi-label">Mål 2026</div>
+                    <div class="kpi-value target">7.0%</div>
+                </div>
+            </div>
+
+            <div class="kpi-gap">
+                <p>Vi har redusert fra 7.5% til <strong>7.3%</strong> - gjenstår <strong>0.3 prosentpoeng</strong></p>
+                <p class="kpi-hours">≈ <strong>1 200 timer</strong> igjen til mål (~2 årsverk)</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 4: Historisk utvikling -->
+    <section class="section" data-section="3">
+        <div class="container">
+            <h2 class="section-title">Historisk utvikling</h2>
+            <p class="section-subtitle">Tilbud + markedsføring som % av totale timer (APL)</p>
+
+            <div class="chart-container">
+                <canvas id="historiskChart"></canvas>
+            </div>
+
+            <div class="insight-box">
+                <div class="insight-icon">💡</div>
+                <div class="insight-text">
+                    <strong>Positiv trend:</strong> 2020 var et toppår med 9.7%.
+                    Vi har gått fra 7.5% (2024) til 7.3% (2025*) - riktig retning mot målet på 7.0%!
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 5: Divisjonssammenligning -->
+    <section class="section" data-section="4">
+        <div class="container">
+            <h2 class="section-title">Sammenligning mellom divisjoner</h2>
+            <p class="section-subtitle">Tilbud + markedsføring som % av totale timer (2024/2025)</p>
+
+            <div class="chart-container">
+                <canvas id="divisjonChart"></canvas>
+            </div>
+
+            <div class="insight-box warning">
+                <div class="insight-icon">⚠️</div>
+                <div class="insight-text">
+                    <strong>APL bruker nesten dobbelt så mye tid på tilbud som Infrastruktur!</strong>
+                    APL 2025: 7.3% vs Infrastruktur ~4.5%. Hva gjør de annerledes? Kan vi lære av dem?
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 6: Tilbudsstørrelser -->
+    <section class="section dark" data-section="5">
+        <div class="container">
+            <h2 class="section-title">Tilslagsprosent per størrelse</h2>
+            <p class="section-subtitle">Større tilbud = lavere tilslagsprosent | <span class="clickable-hint" onclick="toggleSizeDetails()">Klikk for detaljer</span></p>
+
+            <div class="chart-container">
+                <canvas id="storrelseChart"></canvas>
+            </div>
+
+            <div class="size-insights">
+                <div class="size-insight good">
+                    <span class="size-pct">94%</span>
+                    <span class="size-label">Under 100k</span>
+                    <span class="size-desc">Vinner nesten alt!</span>
+                </div>
+                <div class="size-insight warning">
+                    <span class="size-pct">45%</span>
+                    <span class="size-label">500k - 1M</span>
+                    <span class="size-desc">Konkurranseutsatt</span>
+                </div>
+                <div class="size-insight bad">
+                    <span class="size-pct">25%</span>
+                    <span class="size-label">Over 10M</span>
+                    <span class="size-desc">Bruker mest tid, vinner minst</span>
+                </div>
+            </div>
+
+            <!-- Utvidet detalj-tabell -->
+            <div class="size-details-panel" id="sizeDetailsPanel" style="display: none;">
+                <table class="details-table">
+                    <thead>
+                        <tr>
+                            <th>Størrelse</th>
+                            <th>Antall</th>
+                            <th>Tilslag</th>
+                            <th>Timer totalt</th>
+                            <th>Timer vunnet</th>
+                            <th>Timer tapt</th>
+                            <th>Verdi vunnet</th>
+                            <th>Tilbudskost %</th>
+                        </tr>
+                    </thead>
+                    <tbody id="sizeDetailsBody"></tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 7: Timer per tilbud -->
+    <section class="section" data-section="6">
+        <div class="container">
+            <h2 class="section-title">Timer brukt: Vunnet vs Tapt</h2>
+            <p class="section-subtitle">Vi bruker mer enn dobbelt så mye tid på tapte tilbud</p>
+
+            <div class="timer-comparison">
+                <div class="timer-box won">
+                    <div class="timer-value">13.5</div>
+                    <div class="timer-label">Snitt timer per VUNNET tilbud</div>
+                    <div class="timer-total">312 tilbud × 13.5 = 4 222 timer</div>
+                </div>
+                <div class="timer-vs">VS</div>
+                <div class="timer-box lost">
+                    <div class="timer-value">30.5</div>
+                    <div class="timer-label">Snitt timer per TAPT tilbud</div>
+                    <div class="timer-total">181 tilbud × 30.5 = 5 525 timer</div>
+                </div>
+            </div>
+
+            <div class="insight-box warning">
+                <div class="insight-icon">⚠️</div>
+                <div class="insight-text">
+                    <strong>Vi bruker 31% mer tid på tapte tilbud enn vunnet!</strong>
+                    5 525 timer på tap vs 4 222 timer på seier.
+                    Bedre seleksjon tidlig kan spare tusenvis av timer.
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 8: Forretningsområder - beste -->
+    <section class="section dark" data-section="7">
+        <div class="container">
+            <h2 class="section-title">Forretningsområder</h2>
+            <p class="section-subtitle">Sortert etter tilslagsprosent | Side <span id="foPageNum">1</span> av <span id="foTotalPages">4</span></p>
+
+            <div class="paginated-content" id="foContent">
+                <!-- Dynamisk innhold -->
+            </div>
+
+            <div class="pagination-controls">
+                <button class="page-btn" onclick="changeFoPage(-1)" id="foPrevBtn">← Forrige</button>
+                <div class="page-dots" id="foPageDots"></div>
+                <button class="page-btn" onclick="changeFoPage(1)" id="foNextBtn">Neste →</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 9: Forretningsområder - utfordrende (fjernet - integrert i forrige seksjon) -->
+
+    <!-- Section 9: Placeholder for å beholde section-nummerering -->
+    <section class="section" data-section="8" style="display: none;"></section>
+
+    <!-- Section 10: Regionsammenligning -->
+    <section class="section dark" data-section="9">
+        <div class="container">
+            <h2 class="section-title">APL per region</h2>
+            <p class="section-subtitle">Tilslagsprosent og tilbudskostnad per region</p>
+
+            <div class="region-table">
+                <table id="regionTable">
+                    <thead id="regionTableHead">
+                        <tr>
+                            <th>Region</th>
+                            <th>Vunnet</th>
+                            <th>Tapt</th>
+                            <th>Direkte</th>
+                            <th>Tilslag</th>
+                            <th>Tilbudskost %</th>
+                        </tr>
+                    </thead>
+                    <tbody id="regionTableBody">
+                        <!-- Dynamisk innhold -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 11: Kontor statistikk (fjernet - integrert i region drill-down) -->
+    <section class="section" data-section="10" style="display: none;"></section>
+
+    <!-- Section 12: Top kunder med paginering -->
+    <section class="section dark" data-section="11">
+        <div class="container">
+            <h2 class="section-title">Våre kunder</h2>
+            <p class="section-subtitle">Side <span id="kundePageNum">1</span> av <span id="kundeTotalPages">4</span> | Sortert etter tilslagsprosent</p>
+
+            <div class="kunde-table">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Kunde</th>
+                            <th>Tilbud</th>
+                            <th>Vunnet</th>
+                            <th>Direkte</th>
+                            <th>Tilslag</th>
+                            <th>Verdi</th>
+                            <th>Timer</th>
+                            <th>Tilbudskost %</th>
+                        </tr>
+                    </thead>
+                    <tbody id="kundeTableBody">
+                        <!-- Dynamisk innhold -->
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="pagination-controls">
+                <button class="page-btn" onclick="changeKundePage(-1)" id="kundePrevBtn">← Forrige</button>
+                <div class="page-dots" id="kundePageDots"></div>
+                <button class="page-btn" onclick="changeKundePage(1)" id="kundeNextBtn">Neste →</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 13: Største tapte med paginering -->
+    <section class="section" data-section="12">
+        <div class="container">
+            <h2 class="section-title">Tapte tilbud</h2>
+            <p class="section-subtitle">Sortert etter "smerte-score" (timer × kostnad) | Side <span id="tapPageNum">1</span> av <span id="tapTotalPages">4</span></p>
+
+            <div class="lost-bids" id="lostBidsContent">
+                <!-- Dynamisk innhold -->
+            </div>
+
+            <div class="pagination-controls">
+                <button class="page-btn" onclick="changeTapPage(-1)" id="tapPrevBtn">← Forrige</button>
+                <div class="page-dots" id="tapPageDots"></div>
+                <button class="page-btn" onclick="changeTapPage(1)" id="tapNextBtn">Neste →</button>
+            </div>
+
+            <div class="insight-box warning">
+                <div class="insight-icon">💸</div>
+                <div class="insight-text">
+                    <strong>Totalt tapt potensial:</strong> 380 MNOK på 181 tilbud.
+                    Vi brukte 5 525 timer på tilbud som ikke ga inntekter.
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 14: Hvor går tiden? -->
+    <section class="section dark" data-section="13">
+        <div class="container">
+            <h2 class="section-title">Hvor går tiden?</h2>
+            <p class="section-subtitle">Fordeling av timer i APL (2025 YTD)</p>
+
+            <div class="chart-container">
+                <canvas id="timefordeling"></canvas>
+            </div>
+
+            <div class="time-breakdown">
+                <div class="time-item">
+                    <span class="time-category">Tilbud</span>
+                    <span class="time-hours">21 662 timer</span>
+                    <span class="time-percent">4.4%</span>
+                </div>
+                <div class="time-item">
+                    <span class="time-category">Markedsføring</span>
+                    <span class="time-hours">9 543 timer</span>
+                    <span class="time-percent">2.0%</span>
+                </div>
+                <div class="time-item total">
+                    <span class="time-category">Tilbud + Marked</span>
+                    <span class="time-hours">31 205 timer</span>
+                    <span class="time-percent">6.4%</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 15: Nøkkelfunn -->
+    <section class="section" data-section="14">
+        <div class="container">
+            <h2 class="section-title">Nøkkelfunn</h2>
+            <p class="section-subtitle">Hva dataene forteller oss</p>
+
+            <div class="findings-grid">
+                <div class="finding-card positive">
+                    <div class="finding-icon">✓</div>
+                    <div class="finding-content">
+                        <h3>Gode små tilbud</h3>
+                        <p>94% tilslag under 100k. Vi er flinke på de små jobbene.</p>
+                    </div>
+                </div>
+                <div class="finding-card positive">
+                    <div class="finding-icon">✓</div>
+                    <div class="finding-content">
+                        <h3>Sterke fagområder</h3>
+                        <p>85-86% tilslag på trafikk, stedsutvikling, friluftsliv.</p>
+                    </div>
+                </div>
+                <div class="finding-card positive">
+                    <div class="finding-icon">✓</div>
+                    <div class="finding-content">
+                        <h3>Høy tilslagsprosent</h3>
+                        <p>63% tilslagsprosent - vi vinner majoriteten av tilbudene.</p>
+                    </div>
+                </div>
+                <div class="finding-card negative">
+                    <div class="finding-icon">!</div>
+                    <div class="finding-content">
+                        <h3>Store tilbud taper</h3>
+                        <p>Bare 25% tilslag over 10M. Bruker mye tid på tap.</p>
+                    </div>
+                </div>
+                <div class="finding-card negative">
+                    <div class="finding-icon">!</div>
+                    <div class="finding-content">
+                        <h3>Mer tid på tap</h3>
+                        <p>30.5 timer snitt på tap vs 13.5 på seier. 2x forskjell!</p>
+                    </div>
+                </div>
+                <div class="finding-card negative">
+                    <div class="finding-icon">!</div>
+                    <div class="finding-content">
+                        <h3>Dårlige kunder</h3>
+                        <p>33-40% tilslag hos enkelte store kunder. Vær selektiv!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 16: Veien til 7% -->
+    <section class="section dark" data-section="15">
+        <div class="container">
+            <h2 class="section-title">Veien til 7%</h2>
+            <p class="section-subtitle">Vi er på 7.3% - gjenstår ~1 200 timer for å nå målet</p>
+
+            <div class="action-cards">
+                <div class="action-card">
+                    <div class="action-number">1</div>
+                    <h3>Smartere seleksjon</h3>
+                    <p>Velg tilbud vi har reell sjanse til å vinne. Dropp store rammeavtaler med lav tilslag.</p>
+                    <div class="action-impact">Potensial: 500+ timer spart</div>
+                </div>
+                <div class="action-card">
+                    <div class="action-number">2</div>
+                    <h3>Raskere nei</h3>
+                    <p>Bruk 30.5 timer på tap vs 13.5 på seier. Identifiser tapere tidligere.</p>
+                    <div class="action-impact">Potensial: 800+ timer spart</div>
+                </div>
+                <div class="action-card">
+                    <div class="action-number">3</div>
+                    <h3>Mer gjenbruk</h3>
+                    <p>Standardmaler, referanseprosjekter, CV-database. Spar tid på skriving.</p>
+                    <div class="action-impact">Potensial: 400+ timer spart</div>
+                </div>
+                <div class="action-card">
+                    <div class="action-number">4</div>
+                    <h3>Lær av de beste</h3>
+                    <p>Vest: 15.5 timer snitt. Stavanger: 6.1 timer. Hva gjør de riktig?</p>
+                    <div class="action-impact">Potensial: 300+ timer spart</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 17: Diskusjon -->
+    <section class="section" data-section="16">
+        <div class="container">
+            <h2 class="section-title">Diskusjon</h2>
+            <p class="section-subtitle">Erfaringsutveksling og forbedringspunkter</p>
+
+            <div class="discussion-topics">
+                <div class="topic">
+                    <h3>🎯 Vinneroppskrifter</h3>
+                    <ul>
+                        <li>Hvilke tilbud vinner vi oftest?</li>
+                        <li>Hva kjennetegner effektive tilbudsprosesser?</li>
+                        <li>Beste praksis fra regionene?</li>
+                        <li>Hvordan få ned timer per tilbud?</li>
+                    </ul>
+                </div>
+                <div class="topic">
+                    <h3>🔧 Forbedringspunkter</h3>
+                    <ul>
+                        <li>Hvor bruker vi for mye tid?</li>
+                        <li>Hvilke tilbud burde vi droppet?</li>
+                        <li>Hva mangler vi av verktøy/støtte?</li>
+                        <li>Hvordan bli bedre på go/no-go?</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="cta-box">
+                <h3>Mål for 2026</h3>
+                <p>Fra <strong>7.3%</strong> (2025) til <strong>7.0%</strong></p>
+                <p class="cta-sub">= Spare ~1 200 timer = ~2 årsverk = Fortsett den gode trenden!</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 18: Avslutning -->
+    <section class="section hero" data-section="17">
+        <div class="container">
+            <h2 class="section-title">Oppsummering</h2>
+
+            <div class="summary-points">
+                <div class="summary-point">
+                    <span class="summary-check">✓</span>
+                    <span>63% tilslagsprosent - vi vinner mye!</span>
+                </div>
+                <div class="summary-point">
+                    <span class="summary-check">✓</span>
+                    <span>30% direkte anskaffelser (207 stk)</span>
+                </div>
+                <div class="summary-point">
+                    <span class="summary-check">✓</span>
+                    <span>287 MNOK vunnet i 2025</span>
+                </div>
+                <div class="summary-point">
+                    <span class="summary-check">✓</span>
+                    <span>7.5% → 7.3% - god progresjon i 2025!</span>
+                </div>
+                <div class="summary-point warning">
+                    <span class="summary-x">!</span>
+                    <span>7.3% → 7.0% - må spare ~1 200 timer til</span>
+                </div>
+                <div class="summary-point warning">
+                    <span class="summary-x">!</span>
+                    <span>Bruker 2x tid på tapte vs vunnet</span>
+                </div>
+                <div class="summary-point warning">
+                    <span class="summary-x">!</span>
+                    <span>Bare 25% tilslag på store tilbud (>10M)</span>
+                </div>
+            </div>
+
+            <div class="final-message">
+                <p>La oss jobbe <strong>smartere</strong>, ikke hardere.</p>
+                <p class="final-sub">Velg bedre, skriv raskere, lær av hverandre.</p>
+            </div>
+        </div>
+    </section>
+
+    <script src="data.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
