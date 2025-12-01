@@ -1762,9 +1762,9 @@ body {
 .vunne-tilbud-content {
     background: linear-gradient(145deg, var(--av-forest), var(--av-dark-green));
     border-radius: 12px;
-    max-width: 900px;
-    width: 95%;
-    max-height: 80vh;
+    max-width: 1400px;
+    width: 98%;
+    max-height: 90vh;
     overflow: hidden;
     box-shadow: 0 25px 80px rgba(0,0,0,0.5);
     animation: vunneTilbudSlideIn 0.3s ease;
@@ -1814,7 +1814,8 @@ body {
 .vunne-tilbud-body {
     padding: 20px 24px;
     overflow-y: auto;
-    max-height: calc(80vh - 70px);
+    overflow-x: hidden;
+    max-height: calc(90vh - 70px);
 }
 
 /* Vunne Tilbud Table */
@@ -1824,26 +1825,29 @@ body {
     background: rgba(255,255,255,0.03);
     border-radius: 8px;
     overflow: hidden;
+    table-layout: fixed;
 }
 
 .vunne-tilbud-table th,
 .vunne-tilbud-table td {
-    padding: 14px 16px;
+    padding: 12px 10px;
     text-align: left;
     border-bottom: 1px solid rgba(255,255,255,0.08);
+    word-wrap: break-word;
+    overflow-wrap: break-word;
 }
 
 .vunne-tilbud-table th {
     color: rgba(255,255,255,0.9);
     font-weight: 600;
     text-transform: uppercase;
-    font-size: 11px;
-    letter-spacing: 0.8px;
+    font-size: 10px;
+    letter-spacing: 0.5px;
     background: rgba(255,255,255,0.06);
 }
 
 .vunne-tilbud-table td {
-    font-size: 14px;
+    font-size: 13px;
     color: #ffffff;
 }
 
@@ -1861,10 +1865,9 @@ body {
 }
 
 .vunne-tilbud-table .emne-cell {
-    max-width: 300px;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+    max-width: 400px;
+    white-space: normal;
+    word-wrap: break-word;
     color: rgba(255,255,255,0.85);
 }
 

@@ -1026,10 +1026,10 @@ function showVunneTilbud(type, navn) {
     subModal.className = 'vunne-tilbud-modal active';
 
     // Bygg dynamisk header basert på hvilke kolonner som skal vises
-    let headerHtml = '<th>Status</th>';
-    if (showKundeColumn) headerHtml += '<th>Kunde</th>';
-    headerHtml += '<th>Emne</th><th>Verdi (MNOK)</th><th>Timer</th><th>Tilbudskost %</th>';
-    if (showGruppeKontorColumns) headerHtml += '<th>Gruppe</th><th>Kontor</th>';
+    let headerHtml = '<th style="width: 70px;">Status</th>';
+    if (showKundeColumn) headerHtml += '<th style="width: 15%;">Kunde</th>';
+    headerHtml += '<th style="width: auto;">Emne</th><th style="width: 80px;">Verdi</th><th style="width: 60px;">Timer</th><th style="width: 70px;">Kost %</th>';
+    if (showGruppeKontorColumns) headerHtml += '<th style="width: 12%;">Gruppe</th><th style="width: 80px;">Kontor</th>';
 
     // Bygg dynamisk row basert på hvilke kolonner som skal vises
     const buildRow = (t) => {
