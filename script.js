@@ -270,37 +270,42 @@ function createDivisjonIntroChart() {
                 {
                     label: 'APL',
                     data: aplData,
-                    borderColor: '#2d6a4f',
-                    backgroundColor: 'rgba(45, 106, 79, 0.15)',
+                    borderColor: '#1a5f3c',
+                    backgroundColor: 'rgba(26, 95, 60, 0.2)',
                     fill: true,
                     tension: 0.3,
-                    pointRadius: 6,
-                    pointHoverRadius: 9,
-                    pointBackgroundColor: '#2d6a4f',
-                    borderWidth: 3
+                    pointRadius: 7,
+                    pointHoverRadius: 10,
+                    pointBackgroundColor: '#1a5f3c',
+                    pointBorderColor: '#fff',
+                    pointBorderWidth: 2,
+                    borderWidth: 4
                 },
                 {
                     label: 'Infrastruktur',
                     data: infraData,
-                    borderColor: '#e85d04',
+                    borderColor: '#dc3545',
                     backgroundColor: 'transparent',
                     tension: 0.3,
-                    pointRadius: 5,
-                    pointHoverRadius: 8,
-                    pointBackgroundColor: '#e85d04',
-                    borderWidth: 3
+                    pointRadius: 7,
+                    pointHoverRadius: 10,
+                    pointBackgroundColor: '#dc3545',
+                    pointBorderColor: '#fff',
+                    pointBorderWidth: 2,
+                    borderWidth: 4
                 },
                 {
                     label: 'A&B',
                     data: abData,
-                    borderColor: '#6c757d',
+                    borderColor: '#0d6efd',
                     backgroundColor: 'transparent',
                     tension: 0.3,
-                    pointRadius: 5,
-                    pointHoverRadius: 8,
-                    pointBackgroundColor: '#6c757d',
-                    borderWidth: 3,
-                    borderDash: [5, 5]
+                    pointRadius: 7,
+                    pointHoverRadius: 10,
+                    pointBackgroundColor: '#0d6efd',
+                    pointBorderColor: '#fff',
+                    pointBorderWidth: 2,
+                    borderWidth: 4
                 }
             ]
         },
@@ -364,19 +369,19 @@ function createAarsverkIntroChart() {
                 {
                     label: 'APL',
                     data: aplData,
-                    backgroundColor: '#2d6a4f',
+                    backgroundColor: '#1a5f3c',
                     borderRadius: 4
                 },
                 {
                     label: 'Infrastruktur',
                     data: infraData,
-                    backgroundColor: '#e85d04',
+                    backgroundColor: '#dc3545',
                     borderRadius: 4
                 },
                 {
                     label: 'A&B',
                     data: abData,
-                    backgroundColor: '#6c757d',
+                    backgroundColor: '#0d6efd',
                     borderRadius: 4
                 }
             ]
