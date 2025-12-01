@@ -495,10 +495,21 @@ function closeDetailPanel() {
 
 // Size Details Toggle - oppdatert for ny struktur
 function toggleSizeDetails() {
+    console.log('toggleSizeDetails called');
     const panel = document.getElementById('sizeDetailsPanel');
     const body = document.getElementById('sizeDetailsBody');
 
-    if (panel.style.display === 'none') {
+    if (!panel || !body) {
+        console.error('sizeDetailsPanel or sizeDetailsBody not found');
+        return;
+    }
+
+    if (!DATA || !DATA.storrelser) {
+        console.error('DATA.storrelser not found');
+        return;
+    }
+
+    if (panel.style.display === 'none' || panel.style.display === '') {
         body.innerHTML = DATA.storrelser.map(s => {
             const tilslagClass = s.tilslag >= 70 ? 'good' : s.tilslag >= 50 ? 'warning' : 'bad';
             const kostClass = s.tilbudskostAvRealisert <= 2 ? 'good' : s.tilbudskostAvRealisert <= 4 ? 'warning' : 'bad';
@@ -518,6 +529,9 @@ function toggleSizeDetails() {
         panel.style.display = 'none';
     }
 }
+
+// Eksporter til global scope for onclick
+window.toggleSizeDetails = toggleSizeDetails;
 
 // ============================================
 // PAGINATED SECTIONS
@@ -1011,3 +1025,17 @@ function showVunneTilbud(type, navn) {
         e.stopPropagation();
     });
 }
+
+// Eksporter alle onclick-funksjoner til global scope
+window.toggleStatDetails = toggleStatDetails;
+window.closeDetailPanel = closeDetailPanel;
+window.changeFoPage = changeFoPage;
+window.goToFoPage = goToFoPage;
+window.changeKundePage = changeKundePage;
+window.goToKundePage = goToKundePage;
+window.changeTapPage = changeTapPage;
+window.goToTapPage = goToTapPage;
+window.showRegionGrupper = showRegionGrupper;
+window.showRegionKontorer = showRegionKontorer;
+window.closeRegionModal = closeRegionModal;
+window.showVunneTilbud = showVunneTilbud;
