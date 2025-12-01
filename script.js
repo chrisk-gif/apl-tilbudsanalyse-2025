@@ -428,57 +428,51 @@ function toggleStatDetails(type) {
 
     const d = DATA.timerDetaljer;
     const t = DATA.tilbud2025;
-    const k = DATA.tilbudskostnad || {};
-    const v = DATA.tilbudsvolum || {};
+
+    // Beregn totalt volum (vunnet + tapt + direkte verdi)
+    const totalVerdi = t.vunnet.verdi + t.tapt.verdi + t.direkte.verdi;
 
     const details = {
         totalt: {
             title: 'Tilbudsvolum totalt - ' + t.totalt + ' tilbud',
             items: [
-                { label: 'Estimert kontraktsverdi', value: (v.totalt || 775).toFixed(0) + 'M', sub: 'NOK totalt' },
-                { label: 'Vunnet', value: t.vunnet.antall + ' stk', sub: t.vunnet.timer.toLocaleString('nb-NO') + ' timer' },
-                { label: 'Tapt', value: t.tapt.antall + ' stk', sub: t.tapt.timer.toLocaleString('nb-NO') + ' timer' },
-                { label: 'Direkte anskaffelse', value: t.direkte.antall + ' stk', sub: t.direkte.timer.toLocaleString('nb-NO') + ' timer' },
-                { label: 'Totale tilbudstimer', value: t.totaleTilbudTimer.toLocaleString('nb-NO'), sub: 'timer vunnet/tapt/direkte' },
-                { label: 'Total tilbudskostnad', value: (k.totalt || t.tilbudskostMNOK).toFixed(1) + 'M', sub: 'NOK (' + (k.prosentAvTilbudsverdi || 0.8) + '% av tilbudsverdi)' },
+                { label: 'Total tilbudsverdi', value: totalVerdi.toFixed(0) + 'M', sub: 'NOK (vunnet + tapt + direkte)' },
+                { label: 'Vunnet', value: t.vunnet.antall + ' stk', sub: t.vunnet.verdi.toFixed(1) + 'M - ' + t.vunnet.timer.toLocaleString('nb-NO') + ' timer' },
+                { label: 'Tapt', value: t.tapt.antall + ' stk', sub: t.tapt.verdi.toFixed(1) + 'M - ' + t.tapt.timer.toLocaleString('nb-NO') + ' timer' },
+                { label: 'Direkte anskaffelse', value: t.direkte.antall + ' stk', sub: t.direkte.verdi.toFixed(1) + 'M - ' + t.direkte.timer.toLocaleString('nb-NO') + ' timer' },
                 { label: '---', value: '', sub: '' },
-                { label: 'Timer registrert, under arbeid, levert', value: (d.timerRegistrertUnderArbeidLevert || 3600).toLocaleString('nb-NO'), sub: 'timer' },
-                { label: 'Timer andre divisjoner', value: (d.timerAndreDivisjoner || 2940).toLocaleString('nb-NO'), sub: 'timer' },
-                { label: 'Timer trukket/forkastet', value: (d.timerTrukketForkastet || 906).toLocaleString('nb-NO'), sub: 'timer' },
-                { label: 'Timer prekvalifisert', value: (d.timerPrekvalifisert || 98).toLocaleString('nb-NO'), sub: 'timer' },
-                { label: 'Timer annet/ikke plassert', value: (d.timerAnnetIkkePlassert || 1034).toLocaleString('nb-NO'), sub: 'timer' },
-                { label: 'SUM alle timer', value: (d.sumAlleTimer || 18953.5).toLocaleString('nb-NO'), sub: 'timer totalt' }
+                { label: 'Totale tilbudstimer', value: t.totaleTilbudTimer.toLocaleString('nb-NO'), sub: 'timer' },
+                { label: 'Total tilbudskostnad', value: t.totalTilbudskostnad.toFixed(1) + 'M', sub: 'NOK' },
+                { label: 'Realisert verdi (V+D)', value: t.realisertVerdi.toFixed(1) + 'M', sub: 'NOK' },
+                { label: 'Tilbudskost av realisert', value: t.tilbudskostAvRealisert + '%', sub: '' }
             ]
         },
         vunnet: {
             title: 'Vunnet - ' + t.vunnet.antall + ' tilbud',
             items: [
-                { label: 'Estimert kontraktsverdi', value: t.vunnet.verdi.toFixed(0) + 'M', sub: 'NOK' },
+                { label: 'Kontraktsverdi', value: t.vunnet.verdi.toFixed(1) + 'M', sub: 'NOK' },
                 { label: 'Timer brukt', value: t.vunnet.timer.toLocaleString('nb-NO'), sub: 'timer totalt' },
                 { label: 'Snitt timer per tilbud', value: DATA.timerPerTilbud.vunnet, sub: 'timer' },
-                { label: 'Tilbudskostnad', value: (k.vunnet || 2.5).toFixed(1) + 'M', sub: 'NOK' },
-                { label: 'Tilbudskost % av verdi', value: (k.prosentVunnet || 0.7) + '%', sub: '' }
+                { label: 'Tilslag (antall)', value: t.tilslagAntall + '%', sub: 'av konkurranser' },
+                { label: 'Tilslag (verdi)', value: t.tilslagVerdi + '%', sub: 'av total verdi' }
             ]
         },
         tapt: {
             title: 'Tapt - ' + t.tapt.antall + ' tilbud',
             items: [
-                { label: 'Tapt kontraktsverdi', value: t.tapt.verdi.toFixed(0) + 'M', sub: 'NOK potensial' },
+                { label: 'Tapt kontraktsverdi', value: t.tapt.verdi.toFixed(1) + 'M', sub: 'NOK potensial' },
                 { label: 'Timer brukt', value: t.tapt.timer.toLocaleString('nb-NO'), sub: 'timer totalt' },
                 { label: 'Snitt timer per tilbud', value: DATA.timerPerTilbud.tapt, sub: 'timer' },
-                { label: 'Tilbudskostnad', value: (k.tapt || 3.3).toFixed(1) + 'M', sub: 'NOK bortkastet' },
-                { label: 'Tilbudskost % av verdi', value: (k.prosentTapt || 0.9) + '%', sub: '' }
+                { label: 'Andel av tilbudstimer', value: ((t.tapt.timer / t.totaleTilbudTimer) * 100).toFixed(0) + '%', sub: 'brukt på tap' }
             ]
         },
         direkte: {
             title: 'Direkte anskaffelse - ' + t.direkte.antall + ' tilbud',
             items: [
-                { label: 'Kontraktsverdi', value: t.direkte.verdi.toFixed(0) + 'M', sub: 'NOK' },
+                { label: 'Kontraktsverdi', value: t.direkte.verdi.toFixed(1) + 'M', sub: 'NOK' },
                 { label: 'Andel av alle tilbud', value: ((t.direkte.antall / t.totalt) * 100).toFixed(0) + '%', sub: 'av totalt antall' },
                 { label: 'Timer brukt', value: t.direkte.timer.toLocaleString('nb-NO'), sub: 'timer totalt' },
-                { label: 'Snitt timer per tilbud', value: DATA.timerPerTilbud.direkte, sub: 'timer' },
-                { label: 'Tilbudskostnad', value: (k.direkte || 0.4).toFixed(1) + 'M', sub: 'NOK' },
-                { label: 'Tilbudskost % av verdi', value: (k.prosentDirekte || 0.7) + '%', sub: '' }
+                { label: 'Snitt timer per tilbud', value: DATA.timerPerTilbud.direkte, sub: 'timer' }
             ]
         }
     };
