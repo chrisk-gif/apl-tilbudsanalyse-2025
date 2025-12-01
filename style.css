@@ -1792,7 +1792,7 @@ body {
 }
 
 .vunne-tilbud-header h3 {
-    font-size: 18px;
+    font-size: 22px;
     color: #ffffff;
     font-weight: 600;
 }
@@ -1830,9 +1830,9 @@ body {
 
 .vunne-tilbud-table th,
 .vunne-tilbud-table td {
-    padding: 14px 12px;
+    padding: 16px 14px;
     text-align: left;
-    border-bottom: 1px solid rgba(255,255,255,0.08);
+    border-bottom: 1px solid rgba(255,255,255,0.1);
     word-wrap: break-word;
     overflow-wrap: break-word;
 }
@@ -1841,14 +1841,16 @@ body {
     color: rgba(255,255,255,0.9);
     font-weight: 600;
     text-transform: uppercase;
-    font-size: 12px;
-    letter-spacing: 0.5px;
+    font-size: 13px;
+    letter-spacing: 0.3px;
     background: rgba(255,255,255,0.06);
+    white-space: nowrap;
 }
 
 .vunne-tilbud-table td {
-    font-size: 15px;
+    font-size: 16px;
     color: #ffffff;
+    line-height: 1.4;
 }
 
 .vunne-tilbud-table tbody tr:nth-child(even) {
