@@ -573,8 +573,8 @@ function toggleSizeDetails() {
             const tilslagClass = s.tilslag >= 70 ? 'good' : s.tilslag >= 50 ? 'warning' : 'bad';
             const kostClass = s.tilbudskostAvRealisert <= 2 ? 'good' : s.tilbudskostAvRealisert <= 4 ? 'warning' : 'bad';
             return `
-                <tr>
-                    <td>${s.label}</td>
+                <tr class="clickable-row" onclick="showVunneTilbud('storrelse', '${s.navn}')" style="cursor: pointer;">
+                    <td>${s.label} <span style="font-size: 0.7em; opacity: 0.6;">→</span></td>
                     <td>${s.vunnet + s.tapt + s.direkte}</td>
                     <td class="${tilslagClass}">${s.tilslag}%</td>
                     <td>${s.timer.toLocaleString('nb-NO')}</td>
@@ -1014,6 +1014,10 @@ function showVunneTilbud(type, navn) {
         tilbud = DATA.tilbudPerFO ? DATA.tilbudPerFO[navn] || [] : [];
         tittel = 'Alle tilbud - ' + navn;
         showGruppeKontorColumns = true;
+    } else if (type === 'storrelse') {
+        tilbud = DATA.tilbudPerStorrelse ? DATA.tilbudPerStorrelse[navn] || [] : [];
+        tittel = 'Alle tilbud - Størrelse ' + navn;
+        showGruppeKontorColumns = true;
     }
 
     // Opprett sub-modal
@@ -1045,7 +1049,8 @@ function showVunneTilbud(type, navn) {
 
     const typeLabel = type === 'gruppe' ? 'gruppen' :
                       type === 'kontor' ? 'kontoret' :
-                      type === 'kunde' ? 'kunden' : 'forretningsområdet';
+                      type === 'kunde' ? 'kunden' :
+                      type === 'storrelse' ? 'størrelsen' : 'forretningsområdet';
 
     subModal.innerHTML = `
         <div class="vunne-tilbud-content">
