@@ -78,13 +78,13 @@ const DATA = {
     // STØRRELSER
     // ============================================
     storrelser: [
-        { navn: "0 - 100 000", label: "< 100k", vunnet: 92, tapt: 6, direkte: 106, antall: 204, timer: 178, tilslag: 97.1, verdiVunnetDirekte: 8.06, tilbudskostAvRealisert: 1.5 },
-        { navn: "100 000 - 300 000", label: "100-300k", vunnet: 78, tapt: 43, direkte: 60, antall: 181, timer: 1048, tilslag: 76.2, verdiVunnetDirekte: 22.62, tilbudskostAvRealisert: 3.2 },
-        { navn: "300 000 - 700 000", label: "300-700k", vunnet: 61, tapt: 37, direkte: 23, antall: 121, timer: 1707, tilslag: 69.4, verdiVunnetDirekte: 35.31, tilbudskostAvRealisert: 3.4 },
-        { navn: "700 000 - 1 500 000", label: "700k-1.5M", vunnet: 43, tapt: 41, direkte: 11, antall: 95, timer: 3001, tilslag: 56.8, verdiVunnetDirekte: 52.44, tilbudskostAvRealisert: 4 },
-        { navn: "1 500 000 - 3 000 000", label: "1.5-3M", vunnet: 17, tapt: 23, direkte: 4, antall: 44, timer: 1598.5, tilslag: 47.7, verdiVunnetDirekte: 41.54, tilbudskostAvRealisert: 2.7 },
-        { navn: "3 000 000 - 10 000 000", label: "3-10M", vunnet: 17, tapt: 19, direkte: 3, antall: 39, timer: 2127, tilslag: 51.3, verdiVunnetDirekte: 96.09, tilbudskostAvRealisert: 1.5 },
-        { navn: "> 10 000 000", label: "> 10M", vunnet: 3, tapt: 12, direkte: 0, antall: 15, timer: 716, tilslag: 20, verdiVunnetDirekte: 83, tilbudskostAvRealisert: 0.6 },
+        { navn: "0 - 100 000", label: "< 100k", vunnet: 92, tapt: 6, direkte: 106, antall: 204, timer: 178, tilslag: 97.1, tilslagVerdi: 95.1, verdiVunnetDirekte: 8.06, tilbudskostAvRealisert: 1.5 },
+        { navn: "100 000 - 300 000", label: "100-300k", vunnet: 78, tapt: 43, direkte: 60, antall: 181, timer: 1048, tilslag: 76.2, tilslagVerdi: 74.1, verdiVunnetDirekte: 22.62, tilbudskostAvRealisert: 3.2 },
+        { navn: "300 000 - 700 000", label: "300-700k", vunnet: 61, tapt: 37, direkte: 23, antall: 121, timer: 1707, tilslag: 69.4, tilslagVerdi: 68.1, verdiVunnetDirekte: 35.31, tilbudskostAvRealisert: 3.4 },
+        { navn: "700 000 - 1 500 000", label: "700k-1.5M", vunnet: 43, tapt: 41, direkte: 11, antall: 95, timer: 3001, tilslag: 56.8, tilslagVerdi: 57.5, verdiVunnetDirekte: 52.44, tilbudskostAvRealisert: 4 },
+        { navn: "1 500 000 - 3 000 000", label: "1.5-3M", vunnet: 17, tapt: 23, direkte: 4, antall: 44, timer: 1598.5, tilslag: 47.7, tilslagVerdi: 48.9, verdiVunnetDirekte: 41.54, tilbudskostAvRealisert: 2.7 },
+        { navn: "3 000 000 - 10 000 000", label: "3-10M", vunnet: 17, tapt: 19, direkte: 3, antall: 39, timer: 2127, tilslag: 51.3, tilslagVerdi: 49.6, verdiVunnetDirekte: 96.09, tilbudskostAvRealisert: 1.5 },
+        { navn: "> 10 000 000", label: "> 10M", vunnet: 3, tapt: 12, direkte: 0, antall: 15, timer: 716, tilslag: 20, tilslagVerdi: 32.2, verdiVunnetDirekte: 83, tilbudskostAvRealisert: 0.6 },
     ],
 
     // ============================================

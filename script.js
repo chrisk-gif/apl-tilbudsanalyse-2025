@@ -570,13 +570,14 @@ function toggleSizeDetails() {
 
     if (panel.style.display === 'none' || panel.style.display === '') {
         body.innerHTML = DATA.storrelser.map(s => {
-            const tilslagClass = s.tilslag >= 70 ? 'good' : s.tilslag >= 50 ? 'warning' : 'bad';
+            const tilslagVerdi = s.tilslagVerdi || s.tilslag; // Bruk tilslagVerdi hvis tilgjengelig
+            const tilslagClass = tilslagVerdi >= 70 ? 'good' : tilslagVerdi >= 50 ? 'warning' : 'bad';
             const kostClass = s.tilbudskostAvRealisert <= 2 ? 'good' : s.tilbudskostAvRealisert <= 4 ? 'warning' : 'bad';
             return `
                 <tr class="clickable-row" onclick="showVunneTilbud('storrelse', '${s.navn}')" style="cursor: pointer;">
                     <td>${s.label} <span style="font-size: 0.7em; opacity: 0.6;">→</span></td>
                     <td>${s.vunnet + s.tapt + s.direkte}</td>
-                    <td class="${tilslagClass}">${s.tilslag}%</td>
+                    <td class="${tilslagClass}">${tilslagVerdi}%</td>
                     <td>${s.timer.toLocaleString('nb-NO')}</td>
                     <td>${s.verdiVunnetDirekte}M</td>
                     <td class="${kostClass}">${s.tilbudskostAvRealisert}%</td>
