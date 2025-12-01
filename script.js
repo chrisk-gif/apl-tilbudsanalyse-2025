@@ -270,33 +270,37 @@ function createDivisjonIntroChart() {
                 {
                     label: 'APL',
                     data: aplData,
-                    borderColor: '#3d5a4f',
-                    backgroundColor: 'rgba(61, 90, 79, 0.1)',
+                    borderColor: '#2d6a4f',
+                    backgroundColor: 'rgba(45, 106, 79, 0.15)',
                     fill: true,
                     tension: 0.3,
-                    pointRadius: 5,
-                    pointHoverRadius: 8,
+                    pointRadius: 6,
+                    pointHoverRadius: 9,
+                    pointBackgroundColor: '#2d6a4f',
                     borderWidth: 3
                 },
                 {
                     label: 'Infrastruktur',
                     data: infraData,
-                    borderColor: '#e67e22',
+                    borderColor: '#e85d04',
                     backgroundColor: 'transparent',
                     tension: 0.3,
-                    pointRadius: 4,
-                    pointHoverRadius: 7,
-                    borderWidth: 2
+                    pointRadius: 5,
+                    pointHoverRadius: 8,
+                    pointBackgroundColor: '#e85d04',
+                    borderWidth: 3
                 },
                 {
                     label: 'A&B',
                     data: abData,
-                    borderColor: '#7f8c8d',
+                    borderColor: '#6c757d',
                     backgroundColor: 'transparent',
                     tension: 0.3,
-                    pointRadius: 4,
-                    pointHoverRadius: 7,
-                    borderWidth: 2
+                    pointRadius: 5,
+                    pointHoverRadius: 8,
+                    pointBackgroundColor: '#6c757d',
+                    borderWidth: 3,
+                    borderDash: [5, 5]
                 }
             ]
         },
@@ -360,19 +364,19 @@ function createAarsverkIntroChart() {
                 {
                     label: 'APL',
                     data: aplData,
-                    backgroundColor: '#3d5a4f',
+                    backgroundColor: '#2d6a4f',
                     borderRadius: 4
                 },
                 {
                     label: 'Infrastruktur',
                     data: infraData,
-                    backgroundColor: '#e67e22',
+                    backgroundColor: '#e85d04',
                     borderRadius: 4
                 },
                 {
                     label: 'A&B',
                     data: abData,
-                    backgroundColor: '#7f8c8d',
+                    backgroundColor: '#6c757d',
                     borderRadius: 4
                 }
             ]
