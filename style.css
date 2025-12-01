@@ -1939,3 +1939,318 @@ body {
         max-width: 150px;
     }
 }
+
+/* ============================================
+   COMPREHENSIVE MOBILE STYLES
+   ============================================ */
+
+@media (max-width: 480px) {
+    /* Base adjustments */
+    .section {
+        padding: 40px 15px;
+        min-height: auto;
+    }
+
+    .container {
+        padding: 0 10px;
+    }
+
+    /* Typography */
+    .section-title {
+        font-size: 1.8rem;
+        line-height: 1.2;
+    }
+
+    .section-subtitle {
+        font-size: 0.9rem;
+    }
+
+    .main-title {
+        font-size: 2rem;
+    }
+
+    /* Navigation dots */
+    .nav-dots {
+        right: 8px;
+        gap: 8px;
+    }
+
+    .nav-dot {
+        width: 8px;
+        height: 8px;
+    }
+
+    /* Stats grid (side 2) */
+    .stats-grid {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+
+    .stat-card {
+        padding: 16px;
+    }
+
+    .stat-value {
+        font-size: 2rem;
+    }
+
+    .stat-label {
+        font-size: 0.85rem;
+    }
+
+    /* KPI display */
+    .kpi-display {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .kpi-item {
+        padding: 15px;
+    }
+
+    .kpi-value {
+        font-size: 2rem;
+    }
+
+    .kpi-arrow {
+        transform: rotate(90deg);
+        font-size: 1.5rem;
+    }
+
+    /* Charts */
+    .chart-container {
+        height: 250px;
+        padding: 10px;
+    }
+
+    /* Size insights */
+    .size-insights {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .size-insight {
+        padding: 12px;
+    }
+
+    .size-pct {
+        font-size: 1.5rem;
+    }
+
+    /* Tables */
+    .kunde-table {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .kunde-table table {
+        min-width: 600px;
+        font-size: 0.8rem;
+    }
+
+    .kunde-table th,
+    .kunde-table td {
+        padding: 8px 6px;
+        white-space: nowrap;
+    }
+
+    /* Region table */
+    .region-table {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .region-table table {
+        min-width: 700px;
+        font-size: 0.8rem;
+    }
+
+    .region-table th,
+    .region-table td {
+        padding: 8px 6px;
+    }
+
+    .region-buttons {
+        flex-direction: column;
+        gap: 4px;
+    }
+
+    .region-drill-btn {
+        font-size: 0.7rem;
+        padding: 4px 8px;
+    }
+
+    /* FO cards */
+    .fo-paginated-grid {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+
+    .fo-detail-card {
+        padding: 15px;
+    }
+
+    .fo-detail-name {
+        font-size: 0.9rem;
+    }
+
+    .fo-detail-stats {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+    }
+
+    .fo-stat-value {
+        font-size: 1.1rem;
+    }
+
+    /* Pagination */
+    .pagination-controls {
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+
+    .page-btn {
+        padding: 8px 12px;
+        font-size: 0.85rem;
+    }
+
+    .page-dots {
+        order: 3;
+        width: 100%;
+        justify-content: center;
+    }
+
+    /* Lost bids */
+    .lost-bid {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .lost-value {
+        font-size: 1.5rem;
+    }
+
+    /* Insights grid */
+    .insights-grid {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+
+    .insight-card {
+        padding: 15px;
+    }
+
+    /* Detail panel */
+    .detail-panel {
+        padding: 15px;
+    }
+
+    .detail-content {
+        grid-template-columns: 1fr;
+    }
+
+    /* Size details panel */
+    .size-details-panel {
+        overflow-x: auto;
+    }
+
+    .details-table {
+        min-width: 500px;
+        font-size: 0.8rem;
+    }
+
+    /* Modals */
+    .region-modal-content,
+    .vunne-tilbud-content {
+        width: 95%;
+        max-height: 85vh;
+        padding: 15px;
+    }
+
+    .region-modal-header h2,
+    .vunne-tilbud-header h3 {
+        font-size: 1.1rem;
+    }
+
+    .region-detail-table {
+        font-size: 0.75rem;
+    }
+
+    .region-detail-table th,
+    .region-detail-table td {
+        padding: 6px 4px;
+    }
+
+    /* Action items */
+    .action-items {
+        grid-template-columns: 1fr;
+    }
+
+    .action-item {
+        padding: 15px;
+    }
+
+    /* Progress bar */
+    .progress-container {
+        height: 3px;
+    }
+}
+
+/* Tablet adjustments */
+@media (min-width: 481px) and (max-width: 768px) {
+    .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .fo-paginated-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .insights-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* Touch-friendly interactions */
+@media (hover: none) and (pointer: coarse) {
+    .clickable:hover {
+        transform: none;
+    }
+
+    .clickable:active {
+        transform: scale(0.98);
+    }
+
+    .clickable-row:hover {
+        background: transparent !important;
+    }
+
+    .clickable-row:active {
+        background: rgba(90, 154, 110, 0.15) !important;
+    }
+
+    .clickable-card:hover {
+        transform: none;
+        box-shadow: none;
+    }
+
+    .clickable-card:active {
+        transform: scale(0.98);
+    }
+}
+
+/* Landscape phone */
+@media (max-height: 500px) and (orientation: landscape) {
+    .section {
+        min-height: auto;
+        padding: 30px 20px;
+    }
+
+    .main-title {
+        font-size: 1.8rem;
+    }
+
+    .chart-container {
+        height: 200px;
+    }
+}

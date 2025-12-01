@@ -410,9 +410,21 @@ document.addEventListener('keydown', (e) => {
 
 // Status 2025 Detail Panel - oppdatert med faktiske tall
 function toggleStatDetails(type) {
+    console.log('toggleStatDetails called with type:', type);
+
     const panel = document.getElementById('detailPanel');
     const title = document.getElementById('detailTitle');
     const content = document.getElementById('detailContent');
+
+    if (!panel || !title || !content) {
+        console.error('Detail panel elements not found:', { panel, title, content });
+        return;
+    }
+
+    if (!DATA || !DATA.timerDetaljer || !DATA.tilbud2025) {
+        console.error('DATA not available:', { DATA: !!DATA, timerDetaljer: DATA?.timerDetaljer, tilbud2025: DATA?.tilbud2025 });
+        return;
+    }
 
     const d = DATA.timerDetaljer;
     const t = DATA.tilbud2025;
