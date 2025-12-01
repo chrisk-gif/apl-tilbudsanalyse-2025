@@ -492,7 +492,12 @@ function toggleStatDetails(type) {
                 { label: '---', value: '', sub: '' },
                 { label: 'Total tilbudskostnad', value: t.totalTilbudskostnad.toFixed(1) + 'M', sub: 'NOK' },
                 { label: 'Realisert verdi (V+D)', value: t.realisertVerdi.toFixed(1) + 'M', sub: 'NOK' },
-                { label: 'Tilbudskost av realisert', value: t.tilbudskostAvRealisert + '%', sub: '' }
+                { label: 'Tilbudskost av realisert', value: t.tilbudskostAvRealisert + '%', sub: '' },
+                { label: '---', value: '', sub: '' },
+                { label: 'KOSTNAD FOR Å VINNE 1 MNOK', value: '', sub: '' },
+                { label: 'Timer vunnet per MNOK', value: (DATA.timerPerMillion?.kunVunnet || '-') + ' timer', sub: 'kun vunnet-timer' },
+                { label: 'Timer (V+D) per MNOK', value: (DATA.timerPerMillion?.vunnetOgDirekte || '-') + ' timer', sub: 'vunnet + direkte timer' },
+                { label: 'Alle tilbudstimer per MNOK', value: (DATA.timerPerMillion?.alleTilbudstimer || '-') + ' timer', sub: 'inkl. tapte timer' }
             ]
         },
         vunnet: {
@@ -500,7 +505,11 @@ function toggleStatDetails(type) {
             items: [
                 { label: 'Kontraktsverdi', value: t.vunnet.verdi.toFixed(1) + 'M', sub: 'NOK' },
                 { label: 'Timer brukt', value: t.vunnet.timer.toLocaleString('nb-NO'), sub: 'timer totalt' },
-                { label: 'Snitt timer per tilbud', value: DATA.timerPerTilbud.vunnet, sub: 'timer' },
+                { label: '---', value: '', sub: '' },
+                { label: 'Snitt timer (alle)', value: DATA.timerPerTilbud.vunnet + ' timer', sub: 'per tilbud' },
+                { label: 'Vektet snitt (renset)', value: (DATA.vektetSnitt?.vunnet?.snittTimer || '-') + ' timer', sub: DATA.vektetSnitt?.vunnet ? DATA.vektetSnitt.vunnet.antallMedTimer + ' med timer, ' + DATA.vektetSnitt.vunnet.antallUtenTimer + ' uten' : '' },
+                { label: '---', value: '', sub: '' },
+                { label: 'Timer per MNOK vunnet', value: (DATA.timerPerMillion?.kunVunnet || '-') + ' timer', sub: 'for å vinne 1 MNOK' },
                 { label: 'Tilslag (antall)', value: t.tilslagAntall + '%', sub: 'av konkurranser' },
                 { label: 'Tilslag (verdi)', value: t.tilslagVerdi + '%', sub: 'av total verdi' }
             ]
@@ -510,7 +519,10 @@ function toggleStatDetails(type) {
             items: [
                 { label: 'Tapt kontraktsverdi', value: t.tapt.verdi.toFixed(1) + 'M', sub: 'NOK potensial' },
                 { label: 'Timer brukt', value: t.tapt.timer.toLocaleString('nb-NO'), sub: 'timer totalt' },
-                { label: 'Snitt timer per tilbud', value: DATA.timerPerTilbud.tapt, sub: 'timer' },
+                { label: '---', value: '', sub: '' },
+                { label: 'Snitt timer (alle)', value: DATA.timerPerTilbud.tapt + ' timer', sub: 'per tilbud' },
+                { label: 'Vektet snitt (renset)', value: (DATA.vektetSnitt?.tapt?.snittTimer || '-') + ' timer', sub: DATA.vektetSnitt?.tapt ? DATA.vektetSnitt.tapt.antallMedTimer + ' med timer, ' + DATA.vektetSnitt.tapt.antallUtenTimer + ' uten' : '' },
+                { label: '---', value: '', sub: '' },
                 { label: 'Andel av tilbudstimer', value: ((t.tapt.timer / t.totaleTilbudTimer) * 100).toFixed(0) + '%', sub: 'brukt på tap' }
             ]
         },
@@ -520,7 +532,9 @@ function toggleStatDetails(type) {
                 { label: 'Kontraktsverdi', value: t.direkte.verdi.toFixed(1) + 'M', sub: 'NOK' },
                 { label: 'Andel av alle tilbud', value: ((t.direkte.antall / t.totalt) * 100).toFixed(0) + '%', sub: 'av totalt antall' },
                 { label: 'Timer brukt', value: t.direkte.timer.toLocaleString('nb-NO'), sub: 'timer totalt' },
-                { label: 'Snitt timer per tilbud', value: DATA.timerPerTilbud.direkte, sub: 'timer' }
+                { label: '---', value: '', sub: '' },
+                { label: 'Snitt timer (alle)', value: DATA.timerPerTilbud.direkte + ' timer', sub: 'per tilbud' },
+                { label: 'Vektet snitt (renset)', value: (DATA.vektetSnitt?.direkte?.snittTimer || '-') + ' timer', sub: DATA.vektetSnitt?.direkte ? DATA.vektetSnitt.direkte.antallMedTimer + ' med timer, ' + DATA.vektetSnitt.direkte.antallUtenTimer + ' uten' : '' }
             ]
         }
     };

@@ -53,11 +53,25 @@ const DATA = {
         totalSum: 18953.5
     },
 
-    // Timer per tilbud (gjennomsnitt)
+    // Timer per tilbud (gjennomsnitt - alle tilbud)
     timerPerTilbud: {
         vunnet: 13.6,
         tapt: 30.5,
         direkte: 3
+    },
+
+    // Vektet gjennomsnitt (kun tilbud med timer > 0, renset for dårlig datakvalitet)
+    vektetSnitt: {
+        vunnet: { antallMedTimer: 180, antallUtenTimer: 131, snittTimer: 23.5 },
+        tapt: { antallMedTimer: 155, antallUtenTimer: 26, snittTimer: 35.6 },
+        direkte: { antallMedTimer: 50, antallUtenTimer: 157, snittTimer: 12.6 }
+    },
+
+    // Kostnad for å vinne 1 million kroner
+    timerPerMillion: {
+        kunVunnet: 17.4,
+        vunnetOgDirekte: 18,
+        alleTilbudstimer: 38.4
     },
 
     // ============================================
