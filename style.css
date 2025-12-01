@@ -2261,6 +2261,249 @@ body {
 }
 
 /* ============================================
+   INTRO SEKSJON (PowerPoint 2018-2025)
+   ============================================ */
+
+/* Intro Charts Grid */
+.intro-charts-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 24px;
+    margin-bottom: 40px;
+}
+
+.intro-chart-box {
+    background: var(--av-white);
+    border-radius: 12px;
+    padding: 24px;
+    box-shadow: 0 2px 12px rgba(31, 60, 52, 0.08);
+}
+
+.intro-chart-box.main {
+    grid-column: 1;
+}
+
+.intro-chart-box h3 {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--av-dark-green);
+    margin-bottom: 16px;
+    text-align: center;
+}
+
+.intro-chart-container {
+    height: 280px;
+    position: relative;
+}
+
+/* KPI Grid */
+.intro-kpi-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+}
+
+.intro-kpi-card {
+    background: var(--av-white);
+    border-radius: 12px;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 2px 12px rgba(31, 60, 52, 0.08);
+    transition: all 0.3s ease;
+}
+
+.intro-kpi-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(31, 60, 52, 0.12);
+}
+
+.intro-kpi-card.highlight {
+    background: var(--av-green);
+    color: white;
+}
+
+.intro-kpi-card.target {
+    background: var(--av-dark-green);
+    color: white;
+}
+
+.intro-kpi-value {
+    font-size: 32px;
+    font-weight: 700;
+    color: var(--av-dark-green);
+    line-height: 1.2;
+}
+
+.intro-kpi-card.highlight .intro-kpi-value,
+.intro-kpi-card.target .intro-kpi-value {
+    color: white;
+}
+
+.intro-kpi-label {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--av-dark-green);
+    margin-top: 8px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.intro-kpi-card.highlight .intro-kpi-label,
+.intro-kpi-card.target .intro-kpi-label {
+    color: rgba(255,255,255,0.9);
+}
+
+.intro-kpi-sub {
+    font-size: 12px;
+    color: var(--av-gray);
+    margin-top: 4px;
+}
+
+.intro-kpi-card.highlight .intro-kpi-sub,
+.intro-kpi-card.target .intro-kpi-sub {
+    color: rgba(255,255,255,0.7);
+}
+
+/* Section Divider */
+.intro-section-divider {
+    text-align: center;
+    margin: 32px 0 24px;
+    position: relative;
+}
+
+.intro-section-divider::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: rgba(31, 60, 52, 0.15);
+}
+
+.intro-section-divider h3 {
+    display: inline-block;
+    background: var(--av-cream);
+    padding: 0 24px;
+    position: relative;
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--av-dark-green);
+}
+
+/* Charts Row */
+.intro-charts-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    margin-bottom: 32px;
+}
+
+/* Insight Grid */
+.intro-insight-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+.intro-insight-card {
+    display: flex;
+    gap: 14px;
+    padding: 20px;
+    border-radius: 10px;
+    background: var(--av-white);
+    box-shadow: 0 2px 8px rgba(31, 60, 52, 0.06);
+    border-left: 4px solid var(--av-green);
+}
+
+.intro-insight-card.warning {
+    border-left-color: var(--av-yellow);
+    background: #fffbf0;
+}
+
+.intro-insight-card.info {
+    border-left-color: #3498db;
+    background: #f0f8ff;
+}
+
+.intro-insight-card.positive {
+    border-left-color: var(--av-green);
+    background: var(--av-mint);
+}
+
+.intro-insight-icon {
+    font-size: 24px;
+    flex-shrink: 0;
+}
+
+.intro-insight-content strong {
+    display: block;
+    font-size: 14px;
+    color: var(--av-dark-green);
+    margin-bottom: 4px;
+}
+
+.intro-insight-content p {
+    font-size: 13px;
+    color: var(--av-gray);
+    line-height: 1.5;
+    margin: 0;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+    .intro-charts-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .intro-kpi-grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+
+    .intro-charts-row {
+        grid-template-columns: 1fr;
+    }
+
+    .intro-insight-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    .intro-kpi-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .intro-kpi-value {
+        font-size: 26px;
+    }
+
+    .intro-chart-container {
+        height: 220px;
+    }
+}
+
+@media (max-width: 480px) {
+    .intro-kpi-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+    }
+
+    .intro-kpi-card {
+        padding: 14px;
+    }
+
+    .intro-kpi-value {
+        font-size: 22px;
+    }
+
+    .intro-insight-card {
+        flex-direction: column;
+        gap: 10px;
+    }
+}
+
+/* ============================================
    HISTORIKK OG KONTEKST SEKSJONER
    ============================================ */
 

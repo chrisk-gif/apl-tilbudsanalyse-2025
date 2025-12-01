@@ -144,10 +144,278 @@ function initCharts() {
     Chart.defaults.color = '#6b7770';
     Chart.defaults.font.family = 'Inter, sans-serif';
 
+    // Nye intro-grafer fra PowerPoint
+    createAplHistoriskIntroChart();
+    createDivisjonIntroChart();
+    createAarsverkIntroChart();
+
+    // Eksisterende grafer
     createHistoriskChart();
     createDivisjonChart();
     createStorrelseChart();
     createTimefordelingChart();
+}
+
+// ============================================
+// NYE INTRO-GRAFER (fra PowerPoint 2018-2025)
+// ============================================
+
+function createAplHistoriskIntroChart() {
+    const ctx = document.getElementById('aplHistoriskIntroChart');
+    if (!ctx) return;
+
+    // Data fra PowerPoint: Tilbud- og markedsføringstid - APL
+    const years = ['2018', '2019', '2020', '2021', '2022', '2023', '2024', '2025*'];
+    const tilbudPct = [5.3, 5.8, 7.3, 5.3, 4.9, 5.6, 4.7, 5.6];
+    const markedPct = [1.9, 2.3, 2.4, 1.9, 2.6, 2.9, 2.8, 2.5];
+    const totalPct = [7.2, 8.1, 9.7, 7.2, 7.5, 8.5, 7.5, 8.1];
+    const maal = 7.0;
+
+    new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: years,
+            datasets: [
+                {
+                    label: 'Tilbud %',
+                    data: tilbudPct,
+                    backgroundColor: '#3d5a4f',
+                    borderRadius: 4,
+                    stack: 'stack1'
+                },
+                {
+                    label: 'Marked %',
+                    data: markedPct,
+                    backgroundColor: '#5a9a6e',
+                    borderRadius: 4,
+                    stack: 'stack1'
+                },
+                {
+                    label: 'Mål 7%',
+                    data: Array(years.length).fill(maal),
+                    type: 'line',
+                    borderColor: '#c9a84a',
+                    borderDash: [8, 4],
+                    borderWidth: 3,
+                    pointRadius: 0,
+                    fill: false
+                }
+            ]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            interaction: {
+                intersect: false,
+                mode: 'index'
+            },
+            plugins: {
+                legend: {
+                    position: 'top',
+                    labels: {
+                        usePointStyle: true,
+                        padding: 15
+                    }
+                },
+                tooltip: {
+                    callbacks: {
+                        afterBody: function(context) {
+                            const idx = context[0].dataIndex;
+                            return [
+                                '',
+                                'Totalt: ' + totalPct[idx] + '%',
+                                'Årsverk: ' + [15.5, 19.6, 25.1, 18.8, 19.6, 21.9, 18.4, 19.8][idx]
+                            ];
+                        }
+                    }
+                }
+            },
+            scales: {
+                y: {
+                    stacked: true,
+                    max: 12,
+                    ticks: {
+                        callback: (value) => value + '%'
+                    },
+                    grid: {
+                        color: 'rgba(0,0,0,0.05)'
+                    }
+                },
+                x: {
+                    stacked: true,
+                    grid: {
+                        display: false
+                    }
+                }
+            }
+        }
+    });
+}
+
+function createDivisjonIntroChart() {
+    const ctx = document.getElementById('divisjonIntroChart');
+    if (!ctx) return;
+
+    // Data fra PowerPoint: Divisjoner sammenligning
+    const years = ['2018', '2019', '2020', '2021', '2022', '2023', '2024', '2025*'];
+    const aplData = [7.2, 8.1, 9.7, 7.2, 7.5, 8.5, 7.5, 8.1];
+    const infraData = [3.7, 4.2, 5.0, 4.0, 3.5, 3.9, 5.2, 4.5];
+    const abData = [4.5, 4.1, 5.4, 5.2, 4.3, 4.1, 4.5, 6.9];
+
+    new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: years,
+            datasets: [
+                {
+                    label: 'APL',
+                    data: aplData,
+                    borderColor: '#3d5a4f',
+                    backgroundColor: 'rgba(61, 90, 79, 0.1)',
+                    fill: true,
+                    tension: 0.3,
+                    pointRadius: 5,
+                    pointHoverRadius: 8,
+                    borderWidth: 3
+                },
+                {
+                    label: 'Infrastruktur',
+                    data: infraData,
+                    borderColor: '#e67e22',
+                    backgroundColor: 'transparent',
+                    tension: 0.3,
+                    pointRadius: 4,
+                    pointHoverRadius: 7,
+                    borderWidth: 2
+                },
+                {
+                    label: 'A&B',
+                    data: abData,
+                    borderColor: '#7f8c8d',
+                    backgroundColor: 'transparent',
+                    tension: 0.3,
+                    pointRadius: 4,
+                    pointHoverRadius: 7,
+                    borderWidth: 2
+                }
+            ]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            interaction: {
+                intersect: false,
+                mode: 'index'
+            },
+            plugins: {
+                legend: {
+                    position: 'top',
+                    labels: {
+                        usePointStyle: true,
+                        padding: 15
+                    }
+                },
+                tooltip: {
+                    callbacks: {
+                        label: (context) => `${context.dataset.label}: ${context.parsed.y}%`
+                    }
+                }
+            },
+            scales: {
+                y: {
+                    min: 0,
+                    max: 12,
+                    ticks: {
+                        callback: (value) => value + '%'
+                    },
+                    grid: {
+                        color: 'rgba(0,0,0,0.05)'
+                    }
+                },
+                x: {
+                    grid: {
+                        display: false
+                    }
+                }
+            }
+        }
+    });
+}
+
+function createAarsverkIntroChart() {
+    const ctx = document.getElementById('aarsverkIntroChart');
+    if (!ctx) return;
+
+    // Data fra PowerPoint: Årsverk tilbud og marked
+    const years = ['2018', '2019', '2020', '2021', '2022', '2023', '2024', '2025*'];
+    const aplData = [15.5, 19.6, 25.1, 18.8, 19.6, 21.9, 18.4, 19.8];
+    const infraData = [10.3, 12.5, 17.2, 13.1, 11.8, 13.8, 15.7, 15.4];
+    const abData = [14.4, 14.7, 20.4, 20.4, 19.6, 17.3, 17.9, 31.0];
+
+    new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: years,
+            datasets: [
+                {
+                    label: 'APL',
+                    data: aplData,
+                    backgroundColor: '#3d5a4f',
+                    borderRadius: 4
+                },
+                {
+                    label: 'Infrastruktur',
+                    data: infraData,
+                    backgroundColor: '#e67e22',
+                    borderRadius: 4
+                },
+                {
+                    label: 'A&B',
+                    data: abData,
+                    backgroundColor: '#7f8c8d',
+                    borderRadius: 4
+                }
+            ]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            interaction: {
+                intersect: false,
+                mode: 'index'
+            },
+            plugins: {
+                legend: {
+                    position: 'top',
+                    labels: {
+                        usePointStyle: true,
+                        padding: 15
+                    }
+                },
+                tooltip: {
+                    callbacks: {
+                        label: (context) => `${context.dataset.label}: ${context.parsed.y} årsverk`
+                    }
+                }
+            },
+            scales: {
+                y: {
+                    max: 35,
+                    ticks: {
+                        callback: (value) => value
+                    },
+                    grid: {
+                        color: 'rgba(0,0,0,0.05)'
+                    }
+                },
+                x: {
+                    grid: {
+                        display: false
+                    }
+                }
+            }
+        }
+    });
 }
 
 function createHistoriskChart() {

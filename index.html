@@ -8,7 +8,7 @@
     <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.0.0"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css?v=20251202100000">
+    <link rel="stylesheet" href="style.css?v=20251202110000">
 </head>
 <body>
     <!-- Progress bar -->
@@ -37,8 +37,95 @@
         </div>
     </section>
 
-    <!-- Section 2: Nøkkeltall 2025 -->
+    <!-- Section 2: Historisk oversikt (fra PowerPoint 2018-2025) -->
     <section class="section" data-section="1">
+        <div class="container">
+            <h2 class="section-title">Historisk utvikling</h2>
+            <p class="section-subtitle">APL tilbud- og markedsføringstid 2018-2025 | Kilde: Intern PowerPoint-analyse</p>
+
+            <div class="intro-charts-grid">
+                <!-- Hovedgraf: APL Historisk utvikling -->
+                <div class="intro-chart-box main">
+                    <h3>Tilbud + marked som % av totaltid</h3>
+                    <div class="intro-chart-container">
+                        <canvas id="aplHistoriskIntroChart"></canvas>
+                    </div>
+                </div>
+
+                <!-- KPI-kort -->
+                <div class="intro-kpi-grid">
+                    <div class="intro-kpi-card">
+                        <div class="intro-kpi-value">9.7%</div>
+                        <div class="intro-kpi-label">Toppår 2020</div>
+                        <div class="intro-kpi-sub">Høyeste andel</div>
+                    </div>
+                    <div class="intro-kpi-card highlight">
+                        <div class="intro-kpi-value">8.1%</div>
+                        <div class="intro-kpi-label">2025 (okt)</div>
+                        <div class="intro-kpi-sub">Nåværende status</div>
+                    </div>
+                    <div class="intro-kpi-card target">
+                        <div class="intro-kpi-value">7.0%</div>
+                        <div class="intro-kpi-label">Mål 2026</div>
+                        <div class="intro-kpi-sub">KPI-mål</div>
+                    </div>
+                    <div class="intro-kpi-card">
+                        <div class="intro-kpi-value">19.8</div>
+                        <div class="intro-kpi-label">Årsverk 2025</div>
+                        <div class="intro-kpi-sub">Tilbud + marked</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Divisjonssammenligning -->
+            <div class="intro-section-divider">
+                <h3>Sammenligning med andre divisjoner</h3>
+            </div>
+
+            <div class="intro-charts-row">
+                <div class="intro-chart-box">
+                    <h3>Tilbud + marked % per divisjon</h3>
+                    <div class="intro-chart-container">
+                        <canvas id="divisjonIntroChart"></canvas>
+                    </div>
+                </div>
+                <div class="intro-chart-box">
+                    <h3>Årsverk tilbud + marked per divisjon</h3>
+                    <div class="intro-chart-container">
+                        <canvas id="aarsverkIntroChart"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Nøkkelinnsikt -->
+            <div class="intro-insight-grid">
+                <div class="intro-insight-card warning">
+                    <div class="intro-insight-icon">⚠️</div>
+                    <div class="intro-insight-content">
+                        <strong>APL bruker ca 3% mer</strong>
+                        <p>tid på tilbud og marked enn de andre divisjonene. Herav marked 1.5-2%.</p>
+                    </div>
+                </div>
+                <div class="intro-insight-card info">
+                    <div class="intro-insight-icon">📊</div>
+                    <div class="intro-insight-content">
+                        <strong>Høyere enn Infra</strong>
+                        <p>APL bruker mer årsverk på tilbud/marked enn Infra, selv om omsetningen er mindre.</p>
+                    </div>
+                </div>
+                <div class="intro-insight-card positive">
+                    <div class="intro-insight-icon">📉</div>
+                    <div class="intro-insight-content">
+                        <strong>Nedgang fra toppen</strong>
+                        <p>Fra 9.7% i 2020 til 8.1% i 2025. Riktig retning mot 7% mål.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 3: Nøkkeltall 2025 -->
+    <section class="section" data-section="2">
         <div class="container">
             <h2 class="section-title">Status 2025</h2>
             <p class="section-subtitle">Tilbudsaktivitet 01.01 - 30.11.2025</p>
@@ -753,6 +840,6 @@
             fillRegionTable();
         }
     </script>
-    <script src="script.js?v=20251202100000"></script>
+    <script src="script.js?v=20251202110000"></script>
 </body>
 </html>
