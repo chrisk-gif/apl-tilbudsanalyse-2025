@@ -8,7 +8,7 @@
     <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.0.0"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css?v=20251202000100">
+    <link rel="stylesheet" href="style.css?v=20251202100000">
 </head>
 <body>
     <!-- Progress bar -->
@@ -444,8 +444,146 @@
         </div>
     </section>
 
-    <!-- Section 16: Veien til 7% -->
-    <section class="section dark" data-section="15">
+    <!-- Section 16: Historikk og kontekst (fra PowerPoint) -->
+    <section class="section" data-section="15">
+        <div class="container">
+            <h2 class="section-title">Historikk og kontekst</h2>
+            <p class="section-subtitle">Data fra intern analyse 2018-2024 (PowerPoint-presentasjoner)</p>
+
+            <div class="historikk-info-box">
+                <div class="historikk-note">
+                    <span class="historikk-icon">📊</span>
+                    <p>Følgende data er hentet fra interne PowerPoint-presentasjoner og gir kontekst utover 2025-tallene.
+                    Merk: Dette er <strong>separate datakilder</strong> og skal ikke blandes med tilbudsanalysen over.</p>
+                </div>
+            </div>
+
+            <div class="historikk-grid">
+                <div class="historikk-card">
+                    <h3>📈 Tilbud- og markedsføringstid</h3>
+                    <div class="historikk-content">
+                        <p>APL bruker <strong>ca 3% mer tid</strong> på tilbud og marked enn de andre divisjonene.</p>
+                        <ul>
+                            <li>Herav marked: 1.5-2% ekstra</li>
+                            <li>Tilbudsteam A&B: ~50% av tiden på marked/tilbud</li>
+                            <li>Tilbudsteam Infra: ~2/3 av tiden på tilbud/marked</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="historikk-card">
+                    <h3>🏢 Divisjonssammenligning</h3>
+                    <div class="historikk-content">
+                        <p>APL bruker mer årsverk på tilbud/marked enn Infrastruktur, selv om omsetningen er mindre.</p>
+                        <div class="divisjon-stats">
+                            <div class="divisjon-stat">
+                                <span class="divisjon-name">APL</span>
+                                <span class="divisjon-value highlight">7.3%</span>
+                            </div>
+                            <div class="divisjon-stat">
+                                <span class="divisjon-name">A&B</span>
+                                <span class="divisjon-value">~5.0%</span>
+                            </div>
+                            <div class="divisjon-stat">
+                                <span class="divisjon-name">Infra</span>
+                                <span class="divisjon-value">~4.5%</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="historikk-card">
+                    <h3>🗺️ Region Øst vs andre</h3>
+                    <div class="historikk-content">
+                        <p>APL Region Øst bruker <strong>4.6% mer tid</strong> på tilbud/marked enn A&B Øst (over dobbelt så mye).</p>
+                        <ul>
+                            <li>2.2% mer enn Infra Øst</li>
+                            <li>Regionleder APL: ~20% av tiden på marked</li>
+                            <li>Regionledere Infra/A&B: ~10% på marked</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="historikk-card">
+                    <h3>🎯 Region Sør</h3>
+                    <div class="historikk-content">
+                        <p>APL Region Sør bruker <strong>4.5% mer</strong> tid på tilbud og marked enn andre regioner i sør.</p>
+                        <ul>
+                            <li>Herav marked: i overkant av 2%</li>
+                            <li>Regionleder skriver 15-20% av tiden på marked</li>
+                            <li>Vs. 0% for regionledere i Infra/A&B Sør</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 17: Benchmark og nøkkeltall -->
+    <section class="section dark" data-section="16">
+        <div class="container">
+            <h2 class="section-title">Benchmark: Timer per tapt tilbud</h2>
+            <p class="section-subtitle">Historiske nøkkeltall fra intern analyse</p>
+
+            <div class="benchmark-grid">
+                <div class="benchmark-card main">
+                    <div class="benchmark-value">32</div>
+                    <div class="benchmark-label">Timer per tapt tilbud</div>
+                    <div class="benchmark-sub">APL gjennomsnitt (historisk)</div>
+                </div>
+                <div class="benchmark-card">
+                    <div class="benchmark-value compare">30.5</div>
+                    <div class="benchmark-label">Timer per tapt tilbud</div>
+                    <div class="benchmark-sub">APL 2025 (Master APL)</div>
+                </div>
+            </div>
+
+            <div class="tiltak-section">
+                <h3>📋 Anbefalte tiltak fra intern analyse</h3>
+                <div class="tiltak-grid">
+                    <div class="tiltak-item">
+                        <div class="tiltak-icon">🚫</div>
+                        <div class="tiltak-text">
+                            <strong>Forkaste flere</strong>
+                            <p>Cowi og andre dropper tilbud de ikke kan vinne. Vi bør gjøre det samme.</p>
+                        </div>
+                    </div>
+                    <div class="tiltak-item">
+                        <div class="tiltak-icon">📏</div>
+                        <div class="tiltak-text">
+                            <strong>Gå på de små</strong>
+                            <p>Mange små oppdrag har blitt store over tid. Lavere risiko, høyere tilslag.</p>
+                        </div>
+                    </div>
+                    <div class="tiltak-item">
+                        <div class="tiltak-icon">⚡</div>
+                        <div class="tiltak-text">
+                            <strong>Effektivisere småtilbud</strong>
+                            <p>Må bli mer effektiv på de små tilbudene. Gjenbruk og maler.</p>
+                        </div>
+                    </div>
+                    <div class="tiltak-item">
+                        <div class="tiltak-icon">📊</div>
+                        <div class="tiltak-text">
+                            <strong>Oppdatert Sales</strong>
+                            <p>Viktig å ha oppdatert Sales - er viktig for våre prognoser.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="insight-box" style="margin-top: 32px;">
+                <div class="insight-icon">💡</div>
+                <div class="insight-text">
+                    <strong>Offentlige kunder krever mer tid.</strong>
+                    Krever mye mot departementer og andre offentlige instanser. Vurder selektivitet.
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 18: Veien til 7% -->
+    <section class="section" data-section="17">
         <div class="container">
             <h2 class="section-title">Veien til 7%</h2>
             <p class="section-subtitle">Vi er på 7.3% - gjenstår ~1 200 timer for å nå målet</p>
@@ -479,8 +617,8 @@
         </div>
     </section>
 
-    <!-- Section 17: Diskusjon -->
-    <section class="section" data-section="16">
+    <!-- Section 19: Diskusjon -->
+    <section class="section" data-section="18">
         <div class="container">
             <h2 class="section-title">Diskusjon</h2>
             <p class="section-subtitle">Erfaringsutveksling og forbedringspunkter</p>
@@ -514,8 +652,8 @@
         </div>
     </section>
 
-    <!-- Section 18: Avslutning -->
-    <section class="section hero" data-section="17">
+    <!-- Section 20: Avslutning -->
+    <section class="section hero" data-section="19">
         <div class="container">
             <h2 class="section-title">Oppsummering</h2>
 
@@ -619,6 +757,6 @@
             fillRegionTable();
         }
     </script>
-    <script src="script.js?v=20251202000500"></script>
+    <script src="script.js?v=20251202100000"></script>
 </body>
 </html>
