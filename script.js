@@ -766,15 +766,16 @@ function toggleStatDetails(type) {
                 { label: 'Timer trukket/forkastet', value: (a.trukketForkastet || 0).toLocaleString('nb-NO'), sub: ((a.trukketForkastet / a.totalSum) * 100).toFixed(1) + '%', group: 'timer' },
                 { label: 'Timer prekvalifisert', value: (a.prekvalifisert || 0).toLocaleString('nb-NO'), sub: ((a.prekvalifisert / a.totalSum) * 100).toFixed(1) + '%', group: 'timer' },
                 { label: 'Timer annet/ikke plassert', value: (a.annetIkkePlassert || 0).toLocaleString('nb-NO'), sub: ((a.annetIkkePlassert / a.totalSum) * 100).toFixed(1) + '%', group: 'timer' },
+                // GRUPPE 2 fortsatt: Total sum timer (også blå)
+                { label: 'TOTAL SUM TIMER', value: (a.totalSum || t.totaleTilbudTimer).toLocaleString('nb-NO'), sub: '100% - alle timer på tilbud/marked', group: 'timer' },
                 // GRUPPE 3: Totaler og kostnader (lys gul/beige)
-                { label: 'TOTAL SUM TIMER', value: (a.totalSum || t.totaleTilbudTimer).toLocaleString('nb-NO'), sub: '100%', group: 'total' },
-                { label: 'Total tilbudskostnad', value: t.totalTilbudskostnad.toFixed(1) + 'M', sub: 'NOK', group: 'total' },
+                { label: 'Total tilbudskostnad', value: t.totalTilbudskostnad.toFixed(1) + 'M', sub: 'NOK (vunnet + tapt + direkte)', group: 'total' },
                 { label: 'Realisert verdi (V+D)', value: t.realisertVerdi.toFixed(1) + 'M', sub: 'NOK', group: 'total' },
                 { label: 'Tilbudskost av realisert', value: t.tilbudskostAvRealisert + '%', sub: '', group: 'total' },
-                // GRUPPE 4: Timer per MNOK (lys lilla)
-                { label: 'Timer vunnet per MNOK', value: (DATA.timerPerMillion?.kunVunnet || '-') + ' timer', sub: 'kun vunnet-timer', group: 'efficiency' },
-                { label: 'Timer (V+D) per MNOK', value: (DATA.timerPerMillion?.vunnetOgDirekte || '-') + ' timer', sub: 'vunnet + direkte timer', group: 'efficiency' },
-                { label: 'Alle tilbudstimer per MNOK', value: (DATA.timerPerMillion?.alleTilbudstimer || '-') + ' timer', sub: 'inkl. tapte timer', group: 'efficiency' }
+                // GRUPPE 4: Timer per MNOK (lys lilla) - mer intuitive beskrivelser
+                { label: 'Kostnad per vunnet MNOK', value: (DATA.timerPerMillion?.kunVunnet || '-') + ' timer', sub: 'Så mange timer bruker vi for å vinne 1 MNOK', group: 'efficiency' },
+                { label: 'Kostnad per realisert MNOK', value: (DATA.timerPerMillion?.vunnetOgDirekte || '-') + ' timer', sub: 'Timer per MNOK vi faktisk får (vunnet + direkte)', group: 'efficiency' },
+                { label: 'Total timekostnad per MNOK', value: (DATA.timerPerMillion?.alleTilbudstimer || '-') + ' timer', sub: 'Alle timer (inkl. tapte) per MNOK vi får', group: 'efficiency' }
             ]
         },
         vunnet: {
