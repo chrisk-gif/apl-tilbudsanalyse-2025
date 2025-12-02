@@ -91,8 +91,8 @@ const DATA = {
     // REGIONER
     // ============================================
     regioner: [
-        { navn: "Analyse, plan og landskap øst", vunnet: 112, tapt: 66, direkte: 53, antall: 231, timer: 4323.5, tilslag: 71.4, tilslagVerdi: 59.1, verdiVunnetDirekte: 146.72, tilbudskostAvRealisert: 2.1, grupperCount: 16, kontorerCount: 6 },
-        { navn: "Analyse, plan og landskap sør", vunnet: 94, tapt: 41, direkte: 112, antall: 247, timer: 2443.5, tilslag: 83.4, tilslagVerdi: 68.8, verdiVunnetDirekte: 78.23, tilbudskostAvRealisert: 2.2, grupperCount: 16, kontorerCount: 8 },
+        { navn: "Analyse, plan og landskap øst", vunnet: 112, tapt: 64, direkte: 52, antall: 228, timer: 4288, tilslag: 71.9, tilslagVerdi: 59.2, verdiVunnetDirekte: 146.68, tilbudskostAvRealisert: 2.0, grupperCount: 15, kontorerCount: 6 },
+        { navn: "Analyse, plan og landskap sør", vunnet: 94, tapt: 43, direkte: 113, antall: 250, timer: 2479, tilslag: 83.0, tilslagVerdi: 68.7, verdiVunnetDirekte: 78.27, tilbudskostAvRealisert: 2.2, grupperCount: 17, kontorerCount: 8 },
         { navn: "Analyse, plan og landskap nord/midt", vunnet: 43, tapt: 26, direkte: 31, antall: 100, timer: 1552.5, tilslag: 74, tilslagVerdi: 63.1, verdiVunnetDirekte: 65, tilbudskostAvRealisert: 1.7, grupperCount: 9, kontorerCount: 6 },
         { navn: "Analyse, plan og landskap vest", vunnet: 62, tapt: 34, direkte: 11, antall: 107, timer: 1488, tilslag: 68.2, tilslagVerdi: 30.1, verdiVunnetDirekte: 49.11, tilbudskostAvRealisert: 2.1, grupperCount: 7, kontorerCount: 3 },
         { navn: "Analyse, plan og landskap divisjonsledelse", vunnet: 0, tapt: 14, direkte: 0, antall: 14, timer: 568, tilslag: 0, tilslagVerdi: 0, verdiVunnetDirekte: 0, tilbudskostAvRealisert: 0, grupperCount: 1, kontorerCount: 1 },
