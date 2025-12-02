@@ -165,7 +165,7 @@ const DATA = {
         { navn: "Landskap Stavanger", region: "Analyse, plan og landskap vest", vunnet: 11, tapt: 3, direkte: 0, antall: 14, timer: 69.5, tilslag: 78.6, verdiVunnetDirekte: 4.02, tilbudskostAvRealisert: 1.2 },
         { navn: "Plan Molde", region: "Analyse, plan og landskap nord/midt", vunnet: 5, tapt: 1, direkte: 1, antall: 7, timer: 59.5, tilslag: 85.7, verdiVunnetDirekte: 1.11, tilbudskostAvRealisert: 3.7 },
         { navn: "Plan Leikanger", region: "Analyse, plan og landskap vest", vunnet: 2, tapt: 0, direkte: 0, antall: 2, timer: 53.5, tilslag: 100, verdiVunnetDirekte: 7.1, tilbudskostAvRealisert: 0.5 },
-        { navn: "Landskap Skien", region: "Analyse, plan og landskap øst", vunnet: 0, tapt: 2, direkte: 1, antall: 3, timer: 35.5, tilslag: 33.3, verdiVunnetDirekte: 0.04, tilbudskostAvRealisert: 58.9 },
+        { navn: "Landskap Skien", region: "Analyse, plan og landskap sør", vunnet: 0, tapt: 2, direkte: 1, antall: 3, timer: 35.5, tilslag: 33.3, verdiVunnetDirekte: 0.04, tilbudskostAvRealisert: 58.9 },
         { navn: "Plan Ål", region: "Analyse, plan og landskap sør", vunnet: 3, tapt: 0, direkte: 15, antall: 18, timer: 27.5, tilslag: 100, verdiVunnetDirekte: 6.08, tilbudskostAvRealisert: 0.3 },
         { navn: "Analyse, plan og landskap sør Ledelse", region: "Analyse, plan og landskap sør", vunnet: 0, tapt: 1, direkte: 2, antall: 3, timer: 24, tilslag: 66.7, verdiVunnetDirekte: 0.03, tilbudskostAvRealisert: 67.2 },
         { navn: "Plan Drammen Spesialistgruppen", region: "Analyse, plan og landskap øst", vunnet: 3, tapt: 1, direkte: 1, antall: 5, timer: 24, tilslag: 80, verdiVunnetDirekte: 3.12, tilbudskostAvRealisert: 0.5 },

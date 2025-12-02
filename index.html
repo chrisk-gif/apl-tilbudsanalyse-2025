@@ -8,7 +8,7 @@
     <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.0.0"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css?v=20251202120000">
+    <link rel="stylesheet" href="style.css?v=20251202127000">
 </head>
 <body>
     <!-- Progress bar -->
@@ -329,6 +329,32 @@
 
             <div class="paginated-content" id="foContent">
                 <!-- Dynamisk innhold -->
+
+                <!-- Nøkkelfunn - faktabokser i tomrommet -->
+                <div class="fo-facts-container" id="foFactsContainer">
+                    <div class="fo-facts-grid">
+                        <div class="fo-fact-card">
+                            <div class="fo-fact-number">90%</div>
+                            <div class="fo-fact-label">Trafikk- og transport</div>
+                            <div class="fo-fact-desc">Høyest tilslag (antall)</div>
+                        </div>
+                        <div class="fo-fact-card">
+                            <div class="fo-fact-number">96%</div>
+                            <div class="fo-fact-label">Stedsutvikling</div>
+                            <div class="fo-fact-desc">Høyest tilslag (verdi)</div>
+                        </div>
+                        <div class="fo-fact-card">
+                            <div class="fo-fact-number">89M</div>
+                            <div class="fo-fact-label">Reguleringsplan</div>
+                            <div class="fo-fact-desc">Høyest totalverdi</div>
+                        </div>
+                        <div class="fo-fact-card">
+                            <div class="fo-fact-number">2 814</div>
+                            <div class="fo-fact-label">Reguleringsplan</div>
+                            <div class="fo-fact-desc">Flest tilbudstimer</div>
+                        </div>
+                    </div>
+                </div>
             </div>
 
             <div class="pagination-controls">
@@ -387,7 +413,7 @@
                     <thead>
                         <tr>
                             <th>Kunde</th>
-                            <th>Tilbud</th>
+                            <th>Tapt</th>
                             <th>Vunnet</th>
                             <th>Direkte</th>
                             <th>Tilslag (verdi)</th>
@@ -779,7 +805,7 @@
         </div>
     </div>
 
-    <script src="data_updated.js?v=20251202120000"></script>
+    <script src="data_updated.js?v=20251202125000"></script>
     <script>
         // Fyll region-tabell med Grupper/Kontorer knapper
         function fillRegionTable() {
@@ -828,6 +854,6 @@
             fillRegionTable();
         }
     </script>
-    <script src="script.js?v=20251202122000"></script>
+    <script src="script.js?v=20251202128000"></script>
 </body>
 </html>

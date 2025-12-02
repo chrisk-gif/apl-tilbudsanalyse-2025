@@ -1353,6 +1353,77 @@ body {
     }
 }
 
+/* Forretningsområder Facts - 2x2 grid i tomrommet */
+.fo-facts-container {
+    position: absolute;
+    bottom: 80px;
+    right: 0;
+    width: calc(75% - 12px);
+    display: flex;
+    justify-content: flex-end;
+}
+
+.fo-facts-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+    max-width: 320px;
+}
+
+.fo-fact-card {
+    text-align: center;
+    padding: 12px 10px;
+    background: rgba(255,255,255,0.06);
+    border-radius: 8px;
+    border-top: 2px solid var(--av-green);
+}
+
+.fo-fact-number {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--av-green);
+    margin-bottom: 4px;
+}
+
+.fo-fact-label {
+    font-size: 0.7rem;
+    font-weight: 600;
+    color: #ffffff;
+    margin-bottom: 3px;
+    line-height: 1.2;
+}
+
+.fo-fact-desc {
+    font-size: 0.65rem;
+    color: rgba(255,255,255,0.6);
+    line-height: 1.3;
+}
+
+/* Må gjøre paginated-content relativ for absolutt posisjonering */
+.paginated-content {
+    position: relative;
+}
+
+@media (max-width: 1200px) {
+    .fo-facts-container {
+        position: static;
+        width: 100%;
+        justify-content: center;
+        margin-top: 16px;
+    }
+
+    .fo-facts-grid {
+        max-width: 100%;
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .fo-facts-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
 /* Size Details Panel */
 .size-details-panel {
     margin-top: 32px;
@@ -1913,7 +1984,7 @@ body {
     background: rgba(255,255,255,0.03);
     border-radius: 8px;
     overflow: hidden;
-    table-layout: fixed;
+    table-layout: auto;
 }
 
 .vunne-tilbud-table th,

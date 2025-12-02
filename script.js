@@ -1015,7 +1015,7 @@ function renderKundePage() {
         return `
             <tr class="${rowClass} clickable-row" onclick="showVunneTilbud('kunde', '${kundeNavn}')">
                 <td>${k.navn}</td>
-                <td>${k.antall}</td>
+                <td>${k.tapt || 0}</td>
                 <td>${k.vunnet}</td>
                 <td>${k.direkte}</td>
                 <td class="${tilslagClass}">${tilslagVerdi}%</td>
@@ -1169,8 +1169,7 @@ function showRegionGrupper(regionNavn) {
                 <button class="region-modal-close" onclick="this.closest('.region-modal').remove()">✕</button>
             </div>
             <div class="region-modal-body">
-                <p class="modal-hint">Klikk på en rad for å se topp 5 vunne tilbud</p>
-                <table class="region-detail-table">
+                                <table class="region-detail-table">
                     <thead>
                         <tr>
                             <th>Gruppe</th>
@@ -1228,8 +1227,7 @@ function showRegionKontorer(regionNavn) {
                 <button class="region-modal-close" onclick="this.closest('.region-modal').remove()">✕</button>
             </div>
             <div class="region-modal-body">
-                <p class="modal-hint">Klikk på en rad for å se topp 5 vunne tilbud</p>
-                <table class="region-detail-table">
+                                <table class="region-detail-table">
                     <thead>
                         <tr>
                             <th>Kontor</th>
@@ -1316,10 +1314,10 @@ function showVunneTilbud(type, navn) {
     subModal.className = 'vunne-tilbud-modal active';
 
     // Bygg dynamisk header basert på hvilke kolonner som skal vises
-    let headerHtml = '<th style="width: 80px;">Status</th>';
-    if (showKundeColumn) headerHtml += '<th style="width: 18%;">Kunde</th>';
-    headerHtml += '<th style="width: auto;">Emne</th><th style="width: 70px;">Verdi</th><th style="width: 70px;">Timer</th><th style="width: 70px;">Kost %</th>';
-    if (showGruppeKontorColumns) headerHtml += '<th style="width: 14%;">Gruppe</th><th style="width: 90px;">Kontor</th>';
+    let headerHtml = '<th style="white-space: nowrap;">Status</th>';
+    if (showKundeColumn) headerHtml += '<th>Kunde</th>';
+    headerHtml += '<th>Emne</th><th style="white-space: nowrap; text-align: right;">Verdi</th><th style="white-space: nowrap; text-align: right;">Timer</th><th style="white-space: nowrap; text-align: right;">Kost %</th>';
+    if (showGruppeKontorColumns) headerHtml += '<th>Gruppe</th><th style="white-space: nowrap;">Kontor</th>';
 
     // Bygg dynamisk row basert på hvilke kolonner som skal vises
     // Formater verdi - vis desimaler bare når nødvendig
@@ -1335,10 +1333,10 @@ function showVunneTilbud(type, navn) {
         let rowHtml = `<td class="status-cell ${statusClass}">${t.status}</td>`;
         if (showKundeColumn) rowHtml += `<td class="kunde-cell">${t.kunde || ''}</td>`;
         rowHtml += `<td class="emne-cell">${t.emne}</td>`;
-        rowHtml += `<td class="verdi-cell">${formatVerdi(t.verdi)}</td>`;
-        rowHtml += `<td class="timer-cell">${t.timer}</td>`;
+        rowHtml += `<td class="verdi-cell" style="text-align: right; white-space: nowrap;">${formatVerdi(t.verdi)}</td>`;
+        rowHtml += `<td class="timer-cell" style="text-align: right; white-space: nowrap;">${t.timer}</td>`;
         const kostProsent = typeof t.tilbudskostProsent === 'number' ? t.tilbudskostProsent.toFixed(1).replace(/\.0$/, '') : t.tilbudskostProsent;
-        rowHtml += `<td class="kost-cell" style="white-space: nowrap;">${kostProsent}%</td>`;
+        rowHtml += `<td class="kost-cell" style="text-align: right; white-space: nowrap;">${kostProsent}%</td>`;
         if (showGruppeKontorColumns) {
             rowHtml += `<td>${t.gruppe || ''}</td>`;
             rowHtml += `<td>${t.kontor || ''}</td>`;
