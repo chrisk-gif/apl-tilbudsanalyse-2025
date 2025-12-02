@@ -8,7 +8,7 @@
     <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.0.0"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css?v=20251202113000">
+    <link rel="stylesheet" href="style.css?v=20251202118000">
 </head>
 <body>
     <!-- Progress bar -->
@@ -259,32 +259,53 @@
     <section class="section dark" data-section="5">
         <div class="container">
             <h2 class="section-title">Tilslagsprosent per størrelse</h2>
-            <p class="section-subtitle">Større tilbud = lavere tilslagsprosent | <span class="clickable-hint" onclick="toggleSizeDetails()">Klikk for detaljer</span></p>
+            <p class="section-subtitle">Større tilbud = lavere tilslagsprosent</p>
 
             <div class="chart-container">
                 <canvas id="storrelseChart"></canvas>
             </div>
 
-            <div class="size-insights">
-                <div class="size-insight good">
-                    <span class="size-pct">86%</span>
-                    <span class="size-label">Under 100k</span>
-                    <span class="size-desc">Vinner nesten alt!</span>
+            <!-- Nøkkelfunn - 5 betraktningsbokser -->
+            <div class="size-findings-grid">
+                <div class="size-finding-card">
+                    <div class="size-finding-icon">🎯</div>
+                    <div class="size-finding-text">
+                        <strong>Små tilbud er trygge</strong>
+                        <p>Under 100k har 86% tilslag - nesten garantert seier med minimal risiko.</p>
+                    </div>
                 </div>
-                <div class="size-insight warning">
-                    <span class="size-pct">49%</span>
-                    <span class="size-label">700k - 1.5M</span>
-                    <span class="size-desc">Konkurranseutsatt</span>
+                <div class="size-finding-card">
+                    <div class="size-finding-icon">⚠️</div>
+                    <div class="size-finding-text">
+                        <strong>Store tilbud er risikable</strong>
+                        <p>Over 10M har kun 15% tilslag, men krever mest timer per tilbud.</p>
+                    </div>
                 </div>
-                <div class="size-insight bad">
-                    <span class="size-pct">15%</span>
-                    <span class="size-label">Over 10M</span>
-                    <span class="size-desc">Bruker mest tid, vinner minst</span>
+                <div class="size-finding-card">
+                    <div class="size-finding-icon">💡</div>
+                    <div class="size-finding-text">
+                        <strong>Sweet spot: 100-700k</strong>
+                        <p>God balanse mellom tilslag (65-76%) og verdi. Fokusér her!</p>
+                    </div>
+                </div>
+                <div class="size-finding-card">
+                    <div class="size-finding-icon">📉</div>
+                    <div class="size-finding-text">
+                        <strong>Vurder å droppe de største</strong>
+                        <p>3-10M og over 10M har lav tilslag - vurder strengere seleksjon.</p>
+                    </div>
+                </div>
+                <div class="size-finding-card">
+                    <div class="size-finding-icon">🔄</div>
+                    <div class="size-finding-text">
+                        <strong>Mange små = stor verdi</strong>
+                        <p>Volumet på små tilbud gir betydelig samlet omsetning over tid.</p>
+                    </div>
                 </div>
             </div>
 
-            <!-- Utvidet detalj-tabell -->
-            <div class="size-details-panel" id="sizeDetailsPanel" style="display: none;">
+            <!-- Detalj-tabell - alltid synlig -->
+            <div class="size-details-panel" id="sizeDetailsPanel" style="display: block; margin-top: 32px;">
                 <table class="details-table">
                     <thead>
                         <tr>
@@ -809,6 +830,6 @@
             fillRegionTable();
         }
     </script>
-    <script src="script.js?v=20251202117000"></script>
+    <script src="script.js?v=20251202118000"></script>
 </body>
 </html>

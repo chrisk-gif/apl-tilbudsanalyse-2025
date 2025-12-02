@@ -8,6 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
         initCharts();
         initScrollAnimations();
         initPaginatedSections();
+        fillSizeDetailsTable();
         console.log('About to call initRegionTable...');
         initRegionTable();
         console.log('initRegionTable completed');
@@ -844,14 +845,13 @@ function closeDetailPanel() {
     document.getElementById('detailPanel').style.display = 'none';
 }
 
-// Size Details Toggle - oppdatert for ny struktur
-function toggleSizeDetails() {
-    console.log('toggleSizeDetails called');
-    const panel = document.getElementById('sizeDetailsPanel');
+// Size Details - fyll tabellen ved sideinnlasting
+function fillSizeDetailsTable() {
+    console.log('fillSizeDetailsTable called');
     const body = document.getElementById('sizeDetailsBody');
 
-    if (!panel || !body) {
-        console.error('sizeDetailsPanel or sizeDetailsBody not found');
+    if (!body) {
+        console.error('sizeDetailsBody not found');
         return;
     }
 
@@ -860,30 +860,25 @@ function toggleSizeDetails() {
         return;
     }
 
-    if (panel.style.display === 'none' || panel.style.display === '') {
-        body.innerHTML = DATA.storrelser.map(s => {
-            const tilslagVerdi = s.tilslagVerdi || s.tilslag; // Bruk tilslagVerdi hvis tilgjengelig
-            const tilslagClass = tilslagVerdi >= 70 ? 'good' : tilslagVerdi >= 50 ? 'warning' : 'bad';
-            const kostClass = s.tilbudskostAvRealisert <= 2 ? 'good' : s.tilbudskostAvRealisert <= 4 ? 'warning' : 'bad';
-            return `
-                <tr class="clickable-row" onclick="showVunneTilbud('storrelse', '${s.navn}')" style="cursor: pointer;">
-                    <td>${s.label} <span style="font-size: 0.7em; opacity: 0.6;">→</span></td>
-                    <td>${s.vunnet + s.tapt + s.direkte}</td>
-                    <td class="${tilslagClass}">${tilslagVerdi}%</td>
-                    <td>${s.timer.toLocaleString('nb-NO')}</td>
-                    <td>${s.verdiVunnetDirekte}M</td>
-                    <td class="${kostClass}">${s.tilbudskostAvRealisert}%</td>
-                </tr>
-            `;
-        }).join('');
-        panel.style.display = 'block';
-    } else {
-        panel.style.display = 'none';
-    }
+    body.innerHTML = DATA.storrelser.map(s => {
+        const tilslagVerdi = s.tilslagVerdi || s.tilslag;
+        const tilslagClass = tilslagVerdi >= 70 ? 'good' : tilslagVerdi >= 50 ? 'warning' : 'bad';
+        const kostClass = s.tilbudskostAvRealisert <= 2 ? 'good' : s.tilbudskostAvRealisert <= 4 ? 'warning' : 'bad';
+        return `
+            <tr class="clickable-row" onclick="showVunneTilbud('storrelse', '${s.navn}')" style="cursor: pointer;">
+                <td>${s.label} <span style="font-size: 0.7em; opacity: 0.6;">→</span></td>
+                <td>${s.vunnet + s.tapt + s.direkte}</td>
+                <td class="${tilslagClass}">${tilslagVerdi}%</td>
+                <td>${s.timer.toLocaleString('nb-NO')}</td>
+                <td>${s.verdiVunnetDirekte}M</td>
+                <td class="${kostClass}">${s.tilbudskostAvRealisert}%</td>
+            </tr>
+        `;
+    }).join('');
 }
 
-// Eksporter til global scope for onclick
-window.toggleSizeDetails = toggleSizeDetails;
+// Eksporter til global scope
+window.fillSizeDetailsTable = fillSizeDetailsTable;
 
 // ============================================
 // PAGINATED SECTIONS
