@@ -769,7 +769,7 @@ function toggleStatDetails(type) {
                 // GRUPPE 2 fortsatt: Total sum timer (også blå)
                 { label: 'TOTAL SUM TIMER', value: (a.totalSum || t.totaleTilbudTimer).toLocaleString('nb-NO'), sub: 'Tilbudstimer utdrag PowerBI 01.01-25.11', group: 'timer' },
                 // GRUPPE 3: Totaler og kostnader (lys gul/beige)
-                { label: 'Total tilbudskostnad', value: t.totalTilbudskostnad.toFixed(1) + 'M', sub: 'NOK (vunnet + tapt + direkte)', group: 'total' },
+                { label: 'Total tilbudskostnad', value: t.totalTilbudskostnad.toFixed(1) + 'M', sub: 'NOK (vunnet + tapt + direkte) - kostpris 700', group: 'total' },
                 { label: 'Realisert verdi (V+D)', value: t.realisertVerdi.toFixed(1) + 'M', sub: 'NOK', group: 'total' },
                 { label: 'Tilbudskost av realisert', value: t.tilbudskostAvRealisert + '%', sub: '', group: 'total' },
                 // GRUPPE 4: Timer per MNOK (lys lilla) - mer intuitive beskrivelser
