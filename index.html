@@ -8,7 +8,7 @@
     <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.0.0"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css?v=20251202118000">
+    <link rel="stylesheet" href="style.css?v=20251202120000">
 </head>
 <body>
     <!-- Progress bar -->
@@ -265,42 +265,32 @@
                 <canvas id="storrelseChart"></canvas>
             </div>
 
-            <!-- Nøkkelfunn - 5 betraktningsbokser -->
-            <div class="size-findings-grid">
-                <div class="size-finding-card">
-                    <div class="size-finding-icon">🎯</div>
-                    <div class="size-finding-text">
-                        <strong>Små tilbud er trygge</strong>
-                        <p>Under 100k har 86% tilslag - nesten garantert seier med minimal risiko.</p>
-                    </div>
+            <!-- Nøkkelfunn - 5 faktabokser med tall -->
+            <div class="size-facts-grid">
+                <div class="size-fact-card">
+                    <div class="size-fact-number">95%</div>
+                    <div class="size-fact-label">Tilslag &lt;100k</div>
+                    <div class="size-fact-desc">Høyest tilslagsprosent, 204 tilbud</div>
                 </div>
-                <div class="size-finding-card">
-                    <div class="size-finding-icon">⚠️</div>
-                    <div class="size-finding-text">
-                        <strong>Store tilbud er risikable</strong>
-                        <p>Over 10M har kun 15% tilslag, men krever mest timer per tilbud.</p>
-                    </div>
+                <div class="size-fact-card">
+                    <div class="size-fact-number">32%</div>
+                    <div class="size-fact-label">Tilslag &gt;10M</div>
+                    <div class="size-fact-desc">Lavest tilslagsprosent, 15 tilbud</div>
                 </div>
-                <div class="size-finding-card">
-                    <div class="size-finding-icon">💡</div>
-                    <div class="size-finding-text">
-                        <strong>Sweet spot: 100-700k</strong>
-                        <p>God balanse mellom tilslag (65-76%) og verdi. Fokusér her!</p>
-                    </div>
+                <div class="size-fact-card">
+                    <div class="size-fact-number">4.0%</div>
+                    <div class="size-fact-label">Tilbudskost 700k-1.5M</div>
+                    <div class="size-fact-desc">Høyest kostnadsprosent</div>
                 </div>
-                <div class="size-finding-card">
-                    <div class="size-finding-icon">📉</div>
-                    <div class="size-finding-text">
-                        <strong>Vurder å droppe de største</strong>
-                        <p>3-10M og over 10M har lav tilslag - vurder strengere seleksjon.</p>
-                    </div>
+                <div class="size-fact-card">
+                    <div class="size-fact-number">96M</div>
+                    <div class="size-fact-label">Verdi 3-10M</div>
+                    <div class="size-fact-desc">Høyest verdi per segment</div>
                 </div>
-                <div class="size-finding-card">
-                    <div class="size-finding-icon">🔄</div>
-                    <div class="size-finding-text">
-                        <strong>Mange små = stor verdi</strong>
-                        <p>Volumet på små tilbud gir betydelig samlet omsetning over tid.</p>
-                    </div>
+                <div class="size-fact-card">
+                    <div class="size-fact-number">699</div>
+                    <div class="size-fact-label">Tilbud totalt</div>
+                    <div class="size-fact-desc">Fordelt på 7 størrelseskategorier</div>
                 </div>
             </div>
 
@@ -317,7 +307,15 @@
                             <th>Tilbudskost %</th>
                         </tr>
                     </thead>
-                    <tbody id="sizeDetailsBody"></tbody>
+                    <tbody id="sizeDetailsBody">
+                        <tr class="clickable-row" onclick="showVunneTilbud('storrelse', '0 - 100 000')" style="cursor: pointer;"><td>&lt; 100k <span style="font-size: 0.7em; opacity: 0.6;">→</span></td><td>204</td><td class="good">95.1%</td><td>178</td><td>8.1M</td><td class="good">1.5%</td></tr>
+                        <tr class="clickable-row" onclick="showVunneTilbud('storrelse', '100 000 - 300 000')" style="cursor: pointer;"><td>100-300k <span style="font-size: 0.7em; opacity: 0.6;">→</span></td><td>181</td><td class="good">74.1%</td><td>1 048</td><td>22.6M</td><td class="warning">3.2%</td></tr>
+                        <tr class="clickable-row" onclick="showVunneTilbud('storrelse', '300 000 - 700 000')" style="cursor: pointer;"><td>300-700k <span style="font-size: 0.7em; opacity: 0.6;">→</span></td><td>121</td><td class="warning">68.1%</td><td>1 707</td><td>35.3M</td><td class="warning">3.4%</td></tr>
+                        <tr class="clickable-row" onclick="showVunneTilbud('storrelse', '700 000 - 1 500 000')" style="cursor: pointer;"><td>700k-1.5M <span style="font-size: 0.7em; opacity: 0.6;">→</span></td><td>95</td><td class="warning">57.5%</td><td>3 001</td><td>52.4M</td><td class="warning">4.0%</td></tr>
+                        <tr class="clickable-row" onclick="showVunneTilbud('storrelse', '1 500 000 - 3 000 000')" style="cursor: pointer;"><td>1.5-3M <span style="font-size: 0.7em; opacity: 0.6;">→</span></td><td>44</td><td class="bad">48.9%</td><td>1 599</td><td>41.5M</td><td class="warning">2.7%</td></tr>
+                        <tr class="clickable-row" onclick="showVunneTilbud('storrelse', '3 000 000 - 10 000 000')" style="cursor: pointer;"><td>3-10M <span style="font-size: 0.7em; opacity: 0.6;">→</span></td><td>39</td><td class="bad">49.6%</td><td>2 127</td><td>96.1M</td><td class="good">1.5%</td></tr>
+                        <tr class="clickable-row" onclick="showVunneTilbud('storrelse', '> 10 000 000')" style="cursor: pointer;"><td>&gt; 10M <span style="font-size: 0.7em; opacity: 0.6;">→</span></td><td>15</td><td class="bad">32.2%</td><td>716</td><td>83.0M</td><td class="good">0.6%</td></tr>
+                    </tbody>
                 </table>
             </div>
         </div>
@@ -781,7 +779,7 @@
         </div>
     </div>
 
-    <script src="data_updated.js?v=20251201234000"></script>
+    <script src="data_updated.js?v=20251202120000"></script>
     <script>
         // Fyll region-tabell med Grupper/Kontorer knapper
         function fillRegionTable() {
@@ -830,6 +828,6 @@
             fillRegionTable();
         }
     </script>
-    <script src="script.js?v=20251202118000"></script>
+    <script src="script.js?v=20251202122000"></script>
 </body>
 </html>

@@ -1278,68 +1278,78 @@ body {
     margin-top: 4px;
 }
 
-/* Size Findings Grid - nye betraktningsbokser */
-.size-findings-grid {
+/* Size Facts Grid - faktabokser med tall */
+.size-facts-grid {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
-    gap: 12px;
-    margin-top: 24px;
-    margin-bottom: 8px;
+    gap: 16px;
+    margin-top: 28px;
+    margin-bottom: 16px;
 }
 
-.size-finding-card {
-    display: flex;
-    gap: 10px;
-    padding: 14px;
+.size-fact-card {
+    text-align: center;
+    padding: 20px 12px;
     background: rgba(255,255,255,0.06);
-    border-radius: 8px;
-    border-left: 3px solid var(--av-green);
+    border-radius: 10px;
+    border-top: 3px solid var(--av-green);
     transition: all 0.2s ease;
 }
 
-.size-finding-card:hover {
+.size-fact-card:hover {
     background: rgba(255,255,255,0.1);
+    transform: translateY(-2px);
 }
 
-.size-finding-icon {
-    font-size: 18px;
-    flex-shrink: 0;
+.size-fact-number {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--av-green);
+    margin-bottom: 6px;
 }
 
-.size-finding-text strong {
-    display: block;
-    font-size: 12px;
+.size-fact-label {
+    font-size: 0.85rem;
+    font-weight: 600;
     color: #ffffff;
-    margin-bottom: 4px;
+    margin-bottom: 6px;
 }
 
-.size-finding-text p {
-    font-size: 11px;
-    color: rgba(255,255,255,0.75);
+.size-fact-desc {
+    font-size: 0.75rem;
+    color: rgba(255,255,255,0.65);
     line-height: 1.4;
-    margin: 0;
 }
 
-/* Responsive for size findings */
+/* Responsive for size facts */
 @media (max-width: 1200px) {
-    .size-findings-grid {
+    .size-facts-grid {
         grid-template-columns: repeat(3, 1fr);
     }
 }
 
 @media (max-width: 768px) {
-    .size-findings-grid {
+    .size-facts-grid {
         grid-template-columns: repeat(2, 1fr);
+    }
+
+    .size-fact-number {
+        font-size: 1.6rem;
     }
 }
 
 @media (max-width: 480px) {
-    .size-findings-grid {
-        grid-template-columns: 1fr;
+    .size-facts-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
     }
 
-    .size-finding-card {
-        padding: 12px;
+    .size-fact-card {
+        padding: 14px 10px;
+    }
+
+    .size-fact-number {
+        font-size: 1.4rem;
     }
 }
 

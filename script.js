@@ -1308,6 +1308,9 @@ function showVunneTilbud(type, navn) {
         showGruppeKontorColumns = true;
     }
 
+    // Sorter tilbud etter timer (høyest til lavest)
+    tilbud = [...tilbud].sort((a, b) => (b.timer || 0) - (a.timer || 0));
+
     // Opprett sub-modal
     const subModal = document.createElement('div');
     subModal.className = 'vunne-tilbud-modal active';
@@ -1334,7 +1337,8 @@ function showVunneTilbud(type, navn) {
         rowHtml += `<td class="emne-cell">${t.emne}</td>`;
         rowHtml += `<td class="verdi-cell">${formatVerdi(t.verdi)}</td>`;
         rowHtml += `<td class="timer-cell">${t.timer}</td>`;
-        rowHtml += `<td class="kost-cell">${t.tilbudskostProsent}%</td>`;
+        const kostProsent = typeof t.tilbudskostProsent === 'number' ? t.tilbudskostProsent.toFixed(1).replace(/\.0$/, '') : t.tilbudskostProsent;
+        rowHtml += `<td class="kost-cell" style="white-space: nowrap;">${kostProsent}%</td>`;
         if (showGruppeKontorColumns) {
             rowHtml += `<td>${t.gruppe || ''}</td>`;
             rowHtml += `<td>${t.kontor || ''}</td>`;
