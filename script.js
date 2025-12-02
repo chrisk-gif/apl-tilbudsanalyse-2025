@@ -775,7 +775,6 @@ function toggleStatDetails(type) {
                 { label: 'Tilbudskost av realisert', value: t.tilbudskostAvRealisert + '%', sub: '', group: 'total' },
                 // GRUPPE 4: Timer per MNOK (lys lilla) - mer intuitive beskrivelser
                 { label: 'Kostnad per vunnet MNOK', value: (DATA.timerPerMillion?.kunVunnet || '-') + ' timer', sub: 'Så mange timer bruker vi for å vinne 1 MNOK', group: 'efficiency' },
-                { label: 'Kostnad per realisert MNOK', value: (DATA.timerPerMillion?.vunnetOgDirekte || '-') + ' timer', sub: 'Timer per MNOK vi faktisk får (vunnet + direkte)', group: 'efficiency' },
                 { label: 'Total timekostnad per MNOK', value: (DATA.timerPerMillion?.alleTilbudstimer || '-') + ' timer', sub: 'Alle timer (inkl. tapte) per MNOK vi får', group: 'efficiency' }
             ]
         },
