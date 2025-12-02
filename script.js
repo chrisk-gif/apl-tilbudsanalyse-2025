@@ -754,23 +754,27 @@ function toggleStatDetails(type) {
         totalt: {
             title: 'Tilbudsvolum totalt - ' + t.totalt + ' tilbud',
             items: [
-                { label: 'Total tilbudsverdi', value: totalVerdi.toFixed(0) + 'M', sub: 'NOK (vunnet + tapt + direkte)' },
-                { label: 'Vunnet', value: t.vunnet.antall + ' stk', sub: t.vunnet.verdi.toFixed(1) + 'M - ' + t.vunnet.timer.toLocaleString('nb-NO') + ' timer' },
-                { label: 'Tapt', value: t.tapt.antall + ' stk', sub: t.tapt.verdi.toFixed(1) + 'M - ' + t.tapt.timer.toLocaleString('nb-NO') + ' timer' },
-                { label: 'Direkte anskaffelse', value: t.direkte.antall + ' stk', sub: t.direkte.verdi.toFixed(1) + 'M - ' + t.direkte.timer.toLocaleString('nb-NO') + ' timer' },
-                { label: 'Timer vunnet/tapt/direkte', value: (a.vunnetTaptDirekte || t.totaleTilbudTimer).toLocaleString('nb-NO'), sub: ((a.vunnetTaptDirekte / a.totalSum) * 100).toFixed(1) + '%' },
-                { label: 'Timer registrert/under arbeid/levert', value: (a.registrertUnderArbeidLevert || 0).toLocaleString('nb-NO'), sub: ((a.registrertUnderArbeidLevert / a.totalSum) * 100).toFixed(1) + '%' },
-                { label: 'Timer andre divisjoner', value: (a.andreDivisjoner || 0).toLocaleString('nb-NO'), sub: ((a.andreDivisjoner / a.totalSum) * 100).toFixed(1) + '%' },
-                { label: 'Timer trukket/forkastet', value: (a.trukketForkastet || 0).toLocaleString('nb-NO'), sub: ((a.trukketForkastet / a.totalSum) * 100).toFixed(1) + '%' },
-                { label: 'Timer prekvalifisert', value: (a.prekvalifisert || 0).toLocaleString('nb-NO'), sub: ((a.prekvalifisert / a.totalSum) * 100).toFixed(1) + '%' },
-                { label: 'Timer annet/ikke plassert', value: (a.annetIkkePlassert || 0).toLocaleString('nb-NO'), sub: ((a.annetIkkePlassert / a.totalSum) * 100).toFixed(1) + '%' },
-                { label: 'TOTAL SUM TIMER', value: (a.totalSum || t.totaleTilbudTimer).toLocaleString('nb-NO'), sub: '100%' },
-                { label: 'Total tilbudskostnad', value: t.totalTilbudskostnad.toFixed(1) + 'M', sub: 'NOK' },
-                { label: 'Realisert verdi (V+D)', value: t.realisertVerdi.toFixed(1) + 'M', sub: 'NOK' },
-                { label: 'Tilbudskost av realisert', value: t.tilbudskostAvRealisert + '%', sub: '' },
-                { label: 'Timer vunnet per MNOK', value: (DATA.timerPerMillion?.kunVunnet || '-') + ' timer', sub: 'kun vunnet-timer' },
-                { label: 'Timer (V+D) per MNOK', value: (DATA.timerPerMillion?.vunnetOgDirekte || '-') + ' timer', sub: 'vunnet + direkte timer' },
-                { label: 'Alle tilbudstimer per MNOK', value: (DATA.timerPerMillion?.alleTilbudstimer || '-') + ' timer', sub: 'inkl. tapte timer' }
+                // GRUPPE 1: Hovedoversikt (standard grønn)
+                { label: 'Total tilbudsverdi', value: totalVerdi.toFixed(0) + 'M', sub: 'NOK (vunnet + tapt + direkte)', group: 'main' },
+                { label: 'Vunnet', value: t.vunnet.antall + ' stk', sub: t.vunnet.verdi.toFixed(1) + 'M - ' + t.vunnet.timer.toLocaleString('nb-NO') + ' timer', group: 'main' },
+                { label: 'Tapt', value: t.tapt.antall + ' stk', sub: t.tapt.verdi.toFixed(1) + 'M - ' + t.tapt.timer.toLocaleString('nb-NO') + ' timer', group: 'main' },
+                { label: 'Direkte anskaffelse', value: t.direkte.antall + ' stk', sub: t.direkte.verdi.toFixed(1) + 'M - ' + t.direkte.timer.toLocaleString('nb-NO') + ' timer', group: 'main' },
+                // GRUPPE 2: Timer-kategorier (lys blå)
+                { label: 'Timer vunnet/tapt/direkte', value: (a.vunnetTaptDirekte || t.totaleTilbudTimer).toLocaleString('nb-NO'), sub: ((a.vunnetTaptDirekte / a.totalSum) * 100).toFixed(1) + '%', group: 'timer' },
+                { label: 'Timer registrert/under arbeid/levert', value: (a.registrertUnderArbeidLevert || 0).toLocaleString('nb-NO'), sub: ((a.registrertUnderArbeidLevert / a.totalSum) * 100).toFixed(1) + '%', group: 'timer' },
+                { label: 'Timer andre divisjoner', value: (a.andreDivisjoner || 0).toLocaleString('nb-NO'), sub: ((a.andreDivisjoner / a.totalSum) * 100).toFixed(1) + '%', group: 'timer' },
+                { label: 'Timer trukket/forkastet', value: (a.trukketForkastet || 0).toLocaleString('nb-NO'), sub: ((a.trukketForkastet / a.totalSum) * 100).toFixed(1) + '%', group: 'timer' },
+                { label: 'Timer prekvalifisert', value: (a.prekvalifisert || 0).toLocaleString('nb-NO'), sub: ((a.prekvalifisert / a.totalSum) * 100).toFixed(1) + '%', group: 'timer' },
+                { label: 'Timer annet/ikke plassert', value: (a.annetIkkePlassert || 0).toLocaleString('nb-NO'), sub: ((a.annetIkkePlassert / a.totalSum) * 100).toFixed(1) + '%', group: 'timer' },
+                // GRUPPE 3: Totaler og kostnader (lys gul/beige)
+                { label: 'TOTAL SUM TIMER', value: (a.totalSum || t.totaleTilbudTimer).toLocaleString('nb-NO'), sub: '100%', group: 'total' },
+                { label: 'Total tilbudskostnad', value: t.totalTilbudskostnad.toFixed(1) + 'M', sub: 'NOK', group: 'total' },
+                { label: 'Realisert verdi (V+D)', value: t.realisertVerdi.toFixed(1) + 'M', sub: 'NOK', group: 'total' },
+                { label: 'Tilbudskost av realisert', value: t.tilbudskostAvRealisert + '%', sub: '', group: 'total' },
+                // GRUPPE 4: Timer per MNOK (lys lilla)
+                { label: 'Timer vunnet per MNOK', value: (DATA.timerPerMillion?.kunVunnet || '-') + ' timer', sub: 'kun vunnet-timer', group: 'efficiency' },
+                { label: 'Timer (V+D) per MNOK', value: (DATA.timerPerMillion?.vunnetOgDirekte || '-') + ' timer', sub: 'vunnet + direkte timer', group: 'efficiency' },
+                { label: 'Alle tilbudstimer per MNOK', value: (DATA.timerPerMillion?.alleTilbudstimer || '-') + ' timer', sub: 'inkl. tapte timer', group: 'efficiency' }
             ]
         },
         vunnet: {
@@ -809,12 +813,22 @@ function toggleStatDetails(type) {
 
     const data = details[type];
     title.textContent = data.title;
+
+    // Gruppefarge-mapping
+    const groupColors = {
+        main: '',  // Standard grønn (fra CSS)
+        timer: 'group-timer',
+        total: 'group-total',
+        efficiency: 'group-efficiency'
+    };
+
     content.innerHTML = data.items.map(item => {
         if (item.label === '---') {
             return '<hr style="border-color: rgba(255,255,255,0.1); margin: 10px 0;">';
         }
+        const groupClass = item.group ? groupColors[item.group] || '' : '';
         return `
-            <div class="detail-item">
+            <div class="detail-item ${groupClass}">
                 <div class="detail-item-label">${item.label}</div>
                 <div class="detail-item-value">${item.value}</div>
                 <div class="detail-item-sub">${item.sub}</div>

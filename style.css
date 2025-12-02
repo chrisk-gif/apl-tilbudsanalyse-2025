@@ -1245,6 +1245,19 @@ body {
     border-radius: 8px;
 }
 
+/* Gruppefarer for detail-items */
+.detail-item.group-timer {
+    background: #e8f4fc;  /* Lys blå */
+}
+
+.detail-item.group-total {
+    background: #fef9e7;  /* Lys gul/beige */
+}
+
+.detail-item.group-efficiency {
+    background: #f5eef8;  /* Lys lilla */
+}
+
 .detail-item-label {
     font-size: 13px;
     color: var(--av-gray);
