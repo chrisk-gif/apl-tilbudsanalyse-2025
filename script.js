@@ -767,7 +767,7 @@ function toggleStatDetails(type) {
                 { label: 'Timer prekvalifisert', value: (a.prekvalifisert || 0).toLocaleString('nb-NO'), sub: ((a.prekvalifisert / a.totalSum) * 100).toFixed(1) + '%', group: 'timer' },
                 { label: 'Timer annet/ikke plassert', value: (a.annetIkkePlassert || 0).toLocaleString('nb-NO'), sub: ((a.annetIkkePlassert / a.totalSum) * 100).toFixed(1) + '%', group: 'timer' },
                 // GRUPPE 2 fortsatt: Total sum timer (også blå)
-                { label: 'TOTAL SUM TIMER', value: (a.totalSum || t.totaleTilbudTimer).toLocaleString('nb-NO'), sub: '100% - alle timer på tilbud/marked', group: 'timer' },
+                { label: 'TOTAL SUM TIMER', value: (a.totalSum || t.totaleTilbudTimer).toLocaleString('nb-NO'), sub: 'Tilbudstimer utdrag PowerBI 01.01-25.11', group: 'timer' },
                 // GRUPPE 3: Totaler og kostnader (lys gul/beige)
                 { label: 'Total tilbudskostnad', value: t.totalTilbudskostnad.toFixed(1) + 'M', sub: 'NOK (vunnet + tapt + direkte)', group: 'total' },
                 { label: 'Realisert verdi (V+D)', value: t.realisertVerdi.toFixed(1) + 'M', sub: 'NOK', group: 'total' },
