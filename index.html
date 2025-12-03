@@ -8,7 +8,7 @@
     <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.0.0"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css?v=20251202127000">
+    <link rel="stylesheet" href="style.css?v=20251203093000">
 </head>
 <body>
     <!-- Progress bar -->
@@ -113,13 +113,7 @@
                         <p>APL bruker mer årsverk på tilbud/marked enn Infra, selv om omsetningen er mindre.</p>
                     </div>
                 </div>
-                <div class="intro-insight-card positive">
-                    <div class="intro-insight-icon">📉</div>
-                    <div class="intro-insight-content">
-                        <strong>Nedgang fra toppen</strong>
-                        <p>Fra 9.7% i 2020 til 8.1% i 2025. Riktig retning mot 7% mål.</p>
-                    </div>
-                </div>
+                
             </div>
         </div>
     </section>
@@ -403,55 +397,210 @@
     <!-- Section 15: Nøkkelfunn -->
     <section class="section" data-section="14">
         <div class="container">
-            <h2 class="section-title">Nøkkelfunn</h2>
-            <p class="section-subtitle">Hva dataene forteller oss</p>
+            <h2 class="section-title">Nøkkelfunn fra analysen</h2>
+            <p class="section-subtitle">Topp 10-oversikter basert på 699 tilbud i 2025</p>
 
-            <div class="findings-grid">
-                <div class="finding-card positive">
-                    <div class="finding-icon">✓</div>
-                    <div class="finding-content">
-                        <h3>Gode små tilbud</h3>
-                        <p>94% tilslag under 100k. Vi er flinke på de små jobbene.</p>
-                    </div>
+            <div class="top10-grid">
+                <!-- KUNDER - VERDI -->
+                <div class="top10-card">
+                    <h3 class="top10-header">Kunder - Høyest vunnet verdi</h3>
+                    <ol class="top10-list">
+                        <li><span class="top10-name">Statnett AS</span> <span class="top10-value">30.0M</span></li>
+                        <li><span class="top10-name">Oslo kommune Bymiljøetaten</span> <span class="top10-value">20.3M</span></li>
+                        <li><span class="top10-name">Lillestrøm Kommune</span> <span class="top10-value">11.3M</span></li>
+                        <li><span class="top10-name">Akershus fylkeskommune</span> <span class="top10-value">9.0M</span></li>
+                        <li><span class="top10-name">Løten Kommune</span> <span class="top10-value">9.2M</span></li>
+                        <li><span class="top10-name">Sogndal kommune</span> <span class="top10-value">8.0M</span></li>
+                        <li><span class="top10-name">Riksantikvaren</span> <span class="top10-value">7.0M</span></li>
+                        <li><span class="top10-name">Statens vegvesen</span> <span class="top10-value">6.5M</span></li>
+                        <li><span class="top10-name">KRISTIANSAND KOMMUNE</span> <span class="top10-value">5.3M</span></li>
+                        <li><span class="top10-name">Askøy kommune</span> <span class="top10-value">5.0M</span></li>
+                    </ol>
                 </div>
-                <div class="finding-card positive">
-                    <div class="finding-icon">✓</div>
-                    <div class="finding-content">
-                        <h3>Sterke fagområder</h3>
-                        <p>85-86% tilslag på trafikk, stedsutvikling, friluftsliv.</p>
-                    </div>
+
+                <!-- KUNDER - TILSLAG -->
+                <div class="top10-card">
+                    <h3 class="top10-header">Kunder - Høyest tilslagsprosent (min 3 tilbud)</h3>
+                    <ol class="top10-list">
+                        <li><span class="top10-name">Løten Kommune</span> <span class="top10-value">100%</span></li>
+                        <li><span class="top10-name">Statens vegvesen</span> <span class="top10-value">87.5%</span></li>
+                        <li><span class="top10-name">Rogaland fylkeskommune</span> <span class="top10-value">85.7%</span></li>
+                        <li><span class="top10-name">Tromsø Kommune</span> <span class="top10-value">80%</span></li>
+                        <li><span class="top10-name">Vestfold fylkeskommune</span> <span class="top10-value">80%</span></li>
+                        <li><span class="top10-name">Bærum kommune</span> <span class="top10-value">75%</span></li>
+                        <li><span class="top10-name">Porsgrunn kommune</span> <span class="top10-value">75%</span></li>
+                        <li><span class="top10-name">Miljødirektoratet</span> <span class="top10-value">71.4%</span></li>
+                        <li><span class="top10-name">Larvik kommune</span> <span class="top10-value">71.4%</span></li>
+                        <li><span class="top10-name">Lillestrøm Kommune</span> <span class="top10-value">66.7%</span></li>
+                    </ol>
                 </div>
-                <div class="finding-card positive">
-                    <div class="finding-icon">✓</div>
-                    <div class="finding-content">
-                        <h3>Høy tilslagsprosent</h3>
-                        <p>63% tilslagsprosent - vi vinner majoriteten av tilbudene.</p>
-                    </div>
+
+                <!-- FORRETNINGSOMRÅDER - VERDI -->
+                <div class="top10-card">
+                    <h3 class="top10-header">Forretningsområder - Høyest verdi</h3>
+                    <ol class="top10-list">
+                        <li><span class="top10-name">Reguleringsplan</span> <span class="top10-value">89.4M</span></li>
+                        <li><span class="top10-name">Kommunal/regional planlegging</span> <span class="top10-value">48.5M</span></li>
+                        <li><span class="top10-name">Bane</span> <span class="top10-value">40.0M</span></li>
+                        <li><span class="top10-name">Konsekvensutredninger</span> <span class="top10-value">37.2M</span></li>
+                        <li><span class="top10-name">Friluftsliv og naturmiljø</span> <span class="top10-value">19.6M</span></li>
+                        <li><span class="top10-name">Trafikk- og transportanalyser</span> <span class="top10-value">14.8M</span></li>
+                        <li><span class="top10-name">Parker og Byrom</span> <span class="top10-value">12.1M</span></li>
+                        <li><span class="top10-name">Byggeplan veg</span> <span class="top10-value">10.6M</span></li>
+                        <li><span class="top10-name">Kollektivtrafikk</span> <span class="top10-value">8.1M</span></li>
+                        <li><span class="top10-name">Byutvikling (storby)</span> <span class="top10-value">7.9M</span></li>
+                    </ol>
                 </div>
-                <div class="finding-card negative">
-                    <div class="finding-icon">!</div>
-                    <div class="finding-content">
-                        <h3>Store tilbud taper</h3>
-                        <p>Bare 25% tilslag over 10M. Bruker mye tid på tap.</p>
-                    </div>
+
+                <!-- FORRETNINGSOMRÅDER - TILSLAG -->
+                <div class="top10-card">
+                    <h3 class="top10-header">Forretningsområder - Høyest tilslag (min 5 tilbud)</h3>
+                    <ol class="top10-list">
+                        <li><span class="top10-name">Trafikk- og transportanalyser</span> <span class="top10-value">89.8%</span></li>
+                        <li><span class="top10-name">Stedsutvikling</span> <span class="top10-value">87.5%</span></li>
+                        <li><span class="top10-name">Friluftsliv og naturmiljø</span> <span class="top10-value">85.0%</span></li>
+                        <li><span class="top10-name">Parker og Byrom</span> <span class="top10-value">80.6%</span></li>
+                        <li><span class="top10-name">Energi</span> <span class="top10-value">80.0%</span></li>
+                        <li><span class="top10-name">Universell Utforming</span> <span class="top10-value">80.0%</span></li>
+                        <li><span class="top10-name">Havner og marine miljø</span> <span class="top10-value">80.0%</span></li>
+                        <li><span class="top10-name">Geografiske analyser</span> <span class="top10-value">78.6%</span></li>
+                        <li><span class="top10-name">Kirkegårder</span> <span class="top10-value">78.6%</span></li>
+                        <li><span class="top10-name">Leke- og aktivitetsområder</span> <span class="top10-value">78.6%</span></li>
+                    </ol>
                 </div>
-                <div class="finding-card negative">
-                    <div class="finding-icon">!</div>
-                    <div class="finding-content">
-                        <h3>Mer tid på tap</h3>
-                        <p>30.5 timer snitt på tap vs 13.5 på seier. 2x forskjell!</p>
-                    </div>
+
+                <!-- KONTORER - VERDI -->
+                <div class="top10-card">
+                    <h3 class="top10-header">Kontorer - Høyest vunnet verdi</h3>
+                    <ol class="top10-list">
+                        <li><span class="top10-name">Sandvika</span> <span class="top10-value">101.8M</span></li>
+                        <li><span class="top10-name">Trondheim</span> <span class="top10-value">46.4M</span></li>
+                        <li><span class="top10-name">Bergen</span> <span class="top10-value">30.9M</span></li>
+                        <li><span class="top10-name">Kristiansand</span> <span class="top10-value">25.8M</span></li>
+                        <li><span class="top10-name">Hamar</span> <span class="top10-value">19.4M</span></li>
+                        <li><span class="top10-name">Oslo</span> <span class="top10-value">17.1M</span></li>
+                        <li><span class="top10-name">Tromsø</span> <span class="top10-value">15.8M</span></li>
+                        <li><span class="top10-name">Arendal</span> <span class="top10-value">15.1M</span></li>
+                        <li><span class="top10-name">Tønsberg</span> <span class="top10-value">14.2M</span></li>
+                        <li><span class="top10-name">Stavanger</span> <span class="top10-value">11.1M</span></li>
+                    </ol>
                 </div>
-                <div class="finding-card negative">
-                    <div class="finding-icon">!</div>
-                    <div class="finding-content">
-                        <h3>Dårlige kunder</h3>
-                        <p>33-40% tilslag hos enkelte store kunder. Vær selektiv!</p>
-                    </div>
+
+                <!-- KONTORER - TILSLAG -->
+                <div class="top10-card">
+                    <h3 class="top10-header">Kontorer - Høyest tilslagsprosent (min 10 tilbud)</h3>
+                    <ol class="top10-list">
+                        <li><span class="top10-name">Kongsberg</span> <span class="top10-value">90.5%</span></li>
+                        <li><span class="top10-name">Lyngdal</span> <span class="top10-value">90.9%</span></li>
+                        <li><span class="top10-name">Skien</span> <span class="top10-value">86.0%</span></li>
+                        <li><span class="top10-name">Kristiansand</span> <span class="top10-value">78.0%</span></li>
+                        <li><span class="top10-name">Tønsberg</span> <span class="top10-value">77.3%</span></li>
+                        <li><span class="top10-name">Trondheim</span> <span class="top10-value">76.8%</span></li>
+                        <li><span class="top10-name">Arendal</span> <span class="top10-value">76.6%</span></li>
+                        <li><span class="top10-name">Hamar</span> <span class="top10-value">75.0%</span></li>
+                        <li><span class="top10-name">Stavanger</span> <span class="top10-value">72.5%</span></li>
+                        <li><span class="top10-name">Ås</span> <span class="top10-value">71.4%</span></li>
+                    </ol>
+                </div>
+
+                <!-- REGIONER -->
+                <div class="top10-card">
+                    <h3 class="top10-header">Regioner - Sammenligning</h3>
+                    <ol class="top10-list region-list">
+                        <li><span class="top10-name">Øst</span> <span class="top10-value">147M | 59% | 4 288t</span></li>
+                        <li><span class="top10-name">Sør</span> <span class="top10-value">78M | 69% | 2 479t</span></li>
+                        <li><span class="top10-name">Nord/Midt</span> <span class="top10-value">65M | 63% | 1 553t</span></li>
+                        <li><span class="top10-name">Vest</span> <span class="top10-value">49M | 30% | 1 488t</span></li>
+                    </ol>
+                    <p class="top10-note">Verdi | Tilslag | Timer brukt</p>
+                </div>
+
+                <!-- STØRRELSER -->
+                <div class="top10-card">
+                    <h3 class="top10-header">Tilbudsstørrelser - Sammenligning</h3>
+                    <ol class="top10-list size-list">
+                        <li><span class="top10-name">&lt; 100k</span> <span class="top10-value">204 stk | 97% | 178t</span></li>
+                        <li><span class="top10-name">100-300k</span> <span class="top10-value">181 stk | 76% | 1 048t</span></li>
+                        <li><span class="top10-name">300-700k</span> <span class="top10-value">121 stk | 69% | 1 707t</span></li>
+                        <li><span class="top10-name">700k-1.5M</span> <span class="top10-value">95 stk | 57% | 3 001t</span></li>
+                        <li><span class="top10-name">1.5-3M</span> <span class="top10-value">44 stk | 48% | 1 599t</span></li>
+                        <li><span class="top10-name">3-10M</span> <span class="top10-value">39 stk | 51% | 2 127t</span></li>
+                        <li><span class="top10-name">&gt; 10M</span> <span class="top10-value">15 stk | 20% | 716t</span></li>
+                    </ol>
+                    <p class="top10-note">Antall | Tilslag | Timer brukt</p>
+                </div>
+
+                <!-- GRUPPER - VERDI -->
+                <div class="top10-card">
+                    <h3 class="top10-header">Grupper - Høyest vunnet verdi</h3>
+                    <ol class="top10-list">
+                        <li><span class="top10-name">Plan Sandvika</span> <span class="top10-value">58.0M</span></li>
+                        <li><span class="top10-name">Plan Trondheim</span> <span class="top10-value">42.3M</span></li>
+                        <li><span class="top10-name">Plan Sandvika Analyse/mobilitet</span> <span class="top10-value">24.9M</span></li>
+                        <li><span class="top10-name">Plan Kristiansand</span> <span class="top10-value">17.7M</span></li>
+                        <li><span class="top10-name">Plan Bergen</span> <span class="top10-value">15.6M</span></li>
+                        <li><span class="top10-name">Tromsø</span> <span class="top10-value">15.7M</span></li>
+                        <li><span class="top10-name">Plan Hamar</span> <span class="top10-value">13.0M</span></li>
+                        <li><span class="top10-name">Plan Tønsberg</span> <span class="top10-value">12.9M</span></li>
+                        <li><span class="top10-name">Plan Bergen Analyse/utredning</span> <span class="top10-value">12.3M</span></li>
+                        <li><span class="top10-name">Plan Oslo</span> <span class="top10-value">10.9M</span></li>
+                    </ol>
+                </div>
+
+                <!-- STØRSTE TILBUDSKOSTNADER -->
+                <div class="top10-card warning-card">
+                    <h3 class="top10-header">Høyeste tilbudskostnad (% av realisert)</h3>
+                    <ol class="top10-list">
+                        <li><span class="top10-name">Oslobygg KF</span> <span class="top10-value warning">177%</span></li>
+                        <li><span class="top10-name">Øvre Romerike (ØRIK)</span> <span class="top10-value warning">136%</span></li>
+                        <li><span class="top10-name">Agder fylkeskommune</span> <span class="top10-value warning">103%</span></li>
+                        <li><span class="top10-name">Landskap Skien</span> <span class="top10-value warning">59%</span></li>
+                        <li><span class="top10-name">Samordnet areal/transport</span> <span class="top10-value warning">29%</span></li>
+                        <li><span class="top10-name">Hydrologi</span> <span class="top10-value warning">27%</span></li>
+                        <li><span class="top10-name">Horten Kommune</span> <span class="top10-value warning">27%</span></li>
+                        <li><span class="top10-name">Oslo PBE</span> <span class="top10-value warning">20%</span></li>
+                        <li><span class="top10-name">Elektro</span> <span class="top10-value warning">18%</span></li>
+                        <li><span class="top10-name">Kristiansund kommune</span> <span class="top10-value warning">17%</span></li>
+                    </ol>
+                </div>
+
+                <!-- STØRSTE SEIERE -->
+                <div class="top10-card positive-card">
+                    <h3 class="top10-header">Største enkeltseiere (estimert)</h3>
+                    <ol class="top10-list">
+                        <li><span class="top10-name">NIRAS/Bane (underlev.)</span> <span class="top10-value positive">40.0M</span></li>
+                        <li><span class="top10-name">Statnett AS</span> <span class="top10-value positive">30.0M</span></li>
+                        <li><span class="top10-name">Sogndal kommune</span> <span class="top10-value positive">8.0M</span></li>
+                        <li><span class="top10-name">Leikanger</span> <span class="top10-value positive">7.1M</span></li>
+                        <li><span class="top10-name">Riksantikvaren</span> <span class="top10-value positive">7.0M</span></li>
+                        <li><span class="top10-name">Statens vegvesen</span> <span class="top10-value positive">6.5M</span></li>
+                        <li><span class="top10-name">Ål (direkte)</span> <span class="top10-value positive">6.1M</span></li>
+                        <li><span class="top10-name">KRISTIANSAND KOMMUNE</span> <span class="top10-value positive">5.3M</span></li>
+                        <li><span class="top10-name">Askøy kommune</span> <span class="top10-value positive">5.0M</span></li>
+                        <li><span class="top10-name">Finnmark Kraft</span> <span class="top10-value positive">4.2M</span></li>
+                    </ol>
+                </div>
+
+                <!-- MEST EFFEKTIVE -->
+                <div class="top10-card">
+                    <h3 class="top10-header">Lavest tilbudskostnad (min 1M vunnet)</h3>
+                    <ol class="top10-list">
+                        <li><span class="top10-name">NIRAS/Bane</span> <span class="top10-value">0.1%</span></li>
+                        <li><span class="top10-name">Løten Kommune</span> <span class="top10-value">0.2%</span></li>
+                        <li><span class="top10-name">Ål</span> <span class="top10-value">0.3%</span></li>
+                        <li><span class="top10-name">Statnett AS</span> <span class="top10-value">0.3%</span></li>
+                        <li><span class="top10-name">Sogndal kommune</span> <span class="top10-value">0.4%</span></li>
+                        <li><span class="top10-name">Leikanger</span> <span class="top10-value">0.5%</span></li>
+                        <li><span class="top10-name">Konsekvensutredninger</span> <span class="top10-value">0.5%</span></li>
+                        <li><span class="top10-name">Kulturminner</span> <span class="top10-value">0.5%</span></li>
+                        <li><span class="top10-name">Rogaland fylkeskommune</span> <span class="top10-value">0.8%</span></li>
+                        <li><span class="top10-name">Kristiansand</span> <span class="top10-value">0.8%</span></li>
+                    </ol>
                 </div>
             </div>
         </div>
     </section>
+
 
     <!-- Section 16: Historikk og kontekst (fra PowerPoint) -->
     <section class="section" data-section="15">
