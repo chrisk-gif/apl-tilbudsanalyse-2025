@@ -211,6 +211,69 @@
 
 
 
+    <!-- Section 5: Effektivitetsanalyse - NY -->
+    <section class="section" data-section="4">
+        <div class="container">
+            <h2 class="section-title">Effektivitetsanalyse</h2>
+            <p class="section-subtitle">Hvor mye koster det å vinne 1 million kroner?</p>
+
+            <div class="efficiency-main-grid">
+                <!-- Hovedmetrikk -->
+                <div class="efficiency-hero-card">
+                    <div class="efficiency-hero-value" id="timerPerMnokValue">38.4</div>
+                    <div class="efficiency-hero-label">timer per MNOK realisert</div>
+                    <div class="efficiency-hero-sub">Inkluderer alle tilbudstimer (vunnet + tapt + direkte)</div>
+                </div>
+
+                <!-- Sammenligning vunnet vs tapt -->
+                <div class="efficiency-compare-grid">
+                    <div class="efficiency-compare-card won">
+                        <div class="efficiency-compare-icon">✓</div>
+                        <div class="efficiency-compare-value">23.5</div>
+                        <div class="efficiency-compare-label">timer snitt per vunnet</div>
+                        <div class="efficiency-compare-sub">180 tilbud med timer registrert</div>
+                    </div>
+                    <div class="efficiency-compare-card lost">
+                        <div class="efficiency-compare-icon">✗</div>
+                        <div class="efficiency-compare-value">35.6</div>
+                        <div class="efficiency-compare-label">timer snitt per tapt</div>
+                        <div class="efficiency-compare-sub">155 tilbud med timer registrert</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Nøkkeltall -->
+            <div class="efficiency-stats-row">
+                <div class="efficiency-stat">
+                    <span class="efficiency-stat-value">17.4</span>
+                    <span class="efficiency-stat-label">timer/MNOK kun vunnet</span>
+                </div>
+                <div class="efficiency-stat">
+                    <span class="efficiency-stat-value">18.0</span>
+                    <span class="efficiency-stat-label">timer/MNOK vunnet+direkte</span>
+                </div>
+                <div class="efficiency-stat highlight">
+                    <span class="efficiency-stat-value">1.5x</span>
+                    <span class="efficiency-stat-label">mer tid på tapte</span>
+                </div>
+                <div class="efficiency-stat">
+                    <span class="efficiency-stat-value">53%</span>
+                    <span class="efficiency-stat-label">av timer → tapte tilbud</span>
+                </div>
+            </div>
+
+            <!-- Innsikt -->
+            <div class="insight-box warning">
+                <div class="insight-icon">💡</div>
+                <div class="insight-text">
+                    <strong>Vi bruker 53% av tilbudstimene på tilbud vi taper.</strong>
+                    Med 5 525 timer på tapte tilbud i 2025 tilsvarer dette ca. 3.5 årsverk.
+                    Bedre seleksjon kan spare betydelige ressurser.
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Section 6: Tilbudsstørrelser -->
     <section class="section dark" data-section="5">
         <div class="container">
@@ -321,10 +384,100 @@
         </div>
     </section>
 
-    <!-- Section 9: Forretningsområder - utfordrende (fjernet - integrert i forrige seksjon) -->
+    <!-- Section 9: Trender og mønstre - NY -->
+    <section class="section" data-section="8">
+        <div class="container">
+            <h2 class="section-title">Trender og mønstre</h2>
+            <p class="section-subtitle">Hva kjennetegner tilbudene vi vinner vs. taper?</p>
 
-    <!-- Section 9: Placeholder for å beholde section-nummerering -->
-    <section class="section" data-section="8" style="display: none;"></section>
+            <div class="trends-grid">
+                <!-- Venstre: Vunnet -->
+                <div class="trends-column won">
+                    <h3 class="trends-column-header">
+                        <span class="trends-icon">✓</span>
+                        Vi vinner når...
+                    </h3>
+                    <div class="trends-list">
+                        <div class="trend-item">
+                            <div class="trend-stat">97%</div>
+                            <div class="trend-desc">tilslag på tilbud under 100k</div>
+                        </div>
+                        <div class="trend-item">
+                            <div class="trend-stat">90%</div>
+                            <div class="trend-desc">tilslag på Trafikk- og transport</div>
+                        </div>
+                        <div class="trend-item">
+                            <div class="trend-stat">91%</div>
+                            <div class="trend-desc">tilslag fra Lyngdal kontor</div>
+                        </div>
+                        <div class="trend-item">
+                            <div class="trend-stat">83%</div>
+                            <div class="trend-desc">tilslag i Region Sør</div>
+                        </div>
+                        <div class="trend-item">
+                            <div class="trend-stat">23.5t</div>
+                            <div class="trend-desc">snitt timer per vunnet tilbud</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Høyre: Tapt -->
+                <div class="trends-column lost">
+                    <h3 class="trends-column-header">
+                        <span class="trends-icon">✗</span>
+                        Vi taper når...
+                    </h3>
+                    <div class="trends-list">
+                        <div class="trend-item">
+                            <div class="trend-stat">80%</div>
+                            <div class="trend-desc">tap på tilbud over 10M</div>
+                        </div>
+                        <div class="trend-item">
+                            <div class="trend-stat">100%</div>
+                            <div class="trend-desc">tap fra Divisjonsledelse</div>
+                        </div>
+                        <div class="trend-item">
+                            <div class="trend-stat">50%</div>
+                            <div class="trend-desc">tap på Ålesund og Mo i Rana</div>
+                        </div>
+                        <div class="trend-item">
+                            <div class="trend-stat">35.6t</div>
+                            <div class="trend-desc">snitt timer per tapt tilbud</div>
+                        </div>
+                        <div class="trend-item">
+                            <div class="trend-stat">380M</div>
+                            <div class="trend-desc">tapt kontraktsverdi totalt</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Mønster-innsikter -->
+            <div class="trends-insights">
+                <div class="trends-insight-card">
+                    <div class="trends-insight-icon">📉</div>
+                    <div class="trends-insight-content">
+                        <strong>Større tilbud = lavere tilslag</strong>
+                        <p>Tilslagsprosent faller fra 97% (under 100k) til 20% (over 10M). Vurder ressursbruk på store tilbud nøye.</p>
+                    </div>
+                </div>
+                <div class="trends-insight-card">
+                    <div class="trends-insight-icon">⏱️</div>
+                    <div class="trends-insight-content">
+                        <strong>Tapte tilbud krever 52% mer tid</strong>
+                        <p>Snitt 35.6 timer på tapte vs 23.5 timer på vunnet. Kan tyde på at vi overkompliserer tapte tilbud.</p>
+                    </div>
+                </div>
+                <div class="trends-insight-card">
+                    <div class="trends-insight-icon">🎯</div>
+                    <div class="trends-insight-content">
+                        <strong>Direkte anskaffelser er effektive</strong>
+                        <p>207 direkte anskaffelser (30%) med kun 12.6 timer snitt. Bygg relasjoner for flere direkte oppdrag.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
     <!-- Section 10: Regionsammenligning -->
     <section class="section dark" data-section="9">
@@ -392,7 +545,106 @@
         </div>
     </section>
 
+    <!-- Section 13: Risikoanalyse - NY -->
+    <section class="section" data-section="12">
+        <div class="container">
+            <h2 class="section-title">Risikoanalyse</h2>
+            <p class="section-subtitle">Hvor mister vi mest verdi og ressurser?</p>
 
+            <div class="risk-overview">
+                <!-- Hovedrisiko-tall -->
+                <div class="risk-hero">
+                    <div class="risk-hero-value">380M</div>
+                    <div class="risk-hero-label">tapt kontraktsverdi i 2025</div>
+                    <div class="risk-hero-sub">181 tapte tilbud med 5 525 timer investert</div>
+                </div>
+            </div>
+
+            <!-- Risikokategorier -->
+            <div class="risk-categories">
+                <div class="risk-category high">
+                    <div class="risk-category-header">
+                        <span class="risk-level">Høy risiko</span>
+                        <span class="risk-level-icon">🔴</span>
+                    </div>
+                    <div class="risk-items">
+                        <div class="risk-item">
+                            <span class="risk-name">Tilbud over 10M</span>
+                            <span class="risk-detail">80% tap, 716 timer brukt</span>
+                        </div>
+                        <div class="risk-item">
+                            <span class="risk-name">Divisjonsledelse</span>
+                            <span class="risk-detail">100% tap, 568 timer brukt</span>
+                        </div>
+                        <div class="risk-item">
+                            <span class="risk-name">Region Vest (verdi)</span>
+                            <span class="risk-detail">70% tap på verdi, 1 488 timer</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="risk-category medium">
+                    <div class="risk-category-header">
+                        <span class="risk-level">Medium risiko</span>
+                        <span class="risk-level-icon">🟡</span>
+                    </div>
+                    <div class="risk-items">
+                        <div class="risk-item">
+                            <span class="risk-name">Tilbud 1.5-3M</span>
+                            <span class="risk-detail">52% tap, 1 599 timer brukt</span>
+                        </div>
+                        <div class="risk-item">
+                            <span class="risk-name">Ålesund kontor</span>
+                            <span class="risk-detail">50% tap, 10% tilbudskost</span>
+                        </div>
+                        <div class="risk-item">
+                            <span class="risk-name">Mo i Rana kontor</span>
+                            <span class="risk-detail">50% tap, 14% tilbudskost</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="risk-category low">
+                    <div class="risk-category-header">
+                        <span class="risk-level">Lav risiko</span>
+                        <span class="risk-level-icon">🟢</span>
+                    </div>
+                    <div class="risk-items">
+                        <div class="risk-item">
+                            <span class="risk-name">Tilbud under 300k</span>
+                            <span class="risk-detail">75-97% tilslag</span>
+                        </div>
+                        <div class="risk-item">
+                            <span class="risk-name">Region Sør</span>
+                            <span class="risk-detail">83% tilslag, 69% på verdi</span>
+                        </div>
+                        <div class="risk-item">
+                            <span class="risk-name">Direkte anskaffelser</span>
+                            <span class="risk-detail">100% sikker, lav innsats</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Største tapte -->
+            <div class="risk-top-losses">
+                <h3>Største tapte tilbud (topp 5)</h3>
+                <div class="risk-loss-list" id="riskLossList">
+                    <!-- Fylles dynamisk -->
+                </div>
+            </div>
+
+            <!-- Anbefaling -->
+            <div class="insight-box">
+                <div class="insight-icon">🎯</div>
+                <div class="insight-text">
+                    <strong>Anbefaling: Vær mer selektiv på store tilbud.</strong>
+                    Tilbud over 3M krever grundig vurdering før vi satser. Med 80% tap på 10M+ tilbud
+                    og høy timeinvestering bør vi fokusere på mellomstore tilbud (300k-1.5M) hvor vi har sterkest posisjon.
+                </div>
+            </div>
+        </div>
+    </section>
 
     <!-- Section 15: Nøkkelfunn -->
     <section class="section" data-section="14">

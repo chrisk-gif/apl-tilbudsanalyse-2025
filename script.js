@@ -14,6 +14,8 @@ document.addEventListener('DOMContentLoaded', () => {
         console.log('initRegionTable completed');
         initMobileClickHandlers();
         console.log('Mobile click handlers initialized');
+        initRiskAnalysis();
+        console.log('Risk analysis initialized');
     } catch (e) {
         console.error('Error during initialization:', e);
     }
@@ -1386,6 +1388,29 @@ function showVunneTilbud(type, navn) {
     });
 }
 
+// ============================================
+// RISIKOANALYSE
+// ============================================
+
+function initRiskAnalysis() {
+    const container = document.getElementById('riskLossList');
+    if (!container || !DATA.storsteTapte) {
+        console.log('Risk analysis: container or data not found');
+        return;
+    }
+
+    // Ta topp 5 største tapte tilbud
+    const topLosses = DATA.storsteTapte.slice(0, 5);
+
+    container.innerHTML = topLosses.map(t => `
+        <div class="risk-loss-item">
+            <div class="risk-loss-value">${t.verdi}M</div>
+            <div class="risk-loss-kunde" title="${t.kunde}">${t.kunde}</div>
+            <div class="risk-loss-timer">${t.timer} timer brukt</div>
+        </div>
+    `).join('');
+}
+
 // Eksporter alle onclick-funksjoner til global scope
 window.toggleStatDetails = toggleStatDetails;
 window.closeDetailPanel = closeDetailPanel;
@@ -1399,3 +1424,4 @@ window.showRegionGrupper = showRegionGrupper;
 window.showRegionKontorer = showRegionKontorer;
 window.closeRegionModal = closeRegionModal;
 window.showVunneTilbud = showVunneTilbud;
+window.initRiskAnalysis = initRiskAnalysis;

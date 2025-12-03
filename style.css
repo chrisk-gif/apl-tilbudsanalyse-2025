@@ -3232,8 +3232,513 @@ body {
     .top10-grid {
         grid-template-columns: 1fr;
     }
-    
+
     .top10-card {
         padding: 16px;
+    }
+}
+
+/* ============================================
+   EFFEKTIVITETSANALYSE - NY SEKSJON
+   ============================================ */
+
+.efficiency-main-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    margin-bottom: 40px;
+    align-items: center;
+}
+
+.efficiency-hero-card {
+    background: linear-gradient(135deg, var(--av-dark-green), var(--av-forest));
+    border-radius: 20px;
+    padding: 50px 40px;
+    text-align: center;
+    color: var(--text-light);
+    box-shadow: 0 10px 40px rgba(30, 58, 50, 0.3);
+}
+
+.efficiency-hero-value {
+    font-size: 5rem;
+    font-weight: 800;
+    line-height: 1;
+    margin-bottom: 10px;
+    background: linear-gradient(135deg, #fff, var(--av-pale-green));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.efficiency-hero-label {
+    font-size: 1.4rem;
+    font-weight: 600;
+    margin-bottom: 10px;
+    opacity: 0.95;
+}
+
+.efficiency-hero-sub {
+    font-size: 0.95rem;
+    opacity: 0.75;
+}
+
+.efficiency-compare-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.efficiency-compare-card {
+    background: var(--av-white);
+    border-radius: 16px;
+    padding: 30px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    border-left: 5px solid;
+}
+
+.efficiency-compare-card.won {
+    border-color: var(--av-green);
+}
+
+.efficiency-compare-card.lost {
+    border-color: var(--warning-red);
+}
+
+.efficiency-compare-icon {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.efficiency-compare-card.won .efficiency-compare-icon {
+    background: rgba(61, 122, 82, 0.15);
+    color: var(--av-green);
+}
+
+.efficiency-compare-card.lost .efficiency-compare-icon {
+    background: rgba(184, 84, 80, 0.15);
+    color: var(--warning-red);
+}
+
+.efficiency-compare-value {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--av-dark-green);
+}
+
+.efficiency-compare-label {
+    font-size: 1rem;
+    color: var(--text-muted);
+    margin-top: 2px;
+}
+
+.efficiency-compare-sub {
+    font-size: 0.85rem;
+    color: var(--av-light-gray);
+}
+
+.efficiency-stats-row {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap;
+    margin-bottom: 40px;
+}
+
+.efficiency-stat {
+    background: var(--av-white);
+    border-radius: 12px;
+    padding: 20px 30px;
+    text-align: center;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.06);
+}
+
+.efficiency-stat.highlight {
+    background: linear-gradient(135deg, var(--av-yellow), #d4b060);
+    color: var(--av-dark-green);
+}
+
+.efficiency-stat-value {
+    display: block;
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--av-dark-green);
+}
+
+.efficiency-stat.highlight .efficiency-stat-value {
+    color: var(--av-dark-green);
+}
+
+.efficiency-stat-label {
+    display: block;
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    margin-top: 5px;
+}
+
+.efficiency-stat.highlight .efficiency-stat-label {
+    color: var(--av-forest);
+}
+
+@media (max-width: 900px) {
+    .efficiency-main-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .efficiency-hero-value {
+        font-size: 3.5rem;
+    }
+
+    .efficiency-stats-row {
+        gap: 15px;
+    }
+
+    .efficiency-stat {
+        padding: 15px 20px;
+    }
+}
+
+/* ============================================
+   TRENDER OG MØNSTRE - NY SEKSJON
+   ============================================ */
+
+.trends-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    margin-bottom: 40px;
+}
+
+.trends-column {
+    background: var(--av-white);
+    border-radius: 20px;
+    padding: 30px;
+    box-shadow: 0 6px 25px rgba(0, 0, 0, 0.08);
+}
+
+.trends-column.won {
+    border-top: 5px solid var(--av-green);
+}
+
+.trends-column.lost {
+    border-top: 5px solid var(--warning-red);
+}
+
+.trends-column-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 1.3rem;
+    font-weight: 700;
+    margin-bottom: 25px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.trends-column.won .trends-column-header {
+    color: var(--av-green);
+}
+
+.trends-column.lost .trends-column-header {
+    color: var(--warning-red);
+}
+
+.trends-icon {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+}
+
+.trends-column.won .trends-icon {
+    background: rgba(61, 122, 82, 0.15);
+}
+
+.trends-column.lost .trends-icon {
+    background: rgba(184, 84, 80, 0.15);
+}
+
+.trends-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.trend-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 12px 15px;
+    background: rgba(0, 0, 0, 0.02);
+    border-radius: 10px;
+    transition: transform 0.2s;
+}
+
+.trend-item:hover {
+    transform: translateX(5px);
+}
+
+.trend-stat {
+    font-size: 1.4rem;
+    font-weight: 700;
+    min-width: 70px;
+}
+
+.trends-column.won .trend-stat {
+    color: var(--av-green);
+}
+
+.trends-column.lost .trend-stat {
+    color: var(--warning-red);
+}
+
+.trend-desc {
+    font-size: 0.95rem;
+    color: var(--text-muted);
+}
+
+.trends-insights {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+}
+
+.trends-insight-card {
+    background: var(--av-white);
+    border-radius: 16px;
+    padding: 25px;
+    display: flex;
+    gap: 15px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.06);
+}
+
+.trends-insight-icon {
+    font-size: 2rem;
+    flex-shrink: 0;
+}
+
+.trends-insight-content strong {
+    display: block;
+    font-size: 1rem;
+    color: var(--av-dark-green);
+    margin-bottom: 8px;
+}
+
+.trends-insight-content p {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    line-height: 1.5;
+}
+
+@media (max-width: 900px) {
+    .trends-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .trends-insights {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* ============================================
+   RISIKOANALYSE - NY SEKSJON
+   ============================================ */
+
+.risk-overview {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 40px;
+}
+
+.risk-hero {
+    background: linear-gradient(135deg, var(--warning-red), #c76560);
+    border-radius: 20px;
+    padding: 40px 60px;
+    text-align: center;
+    color: var(--text-light);
+    box-shadow: 0 10px 40px rgba(184, 84, 80, 0.3);
+}
+
+.risk-hero-value {
+    font-size: 4rem;
+    font-weight: 800;
+    line-height: 1;
+    margin-bottom: 8px;
+}
+
+.risk-hero-label {
+    font-size: 1.3rem;
+    font-weight: 600;
+    opacity: 0.95;
+}
+
+.risk-hero-sub {
+    font-size: 0.9rem;
+    opacity: 0.8;
+    margin-top: 8px;
+}
+
+.risk-categories {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+    margin-bottom: 40px;
+}
+
+.risk-category {
+    background: var(--av-white);
+    border-radius: 16px;
+    padding: 25px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+}
+
+.risk-category.high {
+    border-top: 4px solid var(--warning-red);
+}
+
+.risk-category.medium {
+    border-top: 4px solid var(--av-yellow);
+}
+
+.risk-category.low {
+    border-top: 4px solid var(--av-green);
+}
+
+.risk-category-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+.risk-level {
+    font-size: 1.1rem;
+    font-weight: 700;
+}
+
+.risk-category.high .risk-level {
+    color: var(--warning-red);
+}
+
+.risk-category.medium .risk-level {
+    color: #a08030;
+}
+
+.risk-category.low .risk-level {
+    color: var(--av-green);
+}
+
+.risk-level-icon {
+    font-size: 1.3rem;
+}
+
+.risk-items {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.risk-item {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    padding: 12px;
+    background: rgba(0, 0, 0, 0.02);
+    border-radius: 8px;
+}
+
+.risk-name {
+    font-weight: 600;
+    font-size: 0.95rem;
+    color: var(--av-dark-green);
+}
+
+.risk-detail {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+}
+
+.risk-top-losses {
+    margin-bottom: 30px;
+}
+
+.risk-top-losses h3 {
+    font-size: 1.2rem;
+    color: var(--av-dark-green);
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.risk-loss-list {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 15px;
+}
+
+.risk-loss-item {
+    background: var(--av-white);
+    border-radius: 12px;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.06);
+    border-left: 4px solid var(--warning-red);
+}
+
+.risk-loss-value {
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: var(--warning-red);
+    margin-bottom: 8px;
+}
+
+.risk-loss-kunde {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--av-dark-green);
+    margin-bottom: 4px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.risk-loss-timer {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+}
+
+@media (max-width: 1100px) {
+    .risk-categories {
+        grid-template-columns: 1fr;
+    }
+
+    .risk-loss-list {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 600px) {
+    .risk-hero {
+        padding: 30px;
+    }
+
+    .risk-hero-value {
+        font-size: 3rem;
+    }
+
+    .risk-loss-list {
+        grid-template-columns: 1fr;
     }
 }
